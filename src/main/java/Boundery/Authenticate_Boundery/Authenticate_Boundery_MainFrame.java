@@ -1,12 +1,11 @@
 package Boundery.Authenticate_Boundery;
 
-import Boundery.Generic_Boundery;
 import Entity.Persistency_Policy;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Authenticate_Boundery_MainFrame extends JFrame implements Generic_Boundery {
+public class Authenticate_Boundery_MainFrame extends JFrame{
 
     //MainFrame components
     Authenticate_Boundery_Central_Pannel centralPanel = new Authenticate_Boundery_Central_Pannel();
@@ -44,11 +43,7 @@ public class Authenticate_Boundery_MainFrame extends JFrame implements Generic_B
         add(east_pannel, BorderLayout.EAST);
         add(west_pannel, BorderLayout.WEST);
         add(south_pannel, BorderLayout.SOUTH);
-    }
 
-    @Override
-    public void display_and_listen() {
-        System.out.println("[SYSTEM] Initializing Authenticate_Boundery");
         setVisible(true);
     }
 

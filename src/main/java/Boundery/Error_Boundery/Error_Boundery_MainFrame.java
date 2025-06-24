@@ -1,11 +1,9 @@
 package Boundery.Error_Boundery;
 
-import Boundery.Generic_Boundery;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class Error_Boundery_MainFrame extends JFrame implements Generic_Boundery {
+public class Error_Boundery_MainFrame extends JFrame {
 
     Error_Boundery_Central_Pannel centralPannel;
     JPanel north_pannel = new JPanel();
@@ -40,10 +38,7 @@ public class Error_Boundery_MainFrame extends JFrame implements Generic_Boundery
         add(west_pannel, BorderLayout.WEST);
         add(south_pannel, BorderLayout.SOUTH);
 
-    }
-
-    @Override
-    public void display_and_listen() {
         setVisible(true);
     }
+
 }

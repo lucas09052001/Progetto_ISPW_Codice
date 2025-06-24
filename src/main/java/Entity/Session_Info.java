@@ -1,14 +1,15 @@
 package Entity;
 
-import Boundery.Generic_Boundery;
+import Boundery.BounderyEnum;
 
 public class Session_Info {
     private static Session_Info session_info;
 
     //Attributi per funzionamento (User, NextBoundery)
     private User user;
-    private Generic_Boundery next_boundery;
     private Persistency_Policy persistency_policy;
+    private BounderyEnum bounderyEnum;
+    private String lastError;
 
     private Session_Info(){}
 
@@ -27,12 +28,12 @@ public class Session_Info {
         this.user = user;
     }
 
-    public Generic_Boundery getNext_Boundery() {
-        return next_boundery;
+    public BounderyEnum getBounderyEnum() {
+        return bounderyEnum;
     }
 
-    public void setNext_boundery(Generic_Boundery next_boundery) {
-        this.next_boundery = next_boundery;
+    public void setBounderyEnum(BounderyEnum bounderyEnum) {
+        this.bounderyEnum = bounderyEnum;
     }
 
     public Persistency_Policy getPersistency_policy() {
@@ -43,4 +44,11 @@ public class Session_Info {
         this.persistency_policy = persistency_policy;
     }
 
+    public String getLastError() {
+        return lastError;
+    }
+
+    public void setLastError(String lastError) {
+        this.lastError = lastError;
+    }
 }

@@ -1,13 +1,11 @@
 package Boundery.Homepage;
 
-import Boundery.Authenticate_Boundery.Authenticate_Boundery_Central_Pannel;
-import Boundery.Generic_Boundery;
 import Boundery.MacroComponents.DashBoard;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Homepage_Boundery_MainFrame extends JFrame implements Generic_Boundery {
+public class Homepage_Boundery_MainFrame extends JFrame {
     //MainFrame components
     DashBoard dashBoard = new DashBoard();
     Homepage_Boundery_Central_Pannel centralPanel = new Homepage_Boundery_Central_Pannel();
@@ -38,10 +36,8 @@ public class Homepage_Boundery_MainFrame extends JFrame implements Generic_Bound
         add(east_pannel, BorderLayout.EAST);
         add(west_pannel, BorderLayout.WEST);
         add(south_pannel, BorderLayout.SOUTH);
+
+        setVisible(true);
     }
 
-    @Override
-    public void display_and_listen() {
-        System.out.println("[SYSTEM] Initializing Homepage Boundery");
-    }
 }

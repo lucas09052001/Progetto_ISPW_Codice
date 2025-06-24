@@ -1,8 +1,6 @@
 package Controller;
 
-import Boundery.Authenticate_Boundery.Authenticate_Boundery_MainFrame;
-import Boundery.Error_Boundery.Error_Boundery_MainFrame;
-import Boundery.Homepage.Homepage_Boundery_MainFrame;
+import Boundery.BounderyEnum;
 import DAO.User.User_DAO;
 import DAO.User.User_DAO_DB;
 import DAO.User.User_DAO_File;
@@ -11,8 +9,6 @@ import Entity.Persistency_Policy;
 import Entity.Session_Info;
 import Entity.User;
 import Exceptions.DAO_Exception;
-
-import java.util.jar.JarOutputStream;
 
 public class Authenticate_Controller {
 
@@ -46,13 +42,19 @@ public class Authenticate_Controller {
             //Aggiorna classe di sessione
             session_info.setUser(user);
             session_info.setPersistency_policy(persistency_policy);
-            session_info.setNext_boundery(new Homepage_Boundery_MainFrame());
+            session_info.setBounderyEnum(BounderyEnum.HOMEPAGE);
+
+            //Avvia il dispatcher
+            Dispatcher.start();
 
         } catch (IllegalArgumentException | DAO_Exception e) {
-            new Error_Boundery_MainFrame(e.getMessage()).display_and_listen();
-            session_info.setNext_boundery(new Authenticate_Boundery_MainFrame());
-        } finally {
-            session_info.getNext_Boundery().display_and_listen();
+
+            session_info.setBounderyEnum(BounderyEnum.ERROR);
+            session_info.setLastError(e.getMessage());
+            Dispatcher.start();
+
+            session_info.setBounderyEnum(BounderyEnum.AUTHENTICATE);
+            Dispatcher.start();
         }
 
     }
