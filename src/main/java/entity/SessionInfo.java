@@ -3,21 +3,21 @@ package entity;
 import boundery.BounderyEnum;
 
 public class SessionInfo {
-    private static SessionInfo session_info;
+    private static SessionInfo sessionInfo;
 
     //Attributi per funzionamento (User, NextBoundery)
     private User user;
-    private PersistencyPolicy persistency_policy;
+    private PersistencyPolicy persistencyPolicy;
     private BounderyEnum bounderyEnum;
     private String lastError;
 
     private SessionInfo(){}
 
     public static SessionInfo get_session_info(){
-        if(session_info == null){
-            session_info = new SessionInfo();
+        if(sessionInfo == null){
+            sessionInfo = new SessionInfo();
         }
-        return session_info;
+        return sessionInfo;
     }
 
     public User getUser() {
@@ -36,12 +36,12 @@ public class SessionInfo {
         this.bounderyEnum = bounderyEnum;
     }
 
-    public PersistencyPolicy getPersistency_policy() {
-        return persistency_policy;
+    public PersistencyPolicy getPersistencyPolicy() {
+        return persistencyPolicy;
     }
 
-    public void setPersistency_policy(PersistencyPolicy persistency_policy) {
-        this.persistency_policy = persistency_policy;
+    public void setPersistencyPolicy(PersistencyPolicy persistencyPolicy) {
+        this.persistencyPolicy = persistencyPolicy;
     }
 
     public String getLastError() {

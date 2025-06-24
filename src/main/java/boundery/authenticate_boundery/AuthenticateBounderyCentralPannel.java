@@ -1,5 +1,6 @@
 package boundery.authenticate_boundery;
 
+import boundery.ColorRepository;
 import controller.AuthenticateController;
 import entity.PersistencyPolicy;
 
@@ -12,15 +13,15 @@ public class AuthenticateBounderyCentralPannel extends JPanel {
 
     JButton loginButton = new JButton("Login");
     JButton registerButton = new JButton("Register");
-    JTextField username_TextField = new JTextField("Username");
-    JTextField password_TextField = new JTextField("Password");
-    JLabel text_DB = new JLabel("Choose the persistency policy: ");
-    JRadioButton persistency_policy_DB = new JRadioButton("DB");
-    JRadioButton persistency_policy_File = new JRadioButton("File");
-    JRadioButton persistency_policy_NoPersistency = new JRadioButton("No Persistency");
-    ButtonGroup gruppo_bottoni = new ButtonGroup();
+    JTextField usernameTextField = new JTextField("Username");
+    JTextField passwordTextField = new JTextField("Password");
+    JLabel textPersistency = new JLabel("Choose the persistency policy: ");
+    JRadioButton persistencyPolicyDB = new JRadioButton("DB");
+    JRadioButton persistencyPolicyFile = new JRadioButton("File");
+    JRadioButton persistencyPolicyNoPersistency = new JRadioButton("No Persistency");
+    ButtonGroup gruppoBottoni = new ButtonGroup();
 
-    PersistencyPolicy persistency_policy = PersistencyPolicy.NULL;
+    PersistencyPolicy persistencyPolicy = PersistencyPolicy.NULL;
 
     public AuthenticateBounderyCentralPannel() {
 
@@ -30,57 +31,57 @@ public class AuthenticateBounderyCentralPannel extends JPanel {
 
         //TextFields
         Dimension fieldSize = new Dimension(400, 50);
-        username_TextField.setMaximumSize(fieldSize);
-        password_TextField.setMaximumSize(fieldSize);
+        usernameTextField.setMaximumSize(fieldSize);
+        passwordTextField.setMaximumSize(fieldSize);
 
-        username_TextField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        password_TextField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        usernameTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passwordTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         add(Box.createVerticalStrut(30)); // spaziatura
-        add(username_TextField);
+        add(usernameTextField);
         add(Box.createVerticalStrut(30));
-        add(password_TextField);
+        add(passwordTextField);
 
         //RadioButtons for persistency policy
-        text_DB.setAlignmentX(Component.CENTER_ALIGNMENT);
-        text_DB.setBackground(Color.decode("#3DDC97"));
-        add(text_DB);
+        textPersistency.setAlignmentX(Component.CENTER_ALIGNMENT);
+        textPersistency.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        add(textPersistency);
 
-        gruppo_bottoni.add(persistency_policy_DB);
-        gruppo_bottoni.add(persistency_policy_File);
-        gruppo_bottoni.add(persistency_policy_NoPersistency);
+        gruppoBottoni.add(persistencyPolicyDB);
+        gruppoBottoni.add(persistencyPolicyFile);
+        gruppoBottoni.add(persistencyPolicyNoPersistency);
 
-        persistency_policy_DB.setAlignmentX(Component.CENTER_ALIGNMENT);
-        persistency_policy_File.setAlignmentX(Component.CENTER_ALIGNMENT);
-        persistency_policy_NoPersistency.setAlignmentX(Component.CENTER_ALIGNMENT);
+        persistencyPolicyDB.setAlignmentX(Component.CENTER_ALIGNMENT);
+        persistencyPolicyFile.setAlignmentX(Component.CENTER_ALIGNMENT);
+        persistencyPolicyNoPersistency.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        persistency_policy_DB.addActionListener(e -> persistency_policy = PersistencyPolicy.DB);
-        persistency_policy_File.addActionListener(e -> persistency_policy = PersistencyPolicy.FILE);
-        persistency_policy_NoPersistency.addActionListener(e -> persistency_policy = PersistencyPolicy.NO_PERSISTANCE);
+        persistencyPolicyDB.addActionListener(e -> persistencyPolicy = PersistencyPolicy.DB);
+        persistencyPolicyFile.addActionListener(e -> persistencyPolicy = PersistencyPolicy.FILE);
+        persistencyPolicyNoPersistency.addActionListener(e -> persistencyPolicy = PersistencyPolicy.NO_PERSISTANCE);
 
-        add(persistency_policy_DB);
-        add(persistency_policy_File);
-        add(persistency_policy_NoPersistency);
+        add(persistencyPolicyDB);
+        add(persistencyPolicyFile);
+        add(persistencyPolicyNoPersistency);
 
         //Action buttons
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         registerButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        loginButton.addActionListener(e -> handle_login_event());
-        registerButton.addActionListener(e -> handle_register_event());
+        loginButton.addActionListener(e -> handleLoginEvent());
+        registerButton.addActionListener(e -> handleRegisterEvent());
         add(loginButton);
         add(registerButton);
 
         setVisible(true);
     }
 
-    public void handle_login_event(){
+    public void handleLoginEvent(){
         System.out.println("[SYSTEM] Initializing 'login' op in Authenticate_Controller");
         SwingUtilities.getWindowAncestor(this).dispose();
-        controller.login(username_TextField.getText(), password_TextField.getText(), persistency_policy);
+        controller.login(usernameTextField.getText(), passwordTextField.getText(), persistencyPolicy);
     }
 
-    public void handle_register_event(){    //NON IMPLEMENTATO, DA NON CONSIDERARE
+    public void handleRegisterEvent(){    //NON IMPLEMENTATO, DA NON CONSIDERARE
         System.out.println("[EE] Not yet implemented");
         System.exit(0);
     }

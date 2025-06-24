@@ -1,6 +1,6 @@
 package boundery.homepage;
 
-import boundery.Color_Repository;
+import boundery.ColorRepository;
 import boundery.macro_components.DashBoard;
 
 import javax.swing.*;
@@ -10,9 +10,9 @@ public class HomepageBounderyMainFrame extends JFrame {
     //MainFrame components
     DashBoard dashBoard = new DashBoard();
     HomepageBounderyCentralPannel centralPanel = new HomepageBounderyCentralPannel();
-    JPanel south_pannel = new JPanel();
-    JPanel east_pannel = new JPanel();
-    JPanel west_pannel = new JPanel();
+    JPanel southPannel = new JPanel();
+    JPanel eastPannel = new JPanel();
+    JPanel westPannel = new JPanel();
 
 
     public HomepageBounderyMainFrame(){
@@ -23,9 +23,9 @@ public class HomepageBounderyMainFrame extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        south_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
-        east_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
-        west_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
+        southPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        eastPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        westPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
 
 
         //Behavior
@@ -34,9 +34,9 @@ public class HomepageBounderyMainFrame extends JFrame {
         //Components
         add(centralPanel, BorderLayout.CENTER);
         add(dashBoard, BorderLayout.NORTH);
-        add(east_pannel, BorderLayout.EAST);
-        add(west_pannel, BorderLayout.WEST);
-        add(south_pannel, BorderLayout.SOUTH);
+        add(eastPannel, BorderLayout.EAST);
+        add(westPannel, BorderLayout.WEST);
+        add(southPannel, BorderLayout.SOUTH);
 
         setVisible(true);
     }

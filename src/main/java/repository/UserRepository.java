@@ -19,14 +19,14 @@ import java.util.List;
 public class UserRepository {
 
     private static UserRepository instance;
-    private List<User> lista_utenti;
+    private List<User> listaUtenti;
 
     private UserRepository(){
 
-        lista_utenti = new ArrayList<>();
+        listaUtenti = new ArrayList<>();
 
-        lista_utenti.add(new User("alice", "alice", 4, 50000));
-        lista_utenti.add(new User("bob", "bob", 5, 1200));
+        listaUtenti.add(new User("alice", "alice", 4, 50000));
+        listaUtenti.add(new User("bob", "bob", 5, 1200));
 
     }
 
@@ -37,12 +37,12 @@ public class UserRepository {
         return instance;
     }
 
-    public List<User> getLista_utenti() {
-        return lista_utenti;
+    public List<User> getListaUtenti() {
+        return listaUtenti;
     }
 
-    public void setLista_utenti(List<User> lista_utenti) {
-        this.lista_utenti = lista_utenti;
+    public void setListaUtenti(List<User> listaUtenti) {
+        this.listaUtenti = listaUtenti;
     }
 }
 

@@ -1,6 +1,6 @@
 package boundery.authenticate_boundery;
 
-import boundery.Color_Repository;
+import boundery.ColorRepository;
 import entity.PersistencyPolicy;
 
 import javax.swing.*;
@@ -10,15 +10,10 @@ public class AuthenticateBounderyMainFrame extends JFrame{
 
     //MainFrame components
     AuthenticateBounderyCentralPannel centralPanel = new AuthenticateBounderyCentralPannel();
-    JPanel north_pannel = new JPanel();
-    JPanel south_pannel = new JPanel();
-    JPanel east_pannel = new JPanel();
-    JPanel west_pannel = new JPanel();
-
-    //Info
-    String username;
-    String password;
-    PersistencyPolicy persistency_policy;
+    JPanel northPannel = new JPanel();
+    JPanel southPannel = new JPanel();
+    JPanel eastPannel = new JPanel();
+    JPanel westPannel = new JPanel();
 
 
     public AuthenticateBounderyMainFrame() {
@@ -29,10 +24,10 @@ public class AuthenticateBounderyMainFrame extends JFrame{
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        north_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
-        south_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
-        east_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
-        west_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
+        northPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        southPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        eastPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        westPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
 
 
         //Behavior
@@ -40,10 +35,10 @@ public class AuthenticateBounderyMainFrame extends JFrame{
 
         //Components
         add(centralPanel, BorderLayout.CENTER);
-        add(north_pannel, BorderLayout.NORTH);
-        add(east_pannel, BorderLayout.EAST);
-        add(west_pannel, BorderLayout.WEST);
-        add(south_pannel, BorderLayout.SOUTH);
+        add(northPannel, BorderLayout.NORTH);
+        add(eastPannel, BorderLayout.EAST);
+        add(westPannel, BorderLayout.WEST);
+        add(southPannel, BorderLayout.SOUTH);
 
         setVisible(true);
     }

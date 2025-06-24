@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class UserDAOFile implements UserDAO {
-    User user = new User();
-
 
     public UserDAOFile(){
         //No set up needed

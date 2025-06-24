@@ -20,7 +20,7 @@ public class AuthenticateController {
 
     public void login(String username, String password, PersistencyPolicy persistency_policy){
 
-        SessionInfo session_info = SessionInfo.get_session_info();
+        SessionInfo sessionInfo = SessionInfo.get_session_info();
 
         try {
             switch (persistency_policy) {
@@ -41,20 +41,20 @@ public class AuthenticateController {
             User user = dao.authenticate(username, password);
 
             //Aggiorna classe di sessione
-            session_info.setUser(user);
-            session_info.setPersistency_policy(persistency_policy);
-            session_info.setBounderyEnum(BounderyEnum.HOMEPAGE);
+            sessionInfo.setUser(user);
+            sessionInfo.setPersistencyPolicy(persistency_policy);
+            sessionInfo.setBounderyEnum(BounderyEnum.HOMEPAGE);
 
             //Avvia il dispatcher
             Dispatcher.start();
 
         } catch (IllegalArgumentException | DAOException e) {
 
-            session_info.setBounderyEnum(BounderyEnum.ERROR);
-            session_info.setLastError(e.getMessage());
+            sessionInfo.setBounderyEnum(BounderyEnum.ERROR);
+            sessionInfo.setLastError(e.getMessage());
             Dispatcher.start();
 
-            session_info.setBounderyEnum(BounderyEnum.AUTHENTICATE);
+            sessionInfo.setBounderyEnum(BounderyEnum.AUTHENTICATE);
             Dispatcher.start();
         }
 

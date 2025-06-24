@@ -19,12 +19,13 @@ public class UserDAODB implements UserDAO {
 
     public User authenticate(String username, String password) throws DAOException {
         //JDBC STUFF
-        //connection = ConnectionFactory.upgrade();
         System.out.println("[SYSTEM] Connection to DB established"); //CONSOLE DEBUG
 
-        try (Connection connection = ConnectionFactory.upgrade()){
-            String query = "SELECT username, password, rating, points FROM Users WHERE username = ? AND password = ?";
-            PreparedStatement stmt = connection.prepareStatement(query);
+        String query = "SELECT username, password, rating, points FROM Users WHERE username = ? AND password = ?";
+
+        try (Connection connection = ConnectionFactory.upgrade();
+             PreparedStatement stmt = connection.prepareStatement(query)){
+
             stmt.setString(1,username);
             stmt.setString(2, password);
 

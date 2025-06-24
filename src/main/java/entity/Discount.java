@@ -1,29 +1,29 @@
 package entity;
 
 public class Discount {
-    String owner_id;
+    String ownerId;
     int percentage;
     String location;
-    int points_to_redeem;
+    int pointsToRedeem;
     boolean used;
 
     public Discount() {
     }
 
-    public Discount(String owner_id, int percentage, String location, int points_to_redeem, boolean used) {
-        this.owner_id = owner_id;
+    public Discount(String ownerId, int percentage, String location, int pointsToRedeem, boolean used) {
+        this.ownerId = ownerId;
         this.percentage = percentage;
         this.location = location;
-        this.points_to_redeem = points_to_redeem;
+        this.pointsToRedeem = pointsToRedeem;
         this.used = used;
     }
 
-    public String getOwner_id() {
-        return owner_id;
+    public String getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner_id(String owner_id) {
-        this.owner_id = owner_id;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
     public int getPercentage() {
@@ -42,12 +42,12 @@ public class Discount {
         this.location = location;
     }
 
-    public int getPoints_to_redeem() {
-        return points_to_redeem;
+    public int getPointsToRedeem() {
+        return pointsToRedeem;
     }
 
-    public void setPoints_to_redeem(int points_to_redeem) {
-        this.points_to_redeem = points_to_redeem;
+    public void setPointsToRedeem(int pointsToRedeem) {
+        this.pointsToRedeem = pointsToRedeem;
     }
 
     public boolean isUsed() {
