@@ -122,3 +122,28 @@ Un dubbio che ho è l'action listener passato con casting ai componenti interagi
 L'idea di utilizzare custom button è che posso riutilizzare la classe per ogni bottone che mi serve e far specializzare quello che devo al relativo MainFrame
 
 Usi getText per ottenere il testo che è correntemente mostrato nel textfield. Lo fai quando un bottone è premuto (quello di login nel caso in cui sto lavorando adesso)
+
+Sono arrivato ad un problema: Supponendo che la GUI sia fatta da un mainframe che contiene JPannels che a loro volta contengono bottoni, la domanda allora è: Dove metto gli action listener ? Dove metto la logica di gestione delle interruzioni?
+La risposta è: NON nei Jpannels. La logica di gestione dovrebbe essere nel mainFrame (anche perché poi è quello che fa partire il controller).
+
+Ma quindi come si fa ? Sembra che il modo più corretto di farlo sia inizializzare i JPannels con i bottoni e poi da mainframe aggiungere ai bottoni l'action listener.
+
+Andrebbe fatta una eccezione personalizzata "DAO EXCEPTION" se qualcosa inerente al DAO schianta.
+
+COSA BISGONA FARE A QUESTO PUNTO ?
+
+Sistemare DAOs
+Verificare funzionalità
+
+
+Ho appena pensato ad una brutta cosa... Per il modo in cui lo ho gestito ogni controller corrente chiama la successiva boundery, ma in questo modo tutti i controller
+che verrano saranno sempre legati a quelli prima quindi il garbage collector non può eliminare niente. E' giusto ? In caso come risolvo. Non lo so ora non ho la testa per farlo
+Non succede fortunatamente sembra che quelli di Swing ci abbiano pensato o che comunque finché è aperto un thread il programma non si chiuda.
+
+
+Sono arrivato alla conclusione che:
+Il mainframe di una boundery ha la responsabilità di raccogliere tutti i componenti, disporli e renderli visibili. Si comporta come una sorta di facade.
+I pannels sono i contenitori a grana fine, questi hanno la responsabilità di mostrare gli elementi interagibili e AVVIARE l'interazione. Nel caso l'interaizione
+scateni un caso d'uso si sta usando il pannello principale e questo avrà il relativo controller.
+Nel caso in cui si stia navigando nell'app (si passa da un caso d'uso all'altro o si va all'homepage) si sta usando il pannello di navigazione che invece
+non scatena un controller ma setta la nextBoundery nella classe di sessione

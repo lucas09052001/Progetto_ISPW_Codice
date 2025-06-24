@@ -10,9 +10,7 @@ public class Session_Info {
     private Generic_Boundery next_boundery;
     private Persistency_Policy persistency_policy;
 
-    private Session_Info(){
-        //Niente perché Singleton
-    }
+    private Session_Info(){}
 
     public static Session_Info get_session_info(){
         if(session_info == null){
@@ -29,7 +27,7 @@ public class Session_Info {
         this.user = user;
     }
 
-    public Generic_Boundery getNext_boundery() {
+    public Generic_Boundery getNext_Boundery() {
         return next_boundery;
     }
 
@@ -44,4 +42,5 @@ public class Session_Info {
     public void setPersistency_policy(Persistency_Policy persistency_policy) {
         this.persistency_policy = persistency_policy;
     }
+
 }

@@ -1,27 +1,22 @@
-package Boundery.Authenticate_Boundery;
+package Boundery.Homepage;
 
+import Boundery.Authenticate_Boundery.Authenticate_Boundery_Central_Pannel;
 import Boundery.Generic_Boundery;
-import Entity.Persistency_Policy;
+import Boundery.MacroComponents.DashBoard;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Authenticate_Boundery_MainFrame extends JFrame implements Generic_Boundery {
-
+public class Homepage_Boundery_MainFrame extends JFrame implements Generic_Boundery {
     //MainFrame components
-    Authenticate_Boundery_Central_Pannel centralPanel = new Authenticate_Boundery_Central_Pannel();
-    JPanel north_pannel = new JPanel();
+    DashBoard dashBoard = new DashBoard();
+    Homepage_Boundery_Central_Pannel centralPanel = new Homepage_Boundery_Central_Pannel();
     JPanel south_pannel = new JPanel();
     JPanel east_pannel = new JPanel();
     JPanel west_pannel = new JPanel();
 
-    //Info
-    String username;
-    String password;
-    Persistency_Policy persistency_policy;
 
-
-    public Authenticate_Boundery_MainFrame() {
+    public Homepage_Boundery_MainFrame(){
         super("Unishare");
 
         // Look and Feel
@@ -29,7 +24,6 @@ public class Authenticate_Boundery_MainFrame extends JFrame implements Generic_B
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        north_pannel.setBackground(Color.decode("#3DDC97"));
         south_pannel.setBackground(Color.decode("#3DDC97"));
         east_pannel.setBackground(Color.decode("#3DDC97"));
         west_pannel.setBackground(Color.decode("#3DDC97"));
@@ -40,7 +34,7 @@ public class Authenticate_Boundery_MainFrame extends JFrame implements Generic_B
 
         //Components
         add(centralPanel, BorderLayout.CENTER);
-        add(north_pannel, BorderLayout.NORTH);
+        add(dashBoard, BorderLayout.NORTH);
         add(east_pannel, BorderLayout.EAST);
         add(west_pannel, BorderLayout.WEST);
         add(south_pannel, BorderLayout.SOUTH);
@@ -48,8 +42,6 @@ public class Authenticate_Boundery_MainFrame extends JFrame implements Generic_B
 
     @Override
     public void display_and_listen() {
-        System.out.println("[SYSTEM] Initializing Authenticate_Boundery");
-        setVisible(true);
+        System.out.println("[SYSTEM] Initializing Homepage Boundery");
     }
-
 }

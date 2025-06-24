@@ -1,5 +1,7 @@
 package DAO;
 
+import Exceptions.Critical_Exception;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,7 +37,7 @@ public class ConnectionFactory {
         return connection;
     }
 
-    public static void upgrade() {
+    public static Connection upgrade() {
 
         try (InputStream input = new FileInputStream("resources/db.properties")) {
             connection.close();
@@ -47,12 +49,12 @@ public class ConnectionFactory {
             String user = properties.getProperty("ACTIVE_USER");
             String pass = properties.getProperty("ACTIVE_PASS");
 
-            connection = DriverManager.getConnection(connection_url, user, pass);
+            return connection = DriverManager.getConnection(connection_url, user, pass);
         } catch (IOException | SQLException e) {
             //Qui ci sta bene tirare una eccezione personalizzata così che questa possa venir propagata
             //fino al controller e lì venir gestita.
             System.out.println("[SYSTEM] Errore di sistema: " + e.getMessage());
-            throw new RuntimeException();
+            throw new Critical_Exception("Errore critico di sistema. L'applicazione verrà immediatamente terminata");
         }
     }
 }

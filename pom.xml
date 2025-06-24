@@ -15,6 +15,17 @@
 
         <sonar.organization>lucas09052001</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version>
+        </dependency>
+    </dependencies>
+
+
 
 </project>
