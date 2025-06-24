@@ -8,7 +8,7 @@ Devo riflette sul caso senza persistenza. In teoria è molto semplice. Si fa un 
 da lì si usano getters e setters che tutte le classi hanno per compiere le modifiche non persistenti. In questo senso i metodi di classe perdono un pò senso però e bastano setters e getters
 
 Credo di essermi scordato le boundery di errore, quelle cui dovrebbe arrivare un messaggio di errore da mostrare all'utente
-Da Chat sembra che il controllo di errore di flusso vada fatto come ti aspetti. Generalmente le eccezzioni avvengono nella logica applicativa quindi o nelle entities o nei DAO.
+Da Chat sembra che il controllo di errore di flusso vada fatto come ti aspetti. Generalmente le eccezzioni avvengono nella logica applicativa quindi o nelle entities o nei dao.
 In tal caso la giusta propagazione consiste nel catchare l'eccezione specifica di livello applicativo (SQL_Exception) e poi propagarla in alto in modo più generale (magari facendone una custom)
 da lì è il controller a gestirla, in qusto caso ha senso anche che istanzi e avvii una classe Errore_Boundery dato che questa non ascolta attivamente (e lì si mescolerebbero i compiti).
 
@@ -67,9 +67,9 @@ Questi metodi si interfacciano al file "db.properties" da cui traggono la string
 Ovviamente nel db ci si aspetta che ci siano altrettanti utenti con uguali identificatori.
 
 Nel blocco statico sono presenti delle eccezioni che vengono catturate e gestite lì per lì. Questo non è esattamente corretto dato che dovrebbe essere
-il controller a gestire le eccezioni (e quindi il DAO che è la classe che chiama ConnectionFactory dovrebbe solo propagarle).
+il controller a gestire le eccezioni (e quindi il dao che è la classe che chiama ConnectionFactory dovrebbe solo propagarle).
 Ma ha senso farlo ? Quello è un blocco di codice statico, come faccio a fargli tirare una nuova eccezione ? Probabilmente semplicemente gliela faccio tirare
-e metto il blocco di codice di DAO che esegue il comando per le connessioni in un try-catch
+e metto il blocco di codice di dao che esegue il comando per le connessioni in un try-catch
 
 
 CONCETTO IMPORTANTE: Non è che solo il controller deve avere try-catch, tutte le classi possono averle semplicemente che le altre classi le propagano mentre
@@ -128,7 +128,7 @@ La risposta è: NON nei Jpannels. La logica di gestione dovrebbe essere nel main
 
 Ma quindi come si fa ? Sembra che il modo più corretto di farlo sia inizializzare i JPannels con i bottoni e poi da mainframe aggiungere ai bottoni l'action listener.
 
-Andrebbe fatta una eccezione personalizzata "DAO EXCEPTION" se qualcosa inerente al DAO schianta.
+Andrebbe fatta una eccezione personalizzata "dao EXCEPTION" se qualcosa inerente al dao schianta.
 
 COSA BISGONA FARE A QUESTO PUNTO ?
 

@@ -1,10 +1,10 @@
-import Boundery.BounderyEnum;
-import Controller.Dispatcher;
-import Entity.Session_Info;
+import boundery.BounderyEnum;
+import controller.Dispatcher;
+import entity.SessionInfo;
 
 public class Main {
     public static void main(String[] args) {
-        Session_Info instance = Session_Info.get_session_info();
+        SessionInfo instance = SessionInfo.get_session_info();
         instance.setBounderyEnum(BounderyEnum.AUTHENTICATE);
         Dispatcher.start();
     }
