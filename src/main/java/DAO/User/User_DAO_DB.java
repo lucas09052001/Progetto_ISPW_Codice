@@ -14,7 +14,9 @@ public class User_DAO_DB implements User_DAO{
     User user = new User();
     Connection connection;
 
-    public User_DAO_DB(){}
+    public User_DAO_DB(){
+        //No set up needed
+    }
 
     public User authenticate(String username, String password) throws DAO_Exception{
         //JDBC STUFF
@@ -42,6 +44,8 @@ public class User_DAO_DB implements User_DAO{
                 System.out.println("[EE] User was not found in DB"); //CONSOLE DEBUG
                 throw new DAO_Exception("No matching credentials");
             }
+
+            connection.close();
 
             return user;
 

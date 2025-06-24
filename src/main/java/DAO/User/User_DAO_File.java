@@ -14,7 +14,9 @@ public class User_DAO_File implements User_DAO{
     User user = new User();
 
 
-    public User_DAO_File(){}
+    public User_DAO_File(){
+        //No set up needed
+    }
 
     @Override
     public User authenticate(String username, String password) throws DAO_Exception {

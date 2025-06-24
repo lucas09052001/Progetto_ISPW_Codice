@@ -1,5 +1,6 @@
 package Boundery.Authenticate_Boundery;
 
+import Boundery.Color_Repository;
 import Entity.Persistency_Policy;
 
 import javax.swing.*;
@@ -28,14 +29,14 @@ public class Authenticate_Boundery_MainFrame extends JFrame{
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        north_pannel.setBackground(Color.decode("#3DDC97"));
-        south_pannel.setBackground(Color.decode("#3DDC97"));
-        east_pannel.setBackground(Color.decode("#3DDC97"));
-        west_pannel.setBackground(Color.decode("#3DDC97"));
+        north_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
+        south_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
+        east_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
+        west_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
 
 
         //Behavior
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         //Components
         add(centralPanel, BorderLayout.CENTER);

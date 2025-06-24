@@ -1,5 +1,6 @@
 package Boundery.Homepage;
 
+import Boundery.Color_Repository;
 import Boundery.MacroComponents.DashBoard;
 
 import javax.swing.*;
@@ -22,13 +23,13 @@ public class Homepage_Boundery_MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        south_pannel.setBackground(Color.decode("#3DDC97"));
-        east_pannel.setBackground(Color.decode("#3DDC97"));
-        west_pannel.setBackground(Color.decode("#3DDC97"));
+        south_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
+        east_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
+        west_pannel.setBackground(Color.decode(Color_Repository.getBackground_color()));
 
 
         //Behavior
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         //Components
         add(centralPanel, BorderLayout.CENTER);

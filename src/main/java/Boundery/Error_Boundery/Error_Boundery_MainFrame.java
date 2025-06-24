@@ -1,5 +1,7 @@
 package Boundery.Error_Boundery;
 
+import Boundery.Color_Repository;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +16,7 @@ public class Error_Boundery_MainFrame extends JFrame {
     public Error_Boundery_MainFrame(String error_Message){
 
         // Behavior
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Chiude solo questa finestra
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         //Look and Feel
         setTitle("ERRORE !");
@@ -27,10 +29,10 @@ public class Error_Boundery_MainFrame extends JFrame {
 
         centralPannel = new Error_Boundery_Central_Pannel(error_Message);
 
-        north_pannel.setBackground(Color.decode("#ed4e50"));
-        south_pannel.setBackground(Color.decode("#ed4e50"));
-        east_pannel.setBackground(Color.decode("#ed4e50"));
-        west_pannel.setBackground(Color.decode("#ed4e50"));
+        north_pannel.setBackground(Color.decode(Color_Repository.getError_color()));
+        south_pannel.setBackground(Color.decode(Color_Repository.getError_color()));
+        east_pannel.setBackground(Color.decode(Color_Repository.getError_color()));
+        west_pannel.setBackground(Color.decode(Color_Repository.getError_color()));
 
         add(centralPannel, BorderLayout.CENTER);
         add(north_pannel, BorderLayout.NORTH);

@@ -15,6 +15,7 @@ public class Authenticate_Controller {
     User_DAO dao;
 
     public Authenticate_Controller() {
+        //No set up needed
     }
 
     public void login(String username, String password, Persistency_Policy persistency_policy){

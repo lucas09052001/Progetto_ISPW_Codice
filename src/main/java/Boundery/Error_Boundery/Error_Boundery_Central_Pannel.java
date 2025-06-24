@@ -1,5 +1,7 @@
 package Boundery.Error_Boundery;
 
+import Boundery.Color_Repository;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +16,7 @@ public class Error_Boundery_Central_Pannel extends JPanel {
         // Look and Feel
 
         setSize(300, 150);
-        setBackground(Color.decode("#ed4e50"));
+        setBackground(Color.decode(Color_Repository.getError_color()));
 
         // Usa layout verticale
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

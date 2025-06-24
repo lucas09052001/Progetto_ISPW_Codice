@@ -9,8 +9,6 @@ import javax.swing.*;
 
 public class BounderyFactory {
 
-    public BounderyFactory(){}
-
     public static JFrame generateBoundery(BounderyEnum boundery){
 
         switch (boundery){

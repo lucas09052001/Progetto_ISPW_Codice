@@ -9,7 +9,7 @@ import java.util.List;
 public class User_DAO_NoPersistance implements User_DAO{
 
     public User_DAO_NoPersistance(){
-
+        //No set up needed
     }
 
     @Override
