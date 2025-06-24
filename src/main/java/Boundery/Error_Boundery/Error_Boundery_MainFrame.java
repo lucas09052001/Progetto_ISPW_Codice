@@ -38,6 +38,7 @@ public class Error_Boundery_MainFrame extends JFrame {
         add(west_pannel, BorderLayout.WEST);
         add(south_pannel, BorderLayout.SOUTH);
 
+        setAlwaysOnTop(true);
         setVisible(true);
     }
 
