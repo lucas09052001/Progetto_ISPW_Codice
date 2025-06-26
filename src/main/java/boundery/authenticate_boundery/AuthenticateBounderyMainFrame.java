@@ -1,7 +1,6 @@
 package boundery.authenticate_boundery;
 
 import boundery.ColorRepository;
-import entity.PersistencyPolicy;
 
 import javax.swing.*;
 import java.awt.*;

@@ -24,7 +24,7 @@ public class BounderyFactory {
                 return new AuthenticateBounderyMainFrame();
             case ERROR:
                 System.out.println("[SYSTEM] La fabbrica di Boundery sta creando una boundery Error");
-                SessionInfo instance = SessionInfo.get_session_info();
+                SessionInfo instance = SessionInfo.getSessionInfo();
                 return new ErrorBounderyMainFrame(instance.getLastError());
             default:
                 return null;

@@ -18,12 +18,12 @@ public class AuthenticateController {
         //No set up needed
     }
 
-    public void login(String username, String password, PersistencyPolicy persistency_policy){
+    public void login(String username, String password, PersistencyPolicy persistencyPolicy){
 
-        SessionInfo sessionInfo = SessionInfo.get_session_info();
+        SessionInfo sessionInfo = SessionInfo.getSessionInfo();
 
         try {
-            switch (persistency_policy) {
+            switch (persistencyPolicy) {
                 case DB:
                     dao = new UserDAODB();
                     break;
@@ -35,14 +35,14 @@ public class AuthenticateController {
                     break;
                 case NULL:
                     System.out.println("[EE] No persistency policy was selected");
-                    throw new IllegalArgumentException("No persistency policy was selected");   //No persistency_policy was selected
+                    throw new IllegalArgumentException("No persistency policy was selected");   //No persistencyPolicy was selected
             }
 
             User user = dao.authenticate(username, password);
 
             //Aggiorna classe di sessione
             sessionInfo.setUser(user);
-            sessionInfo.setPersistencyPolicy(persistency_policy);
+            sessionInfo.setPersistencyPolicy(persistencyPolicy);
             sessionInfo.setBounderyEnum(BounderyEnum.HOMEPAGE);
 
             //Avvia il dispatcher

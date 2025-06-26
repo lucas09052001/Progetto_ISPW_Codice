@@ -13,7 +13,7 @@ public class SessionInfo {
 
     private SessionInfo(){}
 
-    public static SessionInfo get_session_info(){
+    public static SessionInfo getSessionInfo(){
         if(sessionInfo == null){
             sessionInfo = new SessionInfo();
         }

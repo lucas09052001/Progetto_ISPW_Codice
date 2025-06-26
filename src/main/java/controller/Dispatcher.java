@@ -11,7 +11,7 @@ public class Dispatcher {
     }
 
     public static void start(){
-        SessionInfo instance = SessionInfo.get_session_info();
+        SessionInfo instance = SessionInfo.getSessionInfo();
         System.out.println("[SYSTEM] Showing next_Boundery");
         generateBoundery(instance.getBounderyEnum());
     }

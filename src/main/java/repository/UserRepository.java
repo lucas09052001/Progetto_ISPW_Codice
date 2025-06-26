@@ -30,7 +30,7 @@ public class UserRepository {
 
     }
 
-    public static UserRepository get_user_repository(){
+    public static UserRepository getUserRepository(){
         if(instance == null){
             instance = new UserRepository();
         }

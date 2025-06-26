@@ -11,7 +11,7 @@ public class ErrorBounderyCentralPannel extends JPanel {
 
     JLabel errorLabel;
 
-    ErrorBounderyCentralPannel(String error_Message){
+    ErrorBounderyCentralPannel(String errorMessage){
 
         // Look and Feel
 
@@ -22,7 +22,7 @@ public class ErrorBounderyCentralPannel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // Label per il messaggio di errore
-        errorLabel = new JLabel(error_Message);
+        errorLabel = new JLabel(errorMessage);
         errorLabel.setAlignmentX(CENTER_ALIGNMENT);
 
         // Bottone "OK"
