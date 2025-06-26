@@ -21,11 +21,11 @@ public class ConnectionFactory {
             Properties properties = new Properties();
             properties.load(input);
 
-            String connection_url = properties.getProperty("CONNECTION_URL");
+            String connectionUrl = properties.getProperty("CONNECTION_URL");
             String user = properties.getProperty("LOGIN_USER");
             String pass = properties.getProperty("LOGIN_PASS");
 
-            connection = DriverManager.getConnection(connection_url, user, pass);
+            connection = DriverManager.getConnection(connectionUrl, user, pass);
         } catch (IOException | SQLException e) {
             //Qui ci sta bene tirare una eccezione personalizzata così che questa possa venir propagata
             //fino al controller e lì venir gestita.

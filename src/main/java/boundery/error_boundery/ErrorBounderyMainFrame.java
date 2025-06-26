@@ -1,6 +1,7 @@
 package boundery.error_boundery;
 
 import boundery.ColorRepository;
+import entity.SessionInfo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,8 +13,9 @@ public class ErrorBounderyMainFrame extends JFrame {
     JPanel southPannel = new JPanel();
     JPanel eastPannel = new JPanel();
     JPanel westPannel = new JPanel();
+    String errorMessage = SessionInfo.getSessionInfo().getLastError();
 
-    public ErrorBounderyMainFrame(String error_Message){
+    public ErrorBounderyMainFrame(){
 
         // Behavior
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -27,7 +29,7 @@ public class ErrorBounderyMainFrame extends JFrame {
 
         //Components
 
-        centralPannel = new ErrorBounderyCentralPannel(error_Message);
+        centralPannel = new ErrorBounderyCentralPannel(errorMessage);
 
         northPannel.setBackground(Color.decode(ColorRepository.getErrorColor()));
         southPannel.setBackground(Color.decode(ColorRepository.getErrorColor()));

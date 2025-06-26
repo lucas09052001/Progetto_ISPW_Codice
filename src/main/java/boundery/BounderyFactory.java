@@ -13,19 +13,23 @@ public class BounderyFactory {
         throw new IllegalStateException("Utility class");
     }
 
-    public static JFrame generateBoundery(BounderyEnum boundery){
 
-        switch (boundery){
+    public static JFrame generateBoundery(){
+
+        System.out.println("[SYSTEM] BounderyFactory fetching next boundery from SessionInfo");
+        BounderyEnum bounderyEnum = SessionInfo.getSessionInfo().getNextBoundery();
+        System.out.println("[SYSTEM] Fetched: " + bounderyEnum);
+
+        switch (bounderyEnum){
             case HOMEPAGE:
-                System.out.println("[SYSTEM] La fabbrica di Boundery sta creando una boundery HomePage");
+                System.out.println("[SYSTEM] BounderyFactory creating HomepageBoundery");
                 return new HomepageBounderyMainFrame();
             case AUTHENTICATE:
-                System.out.println("[SYSTEM] La fabbrica di Boundery sta creando una boundery Authenticate");
+                System.out.println("[SYSTEM] BounderyFactory creating AuthenticateBoundery");
                 return new AuthenticateBounderyMainFrame();
             case ERROR:
-                System.out.println("[SYSTEM] La fabbrica di Boundery sta creando una boundery Error");
-                SessionInfo instance = SessionInfo.getSessionInfo();
-                return new ErrorBounderyMainFrame(instance.getLastError());
+                System.out.println("[SYSTEM] BounderyFactory creating ErrorBoundery");
+                return new ErrorBounderyMainFrame();
             default:
                 return null;
         }

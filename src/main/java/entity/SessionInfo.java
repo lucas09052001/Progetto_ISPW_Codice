@@ -5,10 +5,9 @@ import boundery.BounderyEnum;
 public class SessionInfo {
     private static SessionInfo sessionInfo;
 
-    //Attributi per funzionamento (User, NextBoundery)
     private User user;
     private PersistencyPolicy persistencyPolicy;
-    private BounderyEnum bounderyEnum;
+    private BounderyEnum nextBoundery;
     private String lastError;
 
     private SessionInfo(){}
@@ -23,32 +22,20 @@ public class SessionInfo {
     public User getUser() {
         return user;
     }
-
     public void setUser(User user) {
         this.user = user;
     }
 
-    public BounderyEnum getBounderyEnum() {
-        return bounderyEnum;
+    public BounderyEnum getNextBoundery() {
+        return nextBoundery;
+    }
+    public void setNextBoundery(BounderyEnum bounderyEnum) {
+        this.nextBoundery = bounderyEnum;
     }
 
-    public void setBounderyEnum(BounderyEnum bounderyEnum) {
-        this.bounderyEnum = bounderyEnum;
-    }
+    public PersistencyPolicy getPersistencyPolicy() {return persistencyPolicy;}
+    public void setPersistencyPolicy(PersistencyPolicy persistencyPolicy) {this.persistencyPolicy = persistencyPolicy;}
 
-    public PersistencyPolicy getPersistencyPolicy() {
-        return persistencyPolicy;
-    }
-
-    public void setPersistencyPolicy(PersistencyPolicy persistencyPolicy) {
-        this.persistencyPolicy = persistencyPolicy;
-    }
-
-    public String getLastError() {
-        return lastError;
-    }
-
-    public void setLastError(String lastError) {
-        this.lastError = lastError;
-    }
+    public String getLastError() {return lastError;}
+    public void setLastError(String lastError) {this.lastError = lastError;}
 }
