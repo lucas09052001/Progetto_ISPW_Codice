@@ -1,5 +1,12 @@
 package controller.useCaseController;
 
+import boundery.BounderyEnum;
+import main.AppController;
+import entity.SessionInfo;
+
 public class HomePageController {
-    //Probabilmente non serve se faccio tutti i bottoni già disponibili
+    public void start(BounderyEnum nextBoundery) {
+        SessionInfo.getSessionInfo().setNextBoundery(nextBoundery);
+        AppController.useCaseCompletion();
+    }
 }

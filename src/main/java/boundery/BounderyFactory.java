@@ -4,6 +4,7 @@ import boundery.authenticate_boundery.AuthenticateBounderyMainFrame;
 import boundery.error_boundery.ErrorBounderyMainFrame;
 import boundery.homepage.HomepageBounderyMainFrame;
 import entity.SessionInfo;
+import exceptions.CriticalException;
 
 import javax.swing.*;
 
@@ -14,7 +15,7 @@ public class BounderyFactory {
     }
 
 
-    public static JFrame generateBoundery(){
+    public static JFrame generateBoundery() {
 
         System.out.println("[SYSTEM] BounderyFactory fetching next boundery from SessionInfo");
         BounderyEnum bounderyEnum = SessionInfo.getSessionInfo().getNextBoundery();
@@ -31,7 +32,7 @@ public class BounderyFactory {
                 System.out.println("[SYSTEM] BounderyFactory creating ErrorBoundery");
                 return new ErrorBounderyMainFrame();
             default:
-                return null;
+                throw new CriticalException();
         }
 
     }

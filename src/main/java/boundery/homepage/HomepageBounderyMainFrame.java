@@ -19,9 +19,13 @@ public class HomepageBounderyMainFrame extends JFrame {
         super("Unishare");
 
         // Look and Feel
-        setSize(1000, 1000);
+        setSize(1000, 500);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+
+        //southPannel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
+        //eastPannel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
+        //westPannel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
 
         southPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
         eastPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));

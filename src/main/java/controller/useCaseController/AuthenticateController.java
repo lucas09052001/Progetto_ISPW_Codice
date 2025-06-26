@@ -1,7 +1,7 @@
 package controller.useCaseController;
 
 import boundery.BounderyEnum;
-import controller.AppController;
+import main.AppController;
 import dao.user.UserDAO;
 import dao.user.UserDAODB;
 import dao.user.UserDAOFile;

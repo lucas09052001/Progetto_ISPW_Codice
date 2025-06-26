@@ -1,7 +1,6 @@
-package controller;
+package main;
 
-import boundery.BounderyEnum;
-import entity.SessionInfo;
+import boundery.BounderyFactory;
 
 public class AppController {
 
@@ -11,17 +10,17 @@ public class AppController {
 
     public static void start() {
         System.out.println("[SYSTEM] App is starting");
-        BounderyDispatcher.dispatchNextBoundery();
+        BounderyFactory.generateBoundery();
     }
 
     public static void useCaseCompletion() {
         System.out.println("[SYSTEM] UseCase handling completed.");
-        BounderyDispatcher.dispatchNextBoundery();
+        BounderyFactory.generateBoundery();
     }
 
     public static void errorEncounterd(){
         System.out.println("[SYSTEM] An error occurred.");
-        BounderyDispatcher.dispatchNextBoundery();
+        BounderyFactory.generateBoundery();
     }
 
 }

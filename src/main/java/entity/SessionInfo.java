@@ -1,13 +1,14 @@
 package entity;
 
 import boundery.BounderyEnum;
+import boundery.BounderyFactory;
 
 public class SessionInfo {
     private static SessionInfo sessionInfo;
 
     private User user;
-    private PersistencyPolicy persistencyPolicy;
-    private BounderyEnum nextBoundery;
+    private PersistencyPolicy persistencyPolicy = PersistencyPolicy.FILE;   //PER EVITARE LA SBATTI DEL LOG IN
+    private BounderyEnum nextBoundery;                                              /*TBR*/
     private String lastError;
 
     private SessionInfo(){}

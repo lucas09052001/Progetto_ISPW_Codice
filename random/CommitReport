@@ -1,0 +1,41 @@
+USECASE_REPORT:
+
+LEGGENDA:
+- NI = Non Iniziato
+- I = Iniziato
+- IC = In Corso
+- QF = Quasi finito
+- FR = Finito da Rivedere
+- FS = Finito da Sistemare
+- F = Finito
+
+Login: FR
+La logica è a posto. 
+Le boundery sono passabili (migliorale solo se hai tempo).
+Il controller è a posto (register non è ancora implementato, fallo se hai tempo).
+Le entities sono a posto.
+I dao sono a posto.
+
+Homepage: FR
+La logica è a posto.
+La boundery sono decenti (migliorale solo se hai tempo).
+Il controller è a posto.
+Non vengono usate entities.
+Non vengono usati dao.
+
+ViewProfile: NI
+
+ViewNotification: NI
+
+LoanItem: NI
+
+BorrowItem: NI
+
+OnGoingLoans: NI
+
+LoanHistory: NI
+
+LoanRequesta: NI
+
+Discounts: NI
+
