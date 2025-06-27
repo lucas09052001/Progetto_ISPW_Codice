@@ -1,7 +1,7 @@
 package boundery.authenticate_boundery;
 
 import boundery.ColorRepository;
-import controller.useCaseController.AuthenticateController;
+import controller.AuthenticateController;
 import entity.PersistencyPolicy;
 
 import javax.swing.*;

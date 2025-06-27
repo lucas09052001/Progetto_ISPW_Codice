@@ -3,6 +3,7 @@ package boundery;
 import boundery.authenticate_boundery.AuthenticateBounderyMainFrame;
 import boundery.error_boundery.ErrorBounderyMainFrame;
 import boundery.homepage.HomepageBounderyMainFrame;
+import boundery.profile_boundery.ProfileBounderyMainFrame;
 import entity.SessionInfo;
 import exceptions.CriticalException;
 
@@ -28,6 +29,9 @@ public class BounderyFactory {
             case AUTHENTICATE:
                 System.out.println("[SYSTEM] BounderyFactory creating AuthenticateBoundery");
                 return new AuthenticateBounderyMainFrame();
+            case PROFILE:
+                System.out.println("[SYSTEM] BounderyFactory creating ProfileBoundery");
+                return new ProfileBounderyMainFrame();
             case ERROR:
                 System.out.println("[SYSTEM] BounderyFactory creating ErrorBoundery");
                 return new ErrorBounderyMainFrame();

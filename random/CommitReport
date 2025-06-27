@@ -23,7 +23,15 @@ Il controller è a posto.
 Non vengono usate entities.
 Non vengono usati dao.
 
-ViewProfile: NI
+ViewProfile: FR
+Non è presente logica.
+Le boundery sono passabili (migliorale solo se hai tempo)
+Non ha controller (il comando è ritornato dalla dashboard)
+Le entities sono a posto.
+Non vengono utilizzati DAO (Le info sono prese dalla classe si sessione)
+
+MIGLIORIE: Potresti aggiungere alla classe user un path per la proria immagine (e dovresti quindi renderlo persistente, non è roba difficile ma non penso
+impatti molto sul progetto quindi la faccio solo a fine se ho tempo)
 
 ViewNotification: NI
 

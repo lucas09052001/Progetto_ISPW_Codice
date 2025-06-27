@@ -2,7 +2,7 @@ package boundery.homepage;
 
 import boundery.BounderyEnum;
 import boundery.ColorRepository;
-import controller.useCaseController.HomePageController;
+import controller.HomePageController;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -50,19 +50,21 @@ public class ActivityBand extends JPanel {
     }
 
     public void handleOnGoingLoansEvent(){
+        System.out.println("[SYSTEM] Handling 'OnGoingLoans' event");
         SwingUtilities.getWindowAncestor(this).dispose();
         new HomePageController().start(BounderyEnum.ON_GOING_LOANS);
     }
 
     public void handleLoanHistoryEvent(){
+        System.out.println("[SYSTEM] Handling 'LoanHistory' event");
         SwingUtilities.getWindowAncestor(this).dispose();
         new HomePageController().start(BounderyEnum.LOAN_HISTORY);
     }
 
     public void handleLoanRequestsEvent(){
+        System.out.println("[SYSTEM] Handling 'LoanRequests' event");
         SwingUtilities.getWindowAncestor(this).dispose();
         new HomePageController().start(BounderyEnum.LOAN_REQUESTS);
-
     }
 
 }

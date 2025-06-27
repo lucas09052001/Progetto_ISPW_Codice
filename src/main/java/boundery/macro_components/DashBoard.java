@@ -2,11 +2,10 @@ package boundery.macro_components;
 
 import boundery.BounderyEnum;
 import boundery.ColorRepository;
-import controller.useCaseController.HomePageController;
-import entity.SessionInfo;
+import controller.DashBoardController;
+import controller.HomePageController;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class DashBoard extends JPanel {
@@ -47,18 +46,18 @@ public class DashBoard extends JPanel {
     public void handleHomepageEvent(){
         System.out.println("[SYSTEM] Handling 'HomepageButton-Clicked' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageController().start(BounderyEnum.HOMEPAGE);
+        new DashBoardController().start(BounderyEnum.HOMEPAGE);
     }
 
     public void handleViewNotificationEvent(){
         System.out.println("[SYSTEM] Handling 'ViewNotificationButton-Clicked' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageController().start(BounderyEnum.NOTIFICATION);
+        new DashBoardController().start(BounderyEnum.NOTIFICATION);
     }
 
     public void handleViewProfileEvent(){
         System.out.println("[SYSTEM] Handling 'ViewProfileButton-Clicked' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageController().start(BounderyEnum.PROFILE);
+        new DashBoardController().start(BounderyEnum.PROFILE);
     }
 }

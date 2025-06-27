@@ -1,15 +1,17 @@
 package entity;
 
+import exceptions.CriticalException;
+
 public class User {
     String username;
     String password;
-    int rating;
+    float rating;
     int points;
 
     public User(){
     }
 
-    public User(String username, String password, int rating, int points) {
+    public User(String username, String password, float rating, int points) {
         this.username = username;
         this.password = password;
         this.rating = rating;
@@ -32,13 +34,11 @@ public class User {
         this.password = password;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
+    public void setRating(int rating) { this.rating = rating; }
 
     public int getPoints() {
         return points;
@@ -46,6 +46,17 @@ public class User {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public void updateRating(float add_rating){
+
+        if(add_rating < 1 || add_rating > 3){
+            System.out.println("[EE] Add rating to user rating has to respect 'add_rating < 1 || add_rating > 3'");
+            throw new IllegalArgumentException();
+        }
+
+        this.rating = (rating + add_rating) / 2;
+
     }
 
 }

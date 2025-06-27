@@ -1,4 +1,4 @@
-package controller.useCaseController;
+package controller;
 
 import boundery.BounderyEnum;
 import main.AppController;

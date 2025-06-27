@@ -2,7 +2,7 @@ package boundery.homepage;
 
 import boundery.BounderyEnum;
 import boundery.ColorRepository;
-import controller.useCaseController.HomePageController;
+import controller.HomePageController;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -38,6 +38,7 @@ public class ServicesBand extends JPanel{
     }
 
     public void handleDiscountsEvent(){
+        System.out.println("[SYSTEM] Handling 'ViewDiscounts' event");
         SwingUtilities.getWindowAncestor(this).dispose();
         new HomePageController().start(BounderyEnum.DISCOUNTS);
     }
