@@ -11,23 +11,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAODB implements UserDAO {
+
     User user = new User();
+    final String fetchUserInfoQuery = "SELECT username, password, rating, points FROM Users WHERE username = ?";
 
     public UserDAODB(){
         //No set up needed
     }
 
-    public User authenticate(String username, String password) throws DAOException {
-        //JDBC STUFF
-        System.out.println("[SYSTEM] Connection to DB established"); //CONSOLE DEBUG
-
-        String query = "SELECT username, password, rating, points FROM Users WHERE username = ? AND password = ?";
+    @Override
+    public User fetchUserInfo(String username) throws DAOException {
 
         try (Connection connection = ConnectionFactory.upgrade();
-             PreparedStatement stmt = connection.prepareStatement(query)){
+             PreparedStatement stmt = connection.prepareStatement(fetchUserInfoQuery)){
+
+            System.out.println("[SYSTEM] Connection to DB established");
 
             stmt.setString(1,username);
-            stmt.setString(2, password);
 
             ResultSet rs = stmt.executeQuery();
 
@@ -35,7 +35,7 @@ public class UserDAODB implements UserDAO {
                 System.out.println("[SYSTEM] User was fetched from DB"); //CONSOLE DEBUG
 
                 user.setUsername(username);
-                user.setPassword(password);
+                user.setPassword(rs.getString("password"));
                 user.setRating(rs.getInt("rating"));
                 user.setPoints(rs.getInt("points"));
 
@@ -50,7 +50,6 @@ public class UserDAODB implements UserDAO {
             System.out.println("[EE] SQL error " + e.getMessage()); //CONSOLE DEBUG
             throw new CriticalException(e.getMessage());
         }
-
     }
 
 }

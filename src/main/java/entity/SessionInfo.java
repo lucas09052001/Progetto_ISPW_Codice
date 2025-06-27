@@ -6,8 +6,8 @@ import boundery.BounderyFactory;
 public class SessionInfo {
     private static SessionInfo sessionInfo;
 
-    private User user;
-    private PersistencyPolicy persistencyPolicy = PersistencyPolicy.FILE;   //PER EVITARE LA SBATTI DEL LOG IN
+    private String username;
+    private PersistencyPolicy persistencyPolicy;   //PER EVITARE LA SBATTI DEL LOG IN
     private BounderyEnum nextBoundery;                                              /*TBR*/
     private String lastError;
 
@@ -20,11 +20,12 @@ public class SessionInfo {
         return sessionInfo;
     }
 
-    public User getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
-    public void setUser(User user) {
-        this.user = user;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public BounderyEnum getNextBoundery() {

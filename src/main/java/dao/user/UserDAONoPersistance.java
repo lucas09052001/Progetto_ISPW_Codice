@@ -13,13 +13,13 @@ public class UserDAONoPersistance implements UserDAO {
     }
 
     @Override
-    public User authenticate(String username, String password) throws DAOException {
+    public User fetchUserInfo(String username) throws DAOException {
 
         List<User> listaUtenti = UserRepository.getUserRepository().getListaUtenti();
         System.out.println("[SYSTEM] Users have been fetched from volatile-memory repository");
 
         for(User u : listaUtenti){
-            if(u.getUsername().equals(username) && u.getPassword().equals(password)){
+            if(u.getUsername().equals(username)){
                 System.out.println("[SYSTEM] A user with matching credentials was found");
                 return u;
             }
@@ -27,6 +27,6 @@ public class UserDAONoPersistance implements UserDAO {
 
         System.out.println("[SYSTEM] No user with matching credentials was found");
         throw new DAOException("No matching credentials");
-
     }
+
 }

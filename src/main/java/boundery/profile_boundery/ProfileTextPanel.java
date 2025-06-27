@@ -1,8 +1,8 @@
 package boundery.profile_boundery;
 
 import boundery.ColorRepository;
-import entity.SessionInfo;
-import entity.User;
+import controller.ProfileController;
+import dao.user.UserDTO;
 import exceptions.CriticalException;
 
 import javax.swing.*;
@@ -10,27 +10,38 @@ import java.awt.*;
 
 public class ProfileTextPanel extends JPanel {
 
-    JLabel usernameLabel = new JLabel();
-    JLabel ratingLabel = new JLabel();
-    JLabel pointsLabel = new JLabel();
-    User user = SessionInfo.getSessionInfo().getUser();
-    final String pathToEmptyStar = "./EmptyStar.png";
-    final String pathToFullStar = "./FullStar.png";
+    JLabel usernameLabel;
+    JLabel ratingLabel;
+    JLabel pointsLabel;
+
+    ProfileController controller;
+    UserDTO userDTO;
 
     public ProfileTextPanel(){
 
-        //Look and Feel
+        //Controller interaction
+        controller = new ProfileController();
+        userDTO = controller.fetchUserInfo();
+        if(userDTO == null){
+            //This is unreachable code. See fetchUserInfo.
+            SwingUtilities.getWindowAncestor(this).dispose();
+        }
+
+        //Basic Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.decode(ColorRepository.getDynamicColor()));
 
         //Username label
-        usernameLabel.setText("Username: " + user.getUsername());
+        usernameLabel = new JLabel();
+        usernameLabel.setText("Username: " + userDTO.getUsername());
         usernameLabel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
         usernameLabel.setForeground(Color.decode(ColorRepository.getForegroundColor()));
         usernameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
         //Rating label
-        int rating = (int) user.getRating();
+        ratingLabel = new JLabel();
+        int rating = (int) userDTO.getRating();
+        System.out.println("[SYSTEM] User rating is: " + rating);
         String pathToRatingImage;
         switch (rating){
             case 0 -> pathToRatingImage = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/src/main/java/boundery/profile_boundery/NoRating.png";
@@ -43,7 +54,8 @@ public class ProfileTextPanel extends JPanel {
         ratingLabel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
 
         //Points label
-        String points = Integer.toString(user.getPoints());
+        pointsLabel = new JLabel();
+        String points = Integer.toString(userDTO.getPoints());
         pointsLabel.setText("Owned points " + points);
         pointsLabel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
         pointsLabel.setForeground(Color.decode(ColorRepository.getForegroundColor()));

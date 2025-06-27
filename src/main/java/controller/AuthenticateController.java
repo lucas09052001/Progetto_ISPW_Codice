@@ -39,10 +39,14 @@ public class AuthenticateController {
                     throw new IllegalArgumentException("No persistency policy was selected");   //No persistencyPolicy was selected
             }
 
-            User user = dao.authenticate(username, password);
+            User user = dao.fetchUserInfo(username);
+
+            if(!password.equals(user.getPassword())){
+                throw new DAOException("No matching credentials");
+            }
 
             //Aggiorna classe di sessione
-            sessionInfo.setUser(user);
+            sessionInfo.setUsername(username);
             sessionInfo.setPersistencyPolicy(persistencyPolicy);
             sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
 

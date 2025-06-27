@@ -2,13 +2,13 @@
   {
     "username": "alice",
     "password": "alice",
-    "points": 4,
-    "rating": 50000
+    "points": 50000,
+    "rating": 2.4
   },
   {
     "username": "bob",
     "password": "bob",
-    "points": 5,
-    "rating": 1200
+    "points": 1200,
+    "rating": 1.3
   }
 ]

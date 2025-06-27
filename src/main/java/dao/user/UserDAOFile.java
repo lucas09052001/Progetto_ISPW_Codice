@@ -17,7 +17,7 @@ public class UserDAOFile implements UserDAO {
     }
 
     @Override
-    public User authenticate(String username, String password) throws DAOException {
+    public User fetchUserInfo(String username) throws DAOException {
         //JSON STUFF
         ObjectMapper mapper = new ObjectMapper();
 
@@ -26,13 +26,13 @@ public class UserDAOFile implements UserDAO {
             System.out.println("[SYSTEM] Users have been fetched from Json file: users.Json");
 
             for (User u : utenti) {
-                if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
-                    System.out.println("[SYSTEM] A user with matching crentials was found");
+                if (u.getUsername().equals(username)) {
+                    System.out.println("[SYSTEM] A user with matching username was found");
                     return u;
                 }
             }
 
-            System.out.println("[SYSTEM] No user with matching crentials was found");
+            System.out.println("[SYSTEM] No user with matching username was found");
             throw new DAOException("No matching credentials");
 
         } catch (IOException e) {

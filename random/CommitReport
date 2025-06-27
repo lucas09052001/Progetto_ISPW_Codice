@@ -30,6 +30,8 @@ Non ha controller (il comando è ritornato dalla dashboard)
 Le entities sono a posto.
 Non vengono utilizzati DAO (Le info sono prese dalla classe si sessione)
 
+PROBLEMA: La boundery conosce una classe entita (User)
+SOLUZIONE: Utilizzo di un DTO per far passare i dati da controller a boundery
 MIGLIORIE: Potresti aggiungere alla classe user un path per la proria immagine (e dovresti quindi renderlo persistente, non è roba difficile ma non penso
 impatti molto sul progetto quindi la faccio solo a fine se ho tempo)
 
