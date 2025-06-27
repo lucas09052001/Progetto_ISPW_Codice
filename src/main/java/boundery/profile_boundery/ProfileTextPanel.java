@@ -14,8 +14,8 @@ public class ProfileTextPanel extends JPanel {
     JLabel ratingLabel;
     JLabel pointsLabel;
 
-    ProfileController controller;
-    UserDTO userDTO;
+    transient ProfileController controller;
+    transient UserDTO userDTO;
 
     public ProfileTextPanel(){
 
