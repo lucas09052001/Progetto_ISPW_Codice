@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "senderUsername": "alice",
+    "receiverUsername": "bob",
+    "message": "TETTE",
+    "seen": false
+  },
+  {
+    "id": 2,
+    "senderUsername": "alice",
+    "receiverUsername": "bob",
+    "message": "CULO",
+    "seen": false
+  },
+  {
+    "id": 3,
+    "senderUsername": "alice",
+    "receiverUsername": "bob",
+    "message": "FIGA.",
+    "seen": false
+  },
+  {
+    "id": 4,
+    "senderUsername": "bob",
+    "receiverUsername": "alice",
+    "message": "CAZZO",
+    "seen": false
+  }
+]

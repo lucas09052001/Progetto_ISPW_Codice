@@ -1,7 +1,7 @@
 package dao.user;
 
 import dao.ConnectionFactory;
-import entity.User;
+import entity.user.User;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 

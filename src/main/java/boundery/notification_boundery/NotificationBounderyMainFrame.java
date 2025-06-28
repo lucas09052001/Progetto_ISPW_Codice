@@ -1,21 +1,22 @@
-package boundery.authenticate_boundery;
+package boundery.notification_boundery;
 
 import boundery.ColorRepository;
+import boundery.homepage.HomepageBounderyCentralPannel;
+import boundery.macro_components.DashBoard;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AuthenticateBounderyMainFrame extends JFrame{
-
+public class NotificationBounderyMainFrame extends JFrame {
     //MainFrame components
-    AuthenticateBounderyCentralPannel centralPanel = new AuthenticateBounderyCentralPannel();
-    JPanel northPannel = new JPanel();
+    DashBoard dashBoard = new DashBoard();
+    NotificationBounderyCentralPanel centralPanel = new NotificationBounderyCentralPanel();
     JPanel southPannel = new JPanel();
     JPanel eastPannel = new JPanel();
     JPanel westPannel = new JPanel();
 
 
-    public AuthenticateBounderyMainFrame() {
+    public NotificationBounderyMainFrame(){
         super("Unishare");
 
         // Look and Feel
@@ -23,7 +24,10 @@ public class AuthenticateBounderyMainFrame extends JFrame{
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        northPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        //southPannel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
+        //eastPannel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
+        //westPannel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
+
         southPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
         eastPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
         westPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
@@ -34,7 +38,7 @@ public class AuthenticateBounderyMainFrame extends JFrame{
 
         //Components
         add(centralPanel, BorderLayout.CENTER);
-        add(northPannel, BorderLayout.NORTH);
+        add(dashBoard, BorderLayout.NORTH);
         add(eastPannel, BorderLayout.EAST);
         add(westPannel, BorderLayout.WEST);
         add(southPannel, BorderLayout.SOUTH);

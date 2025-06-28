@@ -1,6 +1,4 @@
-package entity;
-
-import exceptions.CriticalException;
+package entity.user;
 
 public class User {
     String username;

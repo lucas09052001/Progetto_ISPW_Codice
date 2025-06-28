@@ -8,7 +8,7 @@ import dao.user.UserDAOFile;
 import dao.user.UserDAONoPersistance;
 import entity.PersistencyPolicy;
 import entity.SessionInfo;
-import entity.User;
+import entity.user.User;
 import exceptions.DAOException;
 
 public class AuthenticateController {

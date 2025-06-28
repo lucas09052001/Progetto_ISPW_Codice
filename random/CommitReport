@@ -35,7 +35,11 @@ SOLUZIONE: Utilizzo di un DTO per far passare i dati da controller a boundery
 MIGLIORIE: Potresti aggiungere alla classe user un path per la proria immagine (e dovresti quindi renderlo persistente, non è roba difficile ma non penso
 impatti molto sul progetto quindi la faccio solo a fine se ho tempo)
 
-ViewNotification: NI
+ViewNotification: FR
+La logica è a posto.
+La boundery è passabile.
+Il controller è a posto.
+Le entities sono a posto.
 
 LoanItem: NI
 

@@ -11,7 +11,7 @@ Le classi repository funzionano da livello dati non persistente. La loro dinamic
 
 package repository;
 
-import entity.User;
+import entity.user.User;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package dao.user;
 
-import entity.User;
+import entity.user.User;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 import com.fasterxml.jackson.core.type.TypeReference;

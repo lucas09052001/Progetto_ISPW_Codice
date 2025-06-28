@@ -1,4 +1,4 @@
-package dao.user;
+package entity.user;
 
 public class UserDTO {
 

@@ -24,6 +24,29 @@ INSERT INTO Progetto_ISPW.Users (username, password, rating, points) VALUES
 
 
 -- -----------------------------------------------------
+-- Table Progetto_ISPW.CustomNotification
+-- -----------------------------------------------------
+
+CREATE TABLE CustomNotification (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    senderUsername VARCHAR(100) NOT NULL,
+    receiverUsername VARCHAR(100) NOT NULL,
+    message VARCHAR(100) NOT NULL,
+    seen BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+USE Progetto_ISPW ;
+
+INSERT INTO CustomNotification (senderUsername, receiverUsername, message, seen) VALUES
+('alice', 'bob', 'Ciao Bob!', FALSE),
+('bob', 'alice', 'Ciao Alice!', FALSE),
+('alice', 'bob', 'Hai visto questo?', FALSE),
+('bob', 'alice', 'Tutto ok!', FALSE),
+('alice', 'bob', 'Chiamami.', FALSE);
+
+
+
+-- -----------------------------------------------------
 -- Utenti del DB
 -- -----------------------------------------------------
 DROP USER IF EXISTS 'login';

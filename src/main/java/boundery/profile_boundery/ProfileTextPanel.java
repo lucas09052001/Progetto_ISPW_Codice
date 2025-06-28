@@ -2,7 +2,7 @@ package boundery.profile_boundery;
 
 import boundery.ColorRepository;
 import controller.ProfileController;
-import dao.user.UserDTO;
+import entity.user.UserDTO;
 import exceptions.CriticalException;
 
 import javax.swing.*;

@@ -1,6 +1,6 @@
 package dao.user;
 
-import entity.User;
+import entity.user.User;
 import exceptions.DAOException;
 import repository.UserRepository;
 
