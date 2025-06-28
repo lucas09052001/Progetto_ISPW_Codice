@@ -15,8 +15,8 @@ import java.util.List;
 
 public class NotificationBounderyCentralPanel extends JPanel {
 
-    NotificationController controller = new NotificationController();
-    List<CustomNotificationDTO> notificationList = new ArrayList<>();
+    transient NotificationController controller = new NotificationController();
+    transient List<CustomNotificationDTO> notificationList = new ArrayList<>();
     ArrayList<JLabel> labelList = new ArrayList<>();
     JButton nextButton = new JButton();
 

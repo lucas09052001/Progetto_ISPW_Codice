@@ -23,7 +23,9 @@ public class NotificationController {
     NotificationDAO dao;
     int lastHandedNotification = 0;
 
-    public NotificationController() {}
+    public NotificationController() {
+        //No set up needed
+    }
 
     public void fetchAllNotification(){
 
