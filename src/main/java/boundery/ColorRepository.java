@@ -4,7 +4,7 @@ public class ColorRepository {
     private static final String BACKGROUND_COLOR = "#3DDC97";
     private static final String DYNAMIC_COLOR = "#46237A";
     private static final String FOREGROUND_COLOR = "#FCFCFC";
-    private static final String ERROR_COLOR = "#ED4E50";
+    private static final String ERROR_COLOR = "#f9e109";
 
 
     private ColorRepository() {
@@ -28,7 +28,5 @@ public class ColorRepository {
 
         return ERROR_COLOR;
     }
-
-
 
 }

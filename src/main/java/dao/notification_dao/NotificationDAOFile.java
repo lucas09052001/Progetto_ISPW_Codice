@@ -1,9 +1,8 @@
-package dao.notification;
+package dao.notification_dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.notification.CustomNotification;
-import entity.user.User;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 
@@ -11,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.JarOutputStream;
 
 public class NotificationDAOFile implements NotificationDAO {
 

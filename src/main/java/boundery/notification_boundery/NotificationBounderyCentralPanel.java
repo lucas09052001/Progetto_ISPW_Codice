@@ -2,15 +2,12 @@ package boundery.notification_boundery;
 
 import boundery.ColorRepository;
 import controller.NotificationController;
-import dao.notification.NotificationDAO;
 import entity.notification.CustomNotificationDTO;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class NotificationBounderyCentralPanel extends JPanel {

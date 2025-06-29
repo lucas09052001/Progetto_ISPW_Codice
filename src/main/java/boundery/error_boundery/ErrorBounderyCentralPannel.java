@@ -11,7 +11,7 @@ public class ErrorBounderyCentralPannel extends JPanel {
 
     JLabel errorLabel;
 
-    ErrorBounderyCentralPannel(String errorMessage){
+    public ErrorBounderyCentralPannel(String errorMessage){
 
         // Look and Feel
 

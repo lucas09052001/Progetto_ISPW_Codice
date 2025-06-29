@@ -1,8 +1,7 @@
-package dao.notification;
+package dao.notification_dao;
 
 import dao.ConnectionFactory;
 import entity.notification.CustomNotification;
-import entity.notification.CustomNotificationDTO;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 

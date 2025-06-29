@@ -3,6 +3,7 @@ package boundery;
 import boundery.authenticate_boundery.AuthenticateBounderyMainFrame;
 import boundery.error_boundery.ErrorBounderyMainFrame;
 import boundery.homepage.HomepageBounderyMainFrame;
+import boundery.loan_item.LoanItemBounderyMainFrame;
 import boundery.notification_boundery.NotificationBounderyMainFrame;
 import boundery.profile_boundery.ProfileBounderyMainFrame;
 import entity.SessionInfo;
@@ -19,10 +20,7 @@ public class BounderyFactory {
 
     public static JFrame generateBoundery() {
 
-        System.out.println("[SYSTEM] BounderyFactory fetching next boundery from SessionInfo");
         BounderyEnum bounderyEnum = SessionInfo.getSessionInfo().getNextBoundery();
-        System.out.println("[SYSTEM] Fetched: " + bounderyEnum);
-
         switch (bounderyEnum){
             case HOMEPAGE:
                 System.out.println("[SYSTEM] BounderyFactory creating HomepageBoundery");
@@ -31,17 +29,20 @@ public class BounderyFactory {
                 System.out.println("[SYSTEM] BounderyFactory creating AuthenticateBoundery");
                 return new AuthenticateBounderyMainFrame();
             case PROFILE:
-                System.out.println("[SYSTEM] BounderyFactory creating ProfileBoundery");
+                System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating ProfileBoundery");
                 return new ProfileBounderyMainFrame();
             case NOTIFICATION:
-                System.out.println("[SYSTEM] BounderyFactory creating NotificationBoundery");
+                System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating NotificationBoundery");
                 return new NotificationBounderyMainFrame();
+            case LOAN_ITEM:
+                System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating LoanItemBoundery");
+                return new LoanItemBounderyMainFrame();
             case ERROR:
-                System.out.println("[SYSTEM] BounderyFactory creating ErrorBoundery");
+                System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating ErrorBoundery");
                 return new ErrorBounderyMainFrame();
             default:
-                System.out.println("[EE] BounderyFactory doens't know this boundery !");
-                throw new CriticalException("BounderyFactory crashed it");
+                System.out.println("    [BOUNDERY-FACTORY][CE] BounderyFactory does not know this boundery !");
+                throw new CriticalException("BounderyFactory crashed the system");
         }
 
     }

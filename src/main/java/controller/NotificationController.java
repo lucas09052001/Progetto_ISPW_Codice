@@ -1,10 +1,10 @@
 package controller;
 
 import boundery.BounderyEnum;
-import dao.notification.NotificationDAO;
-import dao.notification.NotificationDAODB;
-import dao.notification.NotificationDAOFile;
-import dao.notification.NotificationDAONoPersistance;
+import dao.notification_dao.NotificationDAO;
+import dao.notification_dao.NotificationDAODB;
+import dao.notification_dao.NotificationDAOFile;
+import dao.notification_dao.NotificationDAONoPersistance;
 import entity.PersistencyPolicy;
 import entity.SessionInfo;
 import entity.notification.CustomNotification;
@@ -14,7 +14,6 @@ import exceptions.DAOException;
 import main.AppController;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class NotificationController {
 

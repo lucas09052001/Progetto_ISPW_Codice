@@ -1,0 +1,36 @@
+[ {
+  "lendingUsername" : "alice",
+  "loanObjectName" : "Calcolatrice scientifica",
+  "loanDescription" : "Per esame di matematica",
+  "loanInterval" : "DAY"
+}, {
+  "lendingUsername" : "bob",
+  "loanObjectName" : "Appunti di storia",
+  "loanDescription" : "Consultazione rapida",
+  "loanInterval" : "HOUR"
+}, {
+  "lendingUsername" : "alice",
+  "loanObjectName" : "Dizionario inglese",
+  "loanDescription" : "Per traduzione articolo",
+  "loanInterval" : "WEEK"
+}, {
+  "lendingUsername" : "bob",
+  "loanObjectName" : "Libro di fisica",
+  "loanDescription" : "Studio per interrogazione",
+  "loanInterval" : "DAY"
+}, {
+  "lendingUsername" : "alice",
+  "loanObjectName" : "Quaderno di appunti",
+  "loanDescription" : "Riferimento veloce",
+  "loanInterval" : "HOUR"
+}, {
+  "lendingUsername" : "alice",
+  "loanObjectName" : "Figa",
+  "loanDescription" : "Rasata",
+  "loanInterval" : "HOUR"
+}, {
+  "lendingUsername" : "bob",
+  "loanObjectName" : "Cicciobello",
+  "loanDescription" : "Ha la bua",
+  "loanInterval" : "MONTH"
+} ]
