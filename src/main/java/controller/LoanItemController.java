@@ -17,20 +17,21 @@ import static entity.loan.LoanInterval.NULL;
 public class LoanItemController {
 
     SessionInfo sessionInfo = SessionInfo.getSessionInfo();
+    String username = sessionInfo.getUsername();
     LoanPost loanPost;
     LoanPostDAO dao;
 
     public LoanItemController(){
 
         switch (sessionInfo.getPersistencyPolicy()){
-            case DB -> dao = new LoanPostDAODB();
-            case FILE -> dao = new LoanPostDAOFile();
-            case NO_PERSISTANCE -> dao = new LoanPostDAONoPersistance();
+            case DB -> dao = new LoanPostDAODB(username);
+            case FILE -> dao = new LoanPostDAOFile(username);
+            case NO_PERSISTANCE -> dao = new LoanPostDAONoPersistance(username);
         }
 
     }
 
-    public void submit(String loanObjectName, String loanDescription, LoanInterval loanInterval){
+    public void submit(String loanObjectName, String loanDescription, LoanInterval loanInterval, String pathToIcon){
 
         System.out.println("    [CONTROLLER] Starting submit operation");
         try {
@@ -39,7 +40,7 @@ public class LoanItemController {
                 throw new IllegalArgumentException("One of your inputs was considered invalid. Please try again.");
             }
 
-            loanPost = new LoanPost(sessionInfo.getUsername(), loanObjectName, loanDescription, loanInterval);
+            loanPost = new LoanPost(sessionInfo.getUsername(), loanObjectName, loanDescription, loanInterval, pathToIcon);
             System.out.println("    [CONTROLLER] Asking DAO to save on persistency");
             dao.submit(loanPost);
 

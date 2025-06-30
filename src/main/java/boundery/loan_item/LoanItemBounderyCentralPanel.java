@@ -20,6 +20,8 @@ public class LoanItemBounderyCentralPanel extends JPanel {
 
     JTextField nameTextField = new JTextField();
     JTextField descriptionTextField = new JTextField();
+    JTextField pathToImageTextField = new JTextField();
+
     JLabel intervalLabel = new JLabel();
     JRadioButton hourIntervalRadioButton = new JRadioButton();
     JRadioButton dayIntervalRadioButton = new JRadioButton();
@@ -52,6 +54,14 @@ public class LoanItemBounderyCentralPanel extends JPanel {
         descriptionTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(descriptionTextField);
         add(Box.createVerticalGlue());
+
+        // Path to image TextField
+        descriptionTextField.setText("Path to image");
+        descriptionTextField.setMaximumSize(fieldSize);
+        descriptionTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(descriptionTextField);
+        add(Box.createVerticalGlue());
+
 
         // Interval Label
         intervalLabel.setText("Maximum loan interval will be:");
@@ -110,7 +120,7 @@ public class LoanItemBounderyCentralPanel extends JPanel {
     private void handleSubmitEvent(){
         System.out.println("[BOUNDERY] SubmitLoan Event triggered");
         SwingUtilities.getWindowAncestor(this).dispose();
-        controller.submit(nameTextField.getText(), descriptionTextField.getText(), interval);
+        controller.submit(nameTextField.getText(), descriptionTextField.getText(), interval, pathToImageTextField.getText());
     }
 
     private void handleCancelEvent(){

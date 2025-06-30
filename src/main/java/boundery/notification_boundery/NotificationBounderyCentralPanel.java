@@ -32,7 +32,6 @@ public class NotificationBounderyCentralPanel extends JPanel {
         //Controller interaction
         System.out.println("[BOUNDERY] NotificationBoundery asking controller to fetch notifications... ");
         controller.fetchAllNotification();
-        System.out.println("[BOUNDERY] Done.");
 
         nextNotifications();
 

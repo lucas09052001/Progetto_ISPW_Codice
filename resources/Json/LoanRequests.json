@@ -1,0 +1,37 @@
+[ {
+  "borrowingUsername" : "alice",
+  "loanPost" : {
+    "lendingUsername" : "bob",
+    "pathToImage" : "images/drill.jpg",
+    "loanObjectName" : "Power Drill",
+    "loanDescription" : "Cordless drill with 2 batteries",
+    "loanInterval" : "DAY"
+  }
+}, {
+  "borrowingUsername" : "bob",
+  "loanPost" : {
+    "lendingUsername" : "alice",
+    "pathToImage" : "images/ladder.png",
+    "loanObjectName" : "Ladder",
+    "loanDescription" : "Aluminum ladder, 3 meters",
+    "loanInterval" : "HOUR"
+  }
+}, {
+  "borrowingUsername" : "alice",
+  "loanPost" : {
+    "lendingUsername" : "bob",
+    "pathToImage" : "images/tent.jpg",
+    "loanObjectName" : "Camping Tent",
+    "loanDescription" : "4-person waterproof tent",
+    "loanInterval" : "WEEK"
+  }
+}, {
+  "borrowingUsername" : "bob",
+  "loanPost" : {
+    "lendingUsername" : "bob",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png",
+    "loanObjectName" : "Appunti di storia",
+    "loanDescription" : "Consultazione rapida",
+    "loanInterval" : "HOUR"
+  }
+} ]

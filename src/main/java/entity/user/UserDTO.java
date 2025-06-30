@@ -1,6 +1,8 @@
 package entity.user;
 
-public class UserDTO {
+import entity.GenericDTO;
+
+public class UserDTO extends GenericDTO {
 
     public String username;
     public String password;

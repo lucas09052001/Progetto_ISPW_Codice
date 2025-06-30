@@ -13,8 +13,8 @@ public class AuthenticateBounderyCentralPannel extends JPanel {
 
     JButton loginButton = new JButton("Login");
     JButton registerButton = new JButton("Register");
-    JTextField usernameTextField = new JTextField("Username");
-    JTextField passwordTextField = new JTextField("Password");
+    JTextField usernameTextField = new JTextField("bob");
+    JTextField passwordTextField = new JTextField("bob");
     JLabel textPersistency = new JLabel("Choose the persistency policy: ");
     JRadioButton persistencyPolicyDB = new JRadioButton("DB");
     JRadioButton persistencyPolicyFile = new JRadioButton("File");

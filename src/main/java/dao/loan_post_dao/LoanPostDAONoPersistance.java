@@ -1,23 +1,20 @@
 package dao.loan_post_dao;
 
-import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
-import entity.user.User;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 import repository.LoanPostRepository;
-import repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class LoanPostDAONoPersistance implements LoanPostDAO{
-
+    String username;
     LoanPostRepository repository = LoanPostRepository.getInstance();
     ArrayList<LoanPost> loanPostList;
 
-    public LoanPostDAONoPersistance() {
-        loanPostList = repository.getLoanPostList();
+    public LoanPostDAONoPersistance(String username) {
+        this.loanPostList = repository.getLoanPostList();
+        this.username = username;
     }
 
     @Override
@@ -25,5 +22,10 @@ public class LoanPostDAONoPersistance implements LoanPostDAO{
         System.out.println("        [DAO] Adding new loanPost to volatile list");
         loanPostList.add(loanPost);
         repository.setLoanPostList(loanPostList);
+    }
+
+    @Override
+    public ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException {
+        return repository.getLoanPostList();
     }
 }

@@ -46,9 +46,14 @@ La logica è a posto.
 La boundery è passabile.
 Il controller è a posto.
 Le entities sono a posto.
-I dao sono da a posto.
+I dao sono a posto.
 
-BorrowItem: NI
+BorrowItem: FR
+La logica è a posto.
+La boundery è a posto.
+Il controller è a posto.
+Le entities sono a posto.
+I dao sono a posto.
 
 OnGoingLoans: NI
 

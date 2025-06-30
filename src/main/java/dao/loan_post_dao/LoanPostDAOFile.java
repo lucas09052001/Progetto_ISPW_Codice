@@ -1,30 +1,24 @@
 package dao.loan_post_dao;
 
-import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.jar.JarOutputStream;
 
 public class LoanPostDAOFile implements LoanPostDAO{
-
+    String username;
     String pathToJson = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/Json/loanPost.Json";
     ObjectMapper mapper = new ObjectMapper();
     File file;
 
-    public LoanPostDAOFile(){
-        file = new File(pathToJson);
+    public LoanPostDAOFile(String username){
+        this.file = new File(pathToJson);
+        this.username = username;
     }
 
     @Override
@@ -51,5 +45,14 @@ public class LoanPostDAOFile implements LoanPostDAO{
             throw new DAOException("Something went wrong during writing to Json");
         }
 
+    }
+
+    @Override
+    public ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException {
+        try {
+            return mapper.readValue(new File("resources/Json/loanPost.json"), new TypeReference<ArrayList<LoanPost>>() {});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

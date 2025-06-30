@@ -23,15 +23,5 @@ public class AppController {
         BounderyFactory.generateBoundery();
     }
 
-    public static void criticalErrorEncountered(){
-        System.out.println("[APP-CONTROLLER][CE] A critical error occurred. Shutting down.");
-        BounderyFactory.generateBoundery();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        System.exit(1);
-    }
 
 }

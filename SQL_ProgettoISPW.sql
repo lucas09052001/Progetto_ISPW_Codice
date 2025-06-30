@@ -50,17 +50,40 @@ INSERT INTO CustomNotification (senderUsername, receiverUsername, message, seen)
 -- -----------------------------------------------------
 
 CREATE TABLE LoanPost (
-    id INT AUTO_INCREMENT PRIMARY KEY,
     lendingUsername VARCHAR(20) NOT NULL references Users(username),
     loanObjectName VARCHAR(100) NOT NULL,
     loanDescription VARCHAR(100) NOT NULL,
-    loanInterval VARCHAR(100) NOT NULL -- This emulates the LoanIntervalEnum. It must always be one of these strings: HOUR, DAY, WEEK, MONTH
+    loanInterval VARCHAR(100) NOT NULL, -- This emulates the LoanIntervalEnum. It must always be one of these strings: HOUR, DAY, WEEK, MONTH
+    pathToImage VARCHAR(200) NOT NULL,
+    primary key (lendingUsername, loanObjectName)
 );
 
-INSERT INTO LoanPost (lendingUsername, loanObjectName, loanDescription, loanInterval) VALUES
-('alice', 'Calcolatrice scientifica', 'Presto calcolatrice scientifica completamente funzionante. Non è grafica', 'DAY'),
-('bob', 'Apppunti ISPW', 'Appunti utilissimi per passare il corso di ISPW con 30, lode e bacio accademico', 'WEEK');
+INSERT INTO LoanPost (lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage) VALUES
+('alice', 'Calcolatrice scientifica', 'Calcolatrice scientifica perfettamente funzionante, non grafica.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
+('alice', 'Zaino trekking', 'Zaino da escursione impermeabile, 50L.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
+('bob', 'Appunti ISPW', 'Appunti dettagliati per superare il corso con 30 e lode.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
+('bob', 'Set cacciaviti', 'Set completo di cacciaviti di precisione.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
+('bob', 'Coda di cavallo', 'Per le persone senza una coda di cavallo', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
+('bob', 'Monitor 24"', 'Monitor 24 pollici full HD, solo VGA.', 'MONTH', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png');
 
+
+-- -----------------------------------------------------
+-- Table Progetto_ISPW.LoanRequest
+-- -----------------------------------------------------
+
+CREATE TABLE LoanRequest(
+    borrowingUsername VARCHAR(20) NOT NULL references Users(username),
+    lendingUsername VARCHAR(100) NOT NULL,
+    loanObjectName VARCHAR(100) NOT NULL,
+	CONSTRAINT fk_LoanPost
+	FOREIGN KEY (lendingUsername, loanObjectName)
+	REFERENCES LoanPost (lendingUsername, loanObjectName),
+    primary key (borrowingUsername, lendingUsername, loanObjectName)
+);
+
+INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES
+('bob', 'alice', 'Calcolatrice scientifica'),
+('alice', 'bob', 'Appunti ISPW');
 
 -- -----------------------------------------------------
 -- Utenti del DB

@@ -14,10 +14,10 @@ public class LoanPostRepository {
         loanPostList = new ArrayList<>();
 
         // Dati di esempio
-        loanPostList.add(new LoanPost("alice", "Calcolatrice", "Prestito per compito in classe", LoanInterval.DAY));
-        loanPostList.add(new LoanPost("bob", "Appunti di chimica", "Per consultazione durante laboratorio", LoanInterval.HOUR));
-        loanPostList.add(new LoanPost("alice", "Libro di matematica", "Uso per studio individuale", LoanInterval.WEEK));
-        loanPostList.add(new LoanPost("bob", "Quaderno di storia", "Prestito per una giornata", LoanInterval.DAY));
+        loanPostList.add(new LoanPost("alice", "Calcolatrice", "Prestito per compito in classe", LoanInterval.DAY, PathRepository.getPathToEmptyImage()));
+        loanPostList.add(new LoanPost("bob", "Appunti di chimica", "Per consultazione durante laboratorio", LoanInterval.HOUR, PathRepository.getPathToEmptyImage()));
+        loanPostList.add(new LoanPost("alice", "Libro di matematica", "Uso per studio individuale", LoanInterval.WEEK, PathRepository.getPathToEmptyImage()));
+        loanPostList.add(new LoanPost("bob", "Quaderno di storia", "Prestito per una giornata", LoanInterval.DAY, PathRepository.getPathToEmptyImage()));
     }
 
     public static LoanPostRepository getInstance() {

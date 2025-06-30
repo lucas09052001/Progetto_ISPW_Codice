@@ -1,0 +1,2 @@
+Supponiamo che uno UC abbia un extend (quindi una UC che si aggiunge al primo) in questo caso dovrei avere 2 controller separati ? Non credo.
+Allora nello UC BorrowItem (in particolare nel controller) come faccio con il duplice dao ? E' corretto ?
