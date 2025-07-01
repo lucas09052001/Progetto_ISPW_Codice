@@ -20,8 +20,9 @@ public class BounderyFactory {
 
 
     public static JFrame generateBoundery() {
+        SessionInfo sessionInfo = SessionInfo.getSessionInfo();
+        BounderyEnum bounderyEnum = sessionInfo.getNextBoundery();
 
-        BounderyEnum bounderyEnum = SessionInfo.getSessionInfo().getNextBoundery();
         switch (bounderyEnum){
             case HOMEPAGE:
                 System.out.println("[SYSTEM] BounderyFactory creating HomepageBoundery");
@@ -41,6 +42,12 @@ public class BounderyFactory {
             case BORROW_ITEM:
                 System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating BorrowItemBoundery");
                 return new BorrowItemBounderyMainFrame();
+            case ON_GOING_LOANS:
+                System.out.println("    [BOUNDERY-FACTORY] BounderyFactory asked to create OnGoingLoansBoundery. Not implemented");
+                throw new CriticalException();
+            case LOAN_HISTORY:
+                System.out.println("    [BOUNDERY-FACTORY] BounderyFactory asked to create LoanHistoryBoundery. Not implemented");
+                throw new CriticalException();
             case ERROR:
                 System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating ErrorBoundery");
                 return new ErrorBounderyMainFrame();
