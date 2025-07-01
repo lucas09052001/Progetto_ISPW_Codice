@@ -77,13 +77,24 @@ CREATE TABLE LoanRequest(
     loanObjectName VARCHAR(100) NOT NULL,
 	CONSTRAINT fk_LoanPost
 	FOREIGN KEY (lendingUsername, loanObjectName)
-	REFERENCES LoanPost (lendingUsername, loanObjectName),
+	REFERENCES LoanPost (lendingUsername, loanObjectName) on delete cascade,
     primary key (borrowingUsername, lendingUsername, loanObjectName)
 );
 
 INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES
 ('bob', 'alice', 'Calcolatrice scientifica'),
 ('alice', 'bob', 'Appunti ISPW');
+
+-- -----------------------------------------------------
+-- Table Progetto_ISPW.EffectiveLoan
+-- -----------------------------------------------------
+
+CREATE TABLE LoanEffective (
+    borrowingUsername VARCHAR(20) NOT NULL REFERENCES Users(username),
+    lendingUsername VARCHAR(20) NOT NULL REFERENCES Users(username),
+    loanObjectName VARCHAR(100) NOT NULL,
+    PRIMARY KEY (borrowingUsername, lendingUsername, loanObjectName)
+);
 
 -- -----------------------------------------------------
 -- Utenti del DB

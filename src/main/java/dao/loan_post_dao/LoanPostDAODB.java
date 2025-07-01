@@ -19,6 +19,7 @@ public class LoanPostDAODB implements LoanPostDAO{
     final String submitQuery = "INSERT INTO LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval) VALUES (?,?,?,?)";
     final String fetchAllQuery = "SELECT lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage FROM LoanPost";
     final String fetchByIdQuery = "SELECT * FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
+    final String deleteByIdQuery = "DELETE FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
 
     public LoanPostDAODB(String username){
         this.username = username;
@@ -105,4 +106,32 @@ public class LoanPostDAODB implements LoanPostDAO{
             throw new DAOException(e.getMessage());
         }
     }
+
+    @Override
+    public void deleteByID(LoanPost loanPost) throws DAOException{
+
+        /*
+        THIS QUERY ALSO DELETES RELATES LOAN REQUESTS VIA DBMS MEANS
+         */
+
+        try(Connection connection = ConnectionFactory.upgrade();
+            PreparedStatement stmt = connection.prepareStatement(deleteByIdQuery)) {
+
+            System.out.println("        [DAO] Connection to DB established");
+
+            stmt.setString(1, loanPost.getLendingUsername());
+            stmt.setString(2, loanPost.getLoanObjectName());
+
+            if(stmt.executeUpdate() == 0 ){
+                throw new DAOException("Something went wrong during delete procedure");
+            }
+            System.out.println("        [DAO] Query executed");
+
+        } catch (NullPointerException | SQLException e) {
+            System.out.println("        [DAO][EE] Error during DAO procedure " + e.getMessage());
+            throw new DAOException(e.getMessage());
+        }
+
+    }
+
 }

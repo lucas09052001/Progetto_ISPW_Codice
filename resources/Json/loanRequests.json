@@ -1,0 +1,19 @@
+[ {
+  "borrowingUsername" : "bob",
+  "loanPost" : {
+    "lendingUsername" : "alice",
+    "loanObjectName" : "Ladder",
+    "loanDescription" : "Aluminum ladder, 3 meters",
+    "loanInterval" : "HOUR",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
+  }
+}, {
+  "borrowingUsername" : "bob",
+  "loanPost" : {
+    "lendingUsername" : "bob",
+    "loanObjectName" : "Appunti di storia",
+    "loanDescription" : "Consultazione rapida",
+    "loanInterval" : "HOUR",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
+  }
+} ]

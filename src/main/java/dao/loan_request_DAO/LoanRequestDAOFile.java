@@ -13,6 +13,7 @@ import repository.PathRepository;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class LoanRequestDAOFile implements LoanRequestDAO{
@@ -64,6 +65,7 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
         }
     }
 
+
     @Override
     public ArrayList<LoanRequest> fetchAll() {
 
@@ -71,7 +73,7 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
 
         try {
             System.out.println("        [DAO] Buffering Json");
-            ArrayList<LoanRequest> buffer = mapper.readValue(new File("resources/Json/LoanRequests.json"), new TypeReference<ArrayList<LoanRequest>>() {});
+            ArrayList<LoanRequest> buffer = mapper.readValue(new File(PathRepository.getPathToLoanRequestJson()), new TypeReference<ArrayList<LoanRequest>>() {});
             System.out.println("        [DAO] Extracting entities of interest");
             for(LoanRequest l : buffer){
                 if(!l.getBorrowingUsername().equals(username)){
@@ -87,4 +89,45 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
             throw new CriticalException();
         }
     }
+
+    @Override
+    public void deleteAllRelative(LoanRequest loanRequest) throws DAOException {
+        File file = new File(PathRepository.getPathToLoanRequestJson());
+        try {
+            System.out.println("        [DAO] Buffering Json");
+            ArrayList<LoanRequest> buffer = mapper.readValue(file, new TypeReference<ArrayList<LoanRequest>>() {});
+            System.out.println("        [DAO] Deleting entities of interest");
+
+            String compareeUsername = loanRequest.getLoanPost().getLendingUsername();
+            String compareeName = loanRequest.getLoanPost().getLoanObjectName();
+
+            ArrayList<Integer> indexesToBeRemoved = new ArrayList<>();
+            Integer index = 0;
+            for(LoanRequest l : buffer){
+                String usernameToBeCompared = l.getLoanPost().getLendingUsername();
+                String objectNameToBeCompared = l.getLoanPost().getLoanObjectName();
+
+                if(usernameToBeCompared.equals(compareeUsername) && objectNameToBeCompared.equals(compareeName)){
+                    indexesToBeRemoved.add(index);
+                }
+
+                index++;
+            }
+
+            for (Integer i : indexesToBeRemoved){
+                int removee = i;
+                buffer.remove(removee);
+            }
+
+            System.out.println("        [DAO] Updating Json");
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, buffer);
+
+        } catch (IOException e) {
+            System.out.println("        [DAO][CE] Something went wrong while reading Json file:");
+            System.out.println(e.getMessage());
+            throw new CriticalException();
+        }
+
+    }
+
 }

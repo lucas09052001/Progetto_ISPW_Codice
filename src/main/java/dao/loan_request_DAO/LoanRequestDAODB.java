@@ -78,4 +78,10 @@ public class LoanRequestDAODB implements LoanRequestDAO{
             throw new CriticalException("SQL ERROR: " + e.getMessage());
         }
     }
+
+    @Override
+    public void deleteAllRelative(LoanRequest loanRequest) throws DAOException {
+        //This method is empty as its action can be performed via DBMS means
+    }
+
 }

@@ -52,4 +52,32 @@ public class LoanRequestDAONoPersistance implements LoanRequestDAO{
         }
         return returnee;
     }
+
+    @Override
+    public void deleteAllRelative(LoanRequest loanRequest) throws DAOException {
+        System.out.println("        [DAO] Starting deleteAllRelative");
+        System.out.println("        [DAO] Buffering repository");
+        ArrayList<LoanRequest> buffer = repository.getLoanRequestList();
+
+
+
+        ArrayList<Integer> indexesToBeRemoved = new ArrayList<>();
+        Integer index = 0;
+        for(LoanRequest l : buffer){
+
+            if(l.getLoanPost().getLendingUsername().equals(loanRequest.getLoanPost().getLendingUsername()) && l.getLoanPost().getLoanObjectName().equals(loanRequest.getLoanPost().getLoanObjectName())){
+                indexesToBeRemoved.add(index);
+            }
+
+            index++;
+        }
+
+        for (Integer i : indexesToBeRemoved){
+            int removee = i;
+            buffer.remove(removee);
+        }
+
+        repository.setLoanRequestList(buffer);
+    }
+
 }

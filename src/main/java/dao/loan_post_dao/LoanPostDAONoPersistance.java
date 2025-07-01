@@ -44,4 +44,19 @@ public class LoanPostDAONoPersistance implements LoanPostDAO{
         }
         return null;
     }
+
+    @Override
+    public void deleteByID(LoanPost loanPost) throws DAOException {
+
+        System.out.println("        [DAO] Starting deleteById");
+        System.out.println("        [DAO] Buffering repository");
+        ArrayList<LoanPost> buffer = repository.getLoanPostList();
+
+        for (LoanPost l : buffer){
+            if (l.getLendingUsername().equals(loanPost.getLendingUsername()) && l.getLoanObjectName().equals(loanPost.getLoanObjectName())){
+                buffer.remove(l);
+                break;
+            }
+        }
+    }
 }

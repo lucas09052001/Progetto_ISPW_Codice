@@ -6,9 +6,11 @@ import com.sun.source.tree.AnnotatedTypeTree;
 import entity.loan.loan_post.LoanPost;
 import exceptions.CriticalException;
 import exceptions.DAOException;
+import repository.PathRepository;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class LoanPostDAOFile implements LoanPostDAO{
@@ -51,7 +53,7 @@ public class LoanPostDAOFile implements LoanPostDAO{
     @Override
     public ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException {
         try {
-            return mapper.readValue(new File("resources/Json/loanPost.json"), new TypeReference<ArrayList<LoanPost>>() {});
+            return mapper.readValue(new File(PathRepository.getPathToLoanPostJson()), new TypeReference<ArrayList<LoanPost>>() {});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -72,6 +74,33 @@ public class LoanPostDAOFile implements LoanPostDAO{
             return null;
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void deleteByID(LoanPost loanPost) throws DAOException {
+
+        try {
+            File filecurr = new File(PathRepository.getPathToLoanPostJson());
+
+            System.out.println("        [DAO] Starting deleteById");
+
+            System.out.println("        [DAO] Buffering Json");
+            ArrayList<LoanPost> buffer = mapper.readValue(filecurr, new TypeReference<ArrayList<LoanPost>>() {});
+
+            System.out.println("        [DAO] Deleting entity");
+            for(LoanPost l : buffer){
+                if(l.getLendingUsername().equals(loanPost.getLendingUsername()) && l.getLoanObjectName().equals(loanPost.getLoanObjectName())){
+                    buffer.remove(l);
+                    break;
+                }
+            }
+
+            System.out.println("        [DAO] Saving Json");
+            mapper.writerWithDefaultPrettyPrinter().writeValue(filecurr, buffer);
+        } catch (IOException e) {
+            System.out.println("        [DAO][CE] Something went wrong during Json manipulation");
+            throw new DAOException("Something went wrong during the procedure");
         }
     }
 }
