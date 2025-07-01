@@ -2,7 +2,7 @@
   "borrowingUsername" : "alice",
   "loanPost" : {
     "lendingUsername" : "bob",
-    "pathToImage" : "images/drill.jpg",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png",
     "loanObjectName" : "Power Drill",
     "loanDescription" : "Cordless drill with 2 batteries",
     "loanInterval" : "DAY"
@@ -11,7 +11,7 @@
   "borrowingUsername" : "bob",
   "loanPost" : {
     "lendingUsername" : "alice",
-    "pathToImage" : "images/ladder.png",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png",
     "loanObjectName" : "Ladder",
     "loanDescription" : "Aluminum ladder, 3 meters",
     "loanInterval" : "HOUR"
@@ -20,7 +20,7 @@
   "borrowingUsername" : "alice",
   "loanPost" : {
     "lendingUsername" : "bob",
-    "pathToImage" : "images/tent.jpg",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png",
     "loanObjectName" : "Camping Tent",
     "loanDescription" : "4-person waterproof tent",
     "loanInterval" : "WEEK"

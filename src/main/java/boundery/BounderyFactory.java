@@ -5,6 +5,7 @@ import boundery.borrow_item_boundery.BorrowItemBounderyMainFrame;
 import boundery.error_boundery.ErrorBounderyMainFrame;
 import boundery.homepage.HomepageBounderyMainFrame;
 import boundery.loan_item.LoanItemBounderyMainFrame;
+import boundery.loan_request_boundery.LoanRequestBounderyMainFrame;
 import boundery.notification_boundery.NotificationBounderyMainFrame;
 import boundery.profile_boundery.ProfileBounderyMainFrame;
 import entity.SessionInfo;
@@ -48,6 +49,9 @@ public class BounderyFactory {
             case LOAN_HISTORY:
                 System.out.println("    [BOUNDERY-FACTORY] BounderyFactory asked to create LoanHistoryBoundery. Not implemented");
                 throw new CriticalException();
+            case LOAN_REQUESTS:
+                System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating LoanRequestsBoundery");
+                return new LoanRequestBounderyMainFrame();
             case ERROR:
                 System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating ErrorBoundery");
                 return new ErrorBounderyMainFrame();

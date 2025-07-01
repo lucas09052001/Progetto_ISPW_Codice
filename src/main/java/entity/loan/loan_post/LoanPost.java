@@ -4,10 +4,10 @@ import entity.loan.LoanInterval;
 
 public class LoanPost {
     String lendingUsername;
-    String pathToImage;
     String loanObjectName;
     String loanDescription;
     LoanInterval loanInterval;
+    String pathToImage;
 
     public LoanPost(){}
 

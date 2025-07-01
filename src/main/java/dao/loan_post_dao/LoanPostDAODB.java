@@ -18,6 +18,7 @@ public class LoanPostDAODB implements LoanPostDAO{
 
     final String submitQuery = "INSERT INTO LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval) VALUES (?,?,?,?)";
     final String fetchAllQuery = "SELECT lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage FROM LoanPost";
+    final String fetchByIdQuery = "SELECT * FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
 
     public LoanPostDAODB(String username){
         this.username = username;
@@ -44,6 +45,33 @@ public class LoanPostDAODB implements LoanPostDAO{
             throw new CriticalException();
         }
 
+    }
+
+    @Override
+    public LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException, CriticalException {
+
+        try(Connection connection = ConnectionFactory.upgrade();
+            PreparedStatement stmt = connection.prepareStatement(fetchByIdQuery)) {
+
+            System.out.println("        [DAO] Connection to DB established");
+
+            stmt.setString(1, lendingUsername);
+            stmt.setString(2, loanObjectName);
+
+            ResultSet rs = stmt.executeQuery();
+            System.out.println("        [DAO] Query executed");
+
+            rs.next();
+            String loanDescription = rs.getString("loanDescription");
+            String pathToImage = rs.getString("pathToImage");
+            LoanInterval loanInterval = LoanInterval.valueOf(rs.getString("loanInterval"));
+
+            return new LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage);
+
+        } catch (SQLException e) {
+            System.out.println("        [DAO][EE] SQL error " + e.getMessage());
+            throw new CriticalException();
+        }
     }
 
     @Override

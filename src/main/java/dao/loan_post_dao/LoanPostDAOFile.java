@@ -2,6 +2,7 @@ package dao.loan_post_dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.source.tree.AnnotatedTypeTree;
 import entity.loan.loan_post.LoanPost;
 import exceptions.CriticalException;
 import exceptions.DAOException;
@@ -51,6 +52,24 @@ public class LoanPostDAOFile implements LoanPostDAO{
     public ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException {
         try {
             return mapper.readValue(new File("resources/Json/loanPost.json"), new TypeReference<ArrayList<LoanPost>>() {});
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException, CriticalException {
+
+        try {
+            System.out.println("        [DAO] Buffering Json");
+            ArrayList<LoanPost> buffer = mapper.readValue(new File("resources/Json/loanPost.json"), new TypeReference<ArrayList<LoanPost>>() {});
+            System.out.println("        [DAO] Extracting data of interest");
+            for(LoanPost l : buffer){
+                if(l.getLendingUsername().equals(lendingUsername) && l.getLoanObjectName().equals(loanObjectName)){
+                    return l;
+                }
+            }
+            return null;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

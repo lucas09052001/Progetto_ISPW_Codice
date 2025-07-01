@@ -1,6 +1,7 @@
 package dao.loan_post_dao;
 
 import entity.loan.loan_post.LoanPost;
+import entity.loan.loan_request.LoanRequest;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 import repository.LoanPostRepository;
@@ -27,5 +28,20 @@ public class LoanPostDAONoPersistance implements LoanPostDAO{
     @Override
     public ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException {
         return repository.getLoanPostList();
+    }
+
+    @Override
+    public LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException, CriticalException {
+        ArrayList<LoanPost> buffer;
+
+        System.out.println("        [DAO] Buffering repository");
+        buffer = repository.getLoanPostList();
+        System.out.println("        [DAO] Extracting data of interest");
+        for(LoanPost l : buffer){
+            if(l.getLendingUsername().equals(lendingUsername) && l.getLoanObjectName().equals(loanObjectName)){
+                return l;
+            }
+        }
+        return null;
     }
 }
