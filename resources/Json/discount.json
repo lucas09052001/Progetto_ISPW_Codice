@@ -1,0 +1,31 @@
+[ {
+  "name" : "SummerSale",
+  "pathToImage" : "/images/summer.jpg",
+  "percentage" : 20,
+  "cost" : 100,
+  "ownerUsername" : "alice"
+}, {
+  "name" : "WinterBlowout",
+  "pathToImage" : "/images/winter.jpg",
+  "percentage" : 30,
+  "cost" : 150,
+  "ownerUsername" : "bob"
+}, {
+  "name" : "BlackFriday",
+  "pathToImage" : "/images/blackfriday.jpg",
+  "percentage" : 50,
+  "cost" : 200,
+  "ownerUsername" : "bob"
+}, {
+  "name" : "CyberMonday",
+  "pathToImage" : "/images/cyber.jpg",
+  "percentage" : 40,
+  "cost" : 180,
+  "ownerUsername" : "alice"
+}, {
+  "name" : "SpringFever",
+  "pathToImage" : "/images/spring.jpg",
+  "percentage" : 25,
+  "cost" : 120,
+  "ownerUsername" : "bob"
+} ]

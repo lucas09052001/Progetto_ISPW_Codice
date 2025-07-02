@@ -3,7 +3,6 @@ package dao.loan_post_dao;
 import dao.ConnectionFactory;
 import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
-import entity.notification.CustomNotification;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 
@@ -90,7 +89,6 @@ public class LoanPostDAODB implements LoanPostDAO{
 
             System.out.println("        [DAO] Handling query output");
             while(rs.next()){
-                System.out.println("        [DEBUGGING] Handling rs output");
                 String lendingUsername = rs.getString("lendingUsername");
                 String loanObjectName = rs.getString("loanObjectName");
                 String loanDescription = rs.getString("loanDescription");

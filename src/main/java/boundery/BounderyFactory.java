@@ -2,6 +2,7 @@ package boundery;
 
 import boundery.authenticate_boundery.AuthenticateBounderyMainFrame;
 import boundery.borrow_item_boundery.BorrowItemBounderyMainFrame;
+import boundery.discounts_boundery.DiscountBounderyMainFrame;
 import boundery.error_boundery.ErrorBounderyMainFrame;
 import boundery.homepage.HomepageBounderyMainFrame;
 import boundery.loan_item.LoanItemBounderyMainFrame;
@@ -52,6 +53,9 @@ public class BounderyFactory {
             case LOAN_REQUESTS:
                 System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating LoanRequestsBoundery");
                 return new LoanRequestBounderyMainFrame();
+            case DISCOUNTS:
+                System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating DiscountsBoundery");
+                return new DiscountBounderyMainFrame();
             case ERROR:
                 System.out.println("    [BOUNDERY-FACTORY] BounderyFactory creating ErrorBoundery");
                 return new ErrorBounderyMainFrame();

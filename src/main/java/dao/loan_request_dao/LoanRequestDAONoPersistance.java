@@ -1,11 +1,8 @@
-package dao.loan_request_DAO;
+package dao.loan_request_dao;
 
 import dao.loan_post_dao.LoanPostDAO;
-import entity.loan.loan_post.LoanPost;
-import entity.loan.loan_post.LoanPostDTO;
 import entity.loan.loan_request.LoanRequest;
 import exceptions.DAOException;
-import repository.LoanPostRepository;
 import repository.LoanRequestRepository;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package controller;
 
 import boundery.BounderyEnum;
-import dao.user.*;
+import dao.user_dao.*;
 import entity.SessionInfo;
 import entity.user.User;
 import entity.user.UserDTO;

@@ -1,6 +1,5 @@
-package dao.loan_request_DAO;
+package dao.loan_request_dao;
 
-import com.fasterxml.jackson.databind.node.FloatNode;
 import dao.ConnectionFactory;
 import dao.loan_post_dao.LoanPostDAODB;
 import entity.loan.loan_post.LoanPost;

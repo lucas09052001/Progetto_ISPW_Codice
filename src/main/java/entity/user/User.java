@@ -36,7 +36,7 @@ public class User {
         return rating;
     }
 
-    public void setRating(int rating) { this.rating = rating; }
+    public void setRating(float rating) { this.rating = rating; }
 
     public int getPoints() {
         return points;
@@ -44,6 +44,10 @@ public class User {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public void addPoints(int points){
+        this.points += points;
     }
 
     public void updateRating(float add_rating){

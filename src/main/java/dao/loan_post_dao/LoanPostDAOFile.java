@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class LoanPostDAOFile implements LoanPostDAO{
     String username;
-    String pathToJson = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/Json/loanPost.Json";
+    String pathToJson = PathRepository.getPathToLoanPostJson();
     ObjectMapper mapper = new ObjectMapper();
     File file;
 

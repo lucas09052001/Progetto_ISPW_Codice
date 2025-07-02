@@ -97,6 +97,26 @@ CREATE TABLE LoanEffective (
 );
 
 -- -----------------------------------------------------
+-- Table Progetto_ISPW.Discount
+-- -----------------------------------------------------
+
+CREATE TABLE Discount (
+    name VARCHAR(100) PRIMARY KEY,
+    pathToImage VARCHAR(100) NOT NULL,
+    percentage INT NOT NULL,
+    cost INT NOT NULL,
+    ownerUsername VARCHAR(20) references Users(username)
+);
+
+INSERT INTO Discount (name, pathToImage, percentage, cost, ownerUsername) VALUES
+('SummerSale', '/images/summer.jpg', 20, 100, 'alice'),
+('WinterBlowout', '/images/winter.jpg', 30, 150, 'bob'),
+('BlackFriday', '/images/blackfriday.jpg', 50, 200, NULL),
+('CyberMonday', '/images/cyber.jpg', 40, 180, 'alice'),
+('SpringFever', '/images/spring.jpg', 25, 120, NULL);
+
+
+-- -----------------------------------------------------
 -- Utenti del DB
 -- -----------------------------------------------------
 DROP USER IF EXISTS 'login';

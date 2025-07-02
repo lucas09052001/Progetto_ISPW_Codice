@@ -1,8 +1,6 @@
-package dao.loan_request_DAO;
+package dao.loan_request_dao;
 
-import dao.loan_post_dao.LoanPostDAODB;
 import entity.loan.loan_request.LoanRequest;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 
 import java.util.ArrayList;

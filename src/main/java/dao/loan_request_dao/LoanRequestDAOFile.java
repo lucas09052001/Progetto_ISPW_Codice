@@ -1,19 +1,15 @@
-package dao.loan_request_DAO;
+package dao.loan_request_dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.loan_post_dao.LoanPostDAO;
-import entity.loan.loan_post.LoanPost;
-import entity.loan.loan_post.LoanPostDTO;
 import entity.loan.loan_request.LoanRequest;
-import entity.loan.loan_request.LoanRequestDTO;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 import repository.PathRepository;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class LoanRequestDAOFile implements LoanRequestDAO{

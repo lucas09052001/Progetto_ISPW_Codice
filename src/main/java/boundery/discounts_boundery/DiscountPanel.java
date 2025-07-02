@@ -1,0 +1,80 @@
+package boundery.discounts_boundery;
+
+import boundery.micro_components.InteractivePanel;
+import controller.DiscountController;
+import entity.discount.DiscountDTO;
+import repository.PathRepository;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
+public class DiscountPanel extends InteractivePanel {
+
+    DiscountDTO discountDTO;
+    DiscountController controller;
+
+    public DiscountPanel() {
+        super();
+    }
+
+    public DiscountDTO getDiscountDTO() {
+        return discountDTO;
+    }
+
+    public void setDiscountDTO(DiscountDTO discountDTO) {
+        this.discountDTO = discountDTO;
+    }
+
+    public DiscountController getController() {
+        return controller;
+    }
+
+    public void setController(DiscountController controller) {
+        this.controller = controller;
+    }
+
+    @Override
+    public void setUp() {
+        super.setUp();
+    }
+
+    @Override
+    protected String getButtonText() {
+        if(discountDTO == null){
+            return "None";
+        }else{
+            return "Redeem!";
+        }
+    }
+
+    @Override
+    protected String getPathToIcon() {
+        if(discountDTO == null){
+            return PathRepository.getPathToEmptyImage();
+        }else{
+            return discountDTO.getPathToImage();
+        }
+    }
+
+    @Override
+    protected ArrayList<String> gatherStringsToShow() {
+        ArrayList<String> returnee = new ArrayList<>();
+        if(discountDTO == null){
+            returnee.add("None");
+            returnee.add("No new discounts");
+            returnee.add("No new discounts");
+        }else{
+            returnee.add("Discount Name: " + discountDTO.getName());
+            returnee.add("Discount percentage: " + discountDTO.getPercentage() + "%");
+            returnee.add("Cost in points: " + discountDTO.getCost() + "points!");
+        }
+        return returnee;
+    }
+
+    @Override
+    protected void handleButtonEvent() {
+        System.out.println("[BOUNDERY] Handling Redeem event");
+        SwingUtilities.getWindowAncestor(this).dispose();
+        controller.redeemDiscount(discountDTO);
+    }
+}

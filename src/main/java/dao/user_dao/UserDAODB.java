@@ -1,4 +1,4 @@
-package dao.user;
+package dao.user_dao;
 
 import dao.ConnectionFactory;
 import entity.user.User;
@@ -13,10 +13,16 @@ import java.sql.SQLException;
 public class UserDAODB implements UserDAO {
 
     User user = new User();
+    String username;
     final String fetchUserInfoQuery = "SELECT username, password, rating, points FROM Users WHERE username = ?";
+    final String updateUserQuery = "UPDATE Users SET points = ? WHERE username = ?";
 
     public UserDAODB(){
         //No set up needed
+    }
+
+    public UserDAODB(String username) {
+        this.username = username;
     }
 
     @Override
@@ -52,4 +58,25 @@ public class UserDAODB implements UserDAO {
         }
     }
 
+    @Override
+    public void updateUser(User user) throws DAOException {
+        System.out.println("        [DAO] Starting updateUser");
+
+        try (Connection connection = ConnectionFactory.upgrade();
+             PreparedStatement stmt = connection.prepareStatement(updateUserQuery)){
+
+            System.out.println("        [DAO] Connection to DB established");
+
+            stmt.setInt(1,user.getPoints());
+            stmt.setString(2, user.getUsername());
+
+            if(stmt.executeUpdate() == 0){
+                throw new DAOException("No update on DB");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("[EE] SQL error " + e.getMessage()); //CONSOLE DEBUG
+            throw new CriticalException(e.getMessage());
+        }
+    }
 }

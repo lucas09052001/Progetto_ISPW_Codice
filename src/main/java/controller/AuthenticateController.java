@@ -2,10 +2,10 @@ package controller;
 
 import boundery.BounderyEnum;
 import main.AppController;
-import dao.user.UserDAO;
-import dao.user.UserDAODB;
-import dao.user.UserDAOFile;
-import dao.user.UserDAONoPersistance;
+import dao.user_dao.UserDAO;
+import dao.user_dao.UserDAODB;
+import dao.user_dao.UserDAOFile;
+import dao.user_dao.UserDAONoPersistance;
 import entity.PersistencyPolicy;
 import entity.SessionInfo;
 import entity.user.User;
@@ -40,17 +40,18 @@ public class AuthenticateController {
             }
 
             User user = dao.fetchUserInfo(username);
-
-            if(!password.equals(user.getPassword())){
-                throw new DAOException("No matching credentials");
+            if(user == null){
+                throw new IllegalStateException("No matching credentials");
+            }else if(!password.equals(user.getPassword())){
+                throw new IllegalStateException("No matching credentials");
+            }else{
+                //Aggiorna classe di sessione
+                sessionInfo.setUsername(username);
+                sessionInfo.setPersistencyPolicy(persistencyPolicy);
+                sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
             }
 
-            //Aggiorna classe di sessione
-            sessionInfo.setUsername(username);
-            sessionInfo.setPersistencyPolicy(persistencyPolicy);
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
-
-        } catch (IllegalArgumentException | DAOException e) {
+        } catch (IllegalStateException | IllegalArgumentException | DAOException e) {
 
             sessionInfo.setLastError(e.getMessage());
             sessionInfo.setNextBoundery(BounderyEnum.ERROR);
