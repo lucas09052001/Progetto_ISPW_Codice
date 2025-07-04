@@ -1,6 +1,6 @@
 package boundery.micro_components;
 
-import boundery.ColorRepository;
+import repository.ColorRepository;
 
 import javax.swing.*;
 import java.awt.*;

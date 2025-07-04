@@ -1,6 +1,6 @@
 package controller;
 
-import boundery.BounderyEnum;
+import boundery.Boundaries;
 import dao.discount_dao.DiscountDAO;
 import dao.discount_dao.DiscountDAODB;
 import dao.discount_dao.DiscountDAOFile;
@@ -57,12 +57,12 @@ public class DiscountController {
         } catch (DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
-            AppController.useCaseCompletion();
+            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
+            //AppController.useCaseCompletion();
         }
     }
 
@@ -90,7 +90,7 @@ public class DiscountController {
             discountDAO.redeem(discount);
 
             System.out.println("    [CONTROLLER] Update SessionInfo with nextBoundery");
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
+            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
 
             /*
             METTI TASK COMPLETED SE HAI TEMPO
@@ -99,14 +99,14 @@ public class DiscountController {
         } catch (IllegalStateException | DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
+            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
         } finally {
             System.out.println("    [CONTROLLER] Completed");
-            AppController.useCaseCompletion();
+            //AppController.useCaseCompletion();
         }
 
     }

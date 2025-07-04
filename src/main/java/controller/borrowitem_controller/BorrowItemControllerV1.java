@@ -1,6 +1,6 @@
 package controller;
 
-import boundery.BounderyEnum;
+import boundery.Boundaries;
 import dao.loan_post_dao.LoanPostDAO;
 import dao.loan_post_dao.LoanPostDAODB;
 import dao.loan_post_dao.LoanPostDAOFile;
@@ -34,15 +34,15 @@ public class BorrowItemController {
         PersistencyPolicy persistencyPolicy = sessionInfo.getPersistencyPolicy();
         switch (persistencyPolicy){
             case DB -> {
-                loanPostDAO = new LoanPostDAODB(sessionInfo.getUsername());
+                //loanPostDAO = new LoanPostDAODB(sessionInfo.getUsername());
                 loanRequestDAO = new LoanRequestDAODB(sessionInfo.getUsername());
             }
             case FILE -> {
-                loanPostDAO = new LoanPostDAOFile(sessionInfo.getUsername());
+                //loanPostDAO = new LoanPostDAOFile(sessionInfo.getUsername());
                 loanRequestDAO = new LoanRequestDAOFile(sessionInfo.getUsername());
             }
             case NO_PERSISTANCE -> {
-                loanPostDAO = new LoanPostDAONoPersistance(sessionInfo.getUsername());
+                //loanPostDAO = new LoanPostDAONoPersistance(sessionInfo.getUsername());
                 loanRequestDAO = new LoanRequestDAONoPersistance(sessionInfo.getUsername());
             }
         }
@@ -59,11 +59,11 @@ public class BorrowItemController {
             loanPostList = loanPostDAO.fetchAllLoanPosts();
         } catch (DAOException e) {
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.AUTHENTICATE);
+            sessionInfo.setNextBoundery(Boundaries.AUTHENTICATE);
         }
 
     }
@@ -97,7 +97,7 @@ public class BorrowItemController {
             loanRequestDAO.submitRequest(loanRequest);
 
             System.out.println("    [CONTROLLER] Update SessionInfo with nextBoundery");
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
+            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
 
             /*
             METTI TASK COMPLETED SE HAI TEMPO
@@ -106,14 +106,14 @@ public class BorrowItemController {
         } catch (IllegalArgumentException | DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.BORROW_ITEM);
+            sessionInfo.setNextBoundery(Boundaries.BORROW_ITEM);
         } finally {
             System.out.println("    [CONTROLLER] Completed");
-            AppController.useCaseCompletion();
+            //AppController.useCaseCompletion();
         }
 
 

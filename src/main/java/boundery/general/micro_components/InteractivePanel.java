@@ -1,8 +1,6 @@
 package boundery.micro_components;
 
-import boundery.ColorRepository;
-import entity.GenericDTO;
-import repository.PathRepository;
+import repository.ColorRepository;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;

@@ -1,6 +1,6 @@
 package boundery.discounts_boundery;
 
-import boundery.micro_components.InteractivePanel;
+import boundery.general.micro_components.InteractivePanel;
 import controller.DiscountController;
 import entity.discount.DiscountDTO;
 import repository.PathRepository;

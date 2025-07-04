@@ -1,7 +1,7 @@
 package boundery.loan_item;
 
-import boundery.ColorRepository;
-import controller.LoanItemController;
+import repository.ColorRepository;
+import controller.loanitem_controller.LoanItemControllerV1;
 import entity.loan.LoanInterval;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ import static entity.loan.LoanInterval.NULL;
 
 public class LoanItemBounderyCentralPanel extends JPanel {
 
-    LoanItemController controller = new LoanItemController();
+    LoanItemControllerV1 controller = new LoanItemControllerV1();
     String loanObjectName = "";
     String description = "";
     LoanInterval interval = NULL;

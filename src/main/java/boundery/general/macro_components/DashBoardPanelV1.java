@@ -1,0 +1,73 @@
+package boundery.general.macro_components;
+
+import boundery.Boundaries;
+import repository.ColorRepository;
+import controller.dashboard_controller.DashBoardController;
+import repository.PathRepository;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class DashBoardPanelV1 extends JPanel {
+
+    JButton viewNotificationButton;
+    JButton viewProfileInfo;
+    JButton homepage;
+    JLabel logoImage;
+    DashBoardController controller;
+
+    public DashBoardPanelV1(DashBoardController controller){
+
+        System.out.println("    [DASHBOARD] Starting");
+
+        //Attributes
+        this.controller = controller;
+
+        //Look and Feel
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
+        setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+
+        //Instantiating Components
+        viewNotificationButton = new JButton("Notification");
+        viewProfileInfo = new JButton("Profile");
+        homepage = new JButton("HomePage");
+        logoImage = new JLabel();
+
+        //Homepage Button
+        homepage.addActionListener(e -> handleHomepageEvent());
+        add(homepage);
+        add(Box.createHorizontalGlue());
+
+        //Image label
+        ImageIcon icon = new ImageIcon(PathRepository.getPathToLogoImage());
+        logoImage.setIcon(icon);
+        add(logoImage);
+        add(Box.createHorizontalGlue());
+
+        //Notification button
+        viewNotificationButton.addActionListener(e -> handleViewNotificationEvent());
+        add(viewNotificationButton);
+
+        //Profile button
+        viewProfileInfo.addActionListener(e -> handleViewProfileEvent());
+        add(viewProfileInfo);
+
+        setVisible(true);
+    }
+
+    public void handleHomepageEvent(){
+        System.out.println("    [DASHBOARD] Handling 'HomepageButton-Clicked' event");
+        controller.callObserver(Boundaries.HOMEPAGE);
+    }
+
+    public void handleViewNotificationEvent(){
+        System.out.println("    [DASHBOARD] Handling 'ViewNotificationButton-Clicked' event");
+        controller.callObserver(Boundaries.NOTIFICATION);
+    }
+
+    public void handleViewProfileEvent(){
+        System.out.println("    [DASHBOARD] Handling 'ViewProfileButton-Clicked' event");
+        controller.callObserver(Boundaries.PROFILE);
+    }
+}

@@ -3,11 +3,24 @@ package main;
 import boundery.*;
 import boundery.authenticate_boundery.AuthenticateMainFrame;
 import boundery.authenticate_boundery.AuthenticatePanelFactory;
+import boundery.borrow_item_boundery.BorrowItemPanelFactory;
+import boundery.discounts_boundery.DiscountCentralPanelFactory;
 import boundery.error_boundery.ErrorFrameFactory;
+import boundery.general.MainFrame;
 import boundery.homepage.HomePagePanelFactory;
-import boundery.macro_components.DashBoardPanelFactory;
+import boundery.loan_item.LoanItemPanelFactory;
+import boundery.general.macro_components.DashBoardPanelFactory;
+import boundery.loan_request_boundery.LoanRequestCentralPanelFactory;
 import boundery.notification_boundery.NotificationPanelFactory;
 import boundery.profile_boundery.ProfileCentralPanelFactory;
+import controller.discount_controller.DiscountController;
+import controller.discount_controller.DiscountControllerFactory;
+import controller.loanrequest_controller.LoanRequestController;
+import controller.loanrequest_controller.LoanRequestControllerFactory;
+import controller.borrowitem_controller.BorrowItemController;
+import controller.borrowitem_controller.BorrowItemControllerFactory;
+import controller.loanitem_controller.LoanItemController;
+import controller.loanitem_controller.LoanItemControllerFactory;
 import controller.notification_controller.NotificationController;
 import controller.notification_controller.NotificationControllerFactory;
 import controller.profile_controller.ProfileController;
@@ -41,11 +54,6 @@ public class AppController implements Observer{
     private void go() {
         System.out.println("[APP-CONTROLLER] Going to next UC");
         mainFrame.refresh(nextBoundary);
-    }
-
-    private void error(){
-        System.out.println("[APP-CONTROLLER] Error encountered");
-        updateNewBoundery(current);
     }
 
     @Override
@@ -91,9 +99,40 @@ public class AppController implements Observer{
                 go();
             }
 
-            case ERROR -> {
+            case LOAN_ITEM -> {
+                System.out.println("Loan Item");
+                LoanItemController controller = new LoanItemControllerFactory().generate(this);
+                this.nextBoundary = new LoanItemPanelFactory().generate(controller);
+                go();
+            }
 
-                error();
+            case BORROW_ITEM ->  {
+                System.out.println("Borrow item");
+                BorrowItemController controller = new BorrowItemControllerFactory().generate(this);
+                this.nextBoundary = new BorrowItemPanelFactory().generate(controller);
+                go();
+            }
+
+            case LOAN_REQUESTS -> {
+                System.out.println("Loan request");
+                LoanRequestController controller = new LoanRequestControllerFactory().generate(this);
+                this.nextBoundary = new LoanRequestCentralPanelFactory().generate(controller);
+                go();
+            }
+
+            case LOAN_HISTORY ->{
+                throw new RuntimeException("Not Yet implmented");
+            }
+
+            case ON_GOING_LOANS -> {
+                throw new RuntimeException("Not Yet implmented");
+            }
+
+            case DISCOUNTS -> {
+                System.out.println("Discounts");
+                DiscountController controller = new DiscountControllerFactory().generate(this);
+                this.nextBoundary = new DiscountCentralPanelFactory().generate(controller);
+                go();
             }
 
             case null, default -> {

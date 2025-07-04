@@ -1,6 +1,6 @@
-package controller;
+package controller.loanitem_controller;
 
-import boundery.BounderyEnum;
+import boundery.Boundaries;
 import dao.loan_post_dao.LoanPostDAO;
 import dao.loan_post_dao.LoanPostDAODB;
 import dao.loan_post_dao.LoanPostDAOFile;
@@ -8,9 +8,7 @@ import dao.loan_post_dao.LoanPostDAONoPersistance;
 import entity.SessionInfo;
 import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
-import exceptions.CriticalException;
 import exceptions.DAOException;
-import main.AppController;
 
 import static entity.loan.LoanInterval.NULL;
 
@@ -50,19 +48,19 @@ public class LoanItemController {
 //            AppController.taskCompleted();
 
             System.out.println("    [CONTROLLER] Update SessionInfo with nextBoundery");
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
+            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
 
         } catch (IllegalArgumentException | DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.LOAN_ITEM);
+            sessionInfo.setNextBoundery(Boundaries.LOAN_ITEM);
         } finally {
             System.out.println("    [CONTROLLER] Completed");
-            AppController.useCaseCompletion();
+            //AppController.useCaseCompletion();
         }
 
 

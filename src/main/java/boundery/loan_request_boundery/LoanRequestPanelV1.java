@@ -1,7 +1,7 @@
 package boundery.loan_request_boundery;
 
-import boundery.micro_components.InteractivePanel;
-import controller.LoanRequestController;
+import boundery.general.micro_components.InteractivePanel;
+import controller.loanrequest_controller.LoanRequestControllerV1;
 import entity.loan.loan_request.LoanRequestDTO;
 import repository.PathRepository;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class LoanRequestPanel extends InteractivePanel {
     LoanRequestDTO dto;
-    LoanRequestController controller;
+    LoanRequestControllerV1 controller;
 
     public LoanRequestPanel() {
         super();
@@ -25,11 +25,11 @@ public class LoanRequestPanel extends InteractivePanel {
         this.dto = dto;
     }
 
-    public LoanRequestController getController() {
+    public LoanRequestControllerV1 getController() {
         return controller;
     }
 
-    public void setController(LoanRequestController controller) {
+    public void setController(LoanRequestControllerV1 controller) {
         this.controller = controller;
     }
 

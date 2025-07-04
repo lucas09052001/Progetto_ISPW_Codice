@@ -1,23 +1,20 @@
-package boundery.loan_request_boundery;
+package boundery.discounts_boundery;
 
-import boundery.ColorRepository;
-import boundery.borrow_item_boundery.BorrowObjectPanel;
-import controller.BorrowItemController;
-import controller.LoanRequestController;
+import repository.ColorRepository;
+import controller.DiscountController;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class LoanRequestBounderyCentralPannel extends JPanel {
-
+public class DiscountBounderyCentralPanel extends JPanel {
     JLabel topTextLabel;
-    LoanRequestPanel loanRequestPanel_1;
-    LoanRequestPanel loanRequestPanel_2;
+    DiscountPanel discountPanel1;
+    DiscountPanel discountPanel2;
     JButton nextItemsButton;
-    LoanRequestController controller;
+    DiscountController controller;
 
-    public LoanRequestBounderyCentralPannel(){
+    public DiscountBounderyCentralPanel(){
 
         //Static Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -26,10 +23,10 @@ public class LoanRequestBounderyCentralPannel extends JPanel {
 
         //Instantiating components
         topTextLabel = new JLabel();
-        loanRequestPanel_1 = new LoanRequestPanel();
-        loanRequestPanel_2 = new LoanRequestPanel();
+        discountPanel1 = new DiscountPanel();
+        discountPanel2 = new DiscountPanel();
         nextItemsButton = new JButton();
-        controller = new LoanRequestController();
+        controller = new DiscountController();
 
         //Static set up
         topTextLabel.setText("Available Loans:");
@@ -38,10 +35,10 @@ public class LoanRequestBounderyCentralPannel extends JPanel {
         topTextLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         topTextLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        loanRequestPanel_1.setController(controller);
-        loanRequestPanel_1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loanRequestPanel_2.setController(controller);
-        loanRequestPanel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        discountPanel1.setController(controller);
+        discountPanel1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        discountPanel2.setController(controller);
+        discountPanel2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         nextItemsButton.setText("Next items");
         nextItemsButton.addActionListener(e -> handleNextItemEvent());
@@ -51,9 +48,9 @@ public class LoanRequestBounderyCentralPannel extends JPanel {
         add(Box.createVerticalGlue());
         add(topTextLabel);
         add(Box.createVerticalGlue());
-        add(loanRequestPanel_1);
+        add(discountPanel1);
         add(Box.createVerticalGlue());
-        add(loanRequestPanel_2);
+        add(discountPanel2);
         add(Box.createVerticalGlue());
         add(nextItemsButton);
         add(Box.createVerticalGlue());
@@ -67,11 +64,11 @@ public class LoanRequestBounderyCentralPannel extends JPanel {
 
         System.out.println("[BOUNDERY] Populating BorrowObjects Panels");
 
-        loanRequestPanel_1.setDto(controller.handNextLoanRequest());
-        loanRequestPanel_1.setUp();
+        discountPanel1.setDiscountDTO(controller.handNextDiscount());
+        discountPanel1.setUp();
 
-        loanRequestPanel_2.setDto(controller.handNextLoanRequest());
-        loanRequestPanel_2.setUp();
+        discountPanel2.setDiscountDTO(controller.handNextDiscount());
+        discountPanel2.setUp();
 
         System.out.println("[BOUNDERY] Refreshing");
         revalidate();
@@ -81,5 +78,4 @@ public class LoanRequestBounderyCentralPannel extends JPanel {
     private void handleNextItemEvent(){
         refresh();
     }
-
 }

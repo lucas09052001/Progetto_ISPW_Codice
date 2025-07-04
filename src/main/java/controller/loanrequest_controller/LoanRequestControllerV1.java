@@ -1,6 +1,6 @@
 package controller;
 
-import boundery.BounderyEnum;
+import boundery.Boundaries;
 import dao.loan_effective_dao.LoanEffectiveDAO;
 import dao.loan_effective_dao.LoanEffectiveDAODB;
 import dao.loan_effective_dao.LoanEffectiveDAOFile;
@@ -35,19 +35,19 @@ public class LoanRequestController {
     public LoanRequestController(){
         switch (sessionInfo.getPersistencyPolicy()){
             case DB -> {
-                loanRequestDAO = new LoanRequestDAODB(sessionInfo.getUsername());
-                loanPostDAO = new LoanPostDAODB(sessionInfo.getUsername());
-                loanEffectiveDAO = new LoanEffectiveDAODB(sessionInfo.getUsername());
+                //loanRequestDAO = new LoanRequestDAODB(sessionInfo.getUsername());
+                //loanPostDAO = new LoanPostDAODB(sessionInfo.getUsername());
+                //loanEffectiveDAO = new LoanEffectiveDAODB(sessionInfo.getUsername());
             }
             case FILE -> {
-                loanRequestDAO = new LoanRequestDAOFile(sessionInfo.getUsername());
-                loanPostDAO = new LoanPostDAOFile(sessionInfo.getUsername());
-                loanEffectiveDAO = new LoanEffectiveDAOFile(sessionInfo.getUsername());
+                //loanRequestDAO = new LoanRequestDAOFile(sessionInfo.getUsername());
+                //loanPostDAO = new LoanPostDAOFile(sessionInfo.getUsername());
+                //loanEffectiveDAO = new LoanEffectiveDAOFile(sessionInfo.getUsername());
             }
             case NO_PERSISTANCE -> {
-                loanRequestDAO = new LoanRequestDAONoPersistance(sessionInfo.getUsername());
-                loanPostDAO = new LoanPostDAONoPersistance(sessionInfo.getUsername());
-                loanEffectiveDAO = new LoanEffectiveDAONoPersistance(sessionInfo.getUsername());
+                //loanRequestDAO = new LoanRequestDAONoPersistance(sessionInfo.getUsername());
+                //loanPostDAO = new LoanPostDAONoPersistance(sessionInfo.getUsername());
+                //loanEffectiveDAO = new LoanEffectiveDAONoPersistance(sessionInfo.getUsername());
             }
             case NULL -> {
                 System.out.println("        [DAO][CE] Persistency non trovata");
@@ -98,7 +98,7 @@ public class LoanRequestController {
 
 
             System.out.println("    [CONTROLLER] Update SessionInfo with nextBoundery");
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
+            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
             /*
             METTI TASK COMPLETED SE HAI TEMPO
              */
@@ -106,14 +106,14 @@ public class LoanRequestController {
         } catch (DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
+            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
         } finally {
             System.out.println("    [CONTROLLER] Completed");
-            AppController.useCaseCompletion();
+            //AppController.useCaseCompletion();
         }
 
 
