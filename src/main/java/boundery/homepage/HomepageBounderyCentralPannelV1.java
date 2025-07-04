@@ -1,9 +1,8 @@
 package boundery.homepage;
 
-import boundery.ColorRepository;
+import repository.ColorRepository;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class HomepageBounderyCentralPannel extends JPanel {

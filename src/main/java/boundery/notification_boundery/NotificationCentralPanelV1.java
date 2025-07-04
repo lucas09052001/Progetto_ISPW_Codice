@@ -1,6 +1,6 @@
 package boundery.notification_boundery;
 
-import boundery.ColorRepository;
+import repository.ColorRepository;
 import controller.NotificationController;
 import entity.notification.CustomNotificationDTO;
 

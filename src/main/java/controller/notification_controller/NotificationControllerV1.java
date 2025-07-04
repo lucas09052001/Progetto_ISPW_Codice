@@ -1,6 +1,6 @@
 package controller;
 
-import boundery.BounderyEnum;
+import boundery.Boundaries;
 import dao.notification_dao.NotificationDAO;
 import dao.notification_dao.NotificationDAODB;
 import dao.notification_dao.NotificationDAOFile;
@@ -44,11 +44,11 @@ public class NotificationController {
 
         } catch (DAOException e) {
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.AUTHENTICATE);
+            sessionInfo.setNextBoundery(Boundaries.AUTHENTICATE);
         }
 
     }

@@ -1,15 +1,11 @@
 package main;
 
-import boundery.BounderyEnum;
-import entity.SessionInfo;
+import boundery.Boundaries;
 
 public class Main {
 
-    //Il commento pazzo sgravato
-
     public static void main(String[] args) {
-        SessionInfo sessionInfo = SessionInfo.getSessionInfo();
-        sessionInfo.setNextBoundery(BounderyEnum.AUTHENTICATE);
-        AppController.start();
+        AppController appController = new AppController();
+        appController.updateNewBoundery(Boundaries.AUTHENTICATE);
     }
 }

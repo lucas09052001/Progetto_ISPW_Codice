@@ -1,23 +1,27 @@
-package controller;
+package controller.profile_controller;
 
-import boundery.BounderyEnum;
+import boundery.Boundaries;
 import dao.user_dao.*;
 import entity.SessionInfo;
 import entity.user.User;
 import entity.user.UserDTO;
 import exceptions.CriticalException;
 import exceptions.DAOException;
-import main.AppController;
+import main.Observer;
 
-public class ProfileController {
+import java.security.cert.PolicyNode;
+
+public class ProfileControllerV1 implements ProfileController {
 
     User user;
     UserDAO userDAO;
     UserDTO userDTO;
     SessionInfo sessionInfo;
+    Observer observer;
 
-    public ProfileController(){
+    public ProfileControllerV1(Observer observer){
         sessionInfo = SessionInfo.getSessionInfo();
+        this.observer = observer;
         userDTO = new UserDTO();
     }
 
@@ -46,11 +50,11 @@ public class ProfileController {
             //as the user is already authenticated when this class is running this exception will never be thrown.
 
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.AUTHENTICATE);
+            sessionInfo.setNextBoundery(Boundaries.AUTHENTICATE);
 
             return null;
         }

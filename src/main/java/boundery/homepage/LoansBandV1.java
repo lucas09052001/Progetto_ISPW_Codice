@@ -1,8 +1,8 @@
 package boundery.homepage;
 
-import boundery.BounderyEnum;
-import boundery.ColorRepository;
-import controller.HomePageController;
+import boundery.Boundaries;
+import repository.ColorRepository;
+import controller.homepage_controller.HomePageControllerV1;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -45,13 +45,13 @@ public class LoansBand extends JPanel {
     public void handleLoanItemEvent(){
         System.out.println("[SYSTEM] Handling 'LoanItem' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageController().start(BounderyEnum.LOAN_ITEM);
+        new HomePageControllerV1().start(Boundaries.LOAN_ITEM);
     }
 
     public void handleBorrowItemEvent(){
         System.out.println("[SYSTEM] Handling 'BorrowItem' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageController().start(BounderyEnum.BORROW_ITEM);
+        new HomePageControllerV1().start(Boundaries.BORROW_ITEM);
     }
 
 }

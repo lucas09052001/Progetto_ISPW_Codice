@@ -3,6 +3,7 @@ package boundery.authenticate_boundery;
 import boundery.ColorRepository;
 import controller.AuthenticateController;
 import entity.PersistencyPolicy;
+import main.Observer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +24,13 @@ public class AuthenticateBounderyCentralPannel extends JPanel {
 
     PersistencyPolicy persistencyPolicy = PersistencyPolicy.NULL;
 
-    public AuthenticateBounderyCentralPannel() {
+    public AuthenticateBounderyCentralPannel(Observer observer) {
 
         // Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.decode("#3DDC97"));
+
+        controller = new AuthenticateController(observer);
 
         //TextFields
         Dimension fieldSize = new Dimension(400, 50);

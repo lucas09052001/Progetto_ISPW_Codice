@@ -1,6 +1,6 @@
 package controller;
 
-import boundery.BounderyEnum;
+import boundery.Boundaries;
 import main.AppController;
 import dao.user_dao.UserDAO;
 import dao.user_dao.UserDAODB;
@@ -10,13 +10,15 @@ import entity.PersistencyPolicy;
 import entity.SessionInfo;
 import entity.user.User;
 import exceptions.DAOException;
+import main.Observer;
 
 public class AuthenticateController {
 
     UserDAO dao;
+    Observer observer;
 
-    public AuthenticateController() {
-        //No set up needed
+    public AuthenticateController(Observer observer) {
+        this.observer = observer;
     }
 
     public void login(String username, String password, PersistencyPolicy persistencyPolicy){
@@ -48,21 +50,16 @@ public class AuthenticateController {
                 //Aggiorna classe di sessione
                 sessionInfo.setUsername(username);
                 sessionInfo.setPersistencyPolicy(persistencyPolicy);
-                sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
             }
 
         } catch (IllegalStateException | IllegalArgumentException | DAOException e) {
 
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
 
-            AppController.errorEncounterd();
-
-            sessionInfo.setNextBoundery(BounderyEnum.AUTHENTICATE);
+            observer.update(Boundaries.ERROR);
 
         } finally {
-            //Notifica l'appController che lo UseCase è terminato
-            AppController.useCaseCompletion();
+            observer.update(Boundaries.HOMEPAGE);
         }
 
     }

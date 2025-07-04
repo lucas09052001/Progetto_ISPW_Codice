@@ -1,6 +1,6 @@
 package controller;
 
-import boundery.BounderyEnum;
+import boundery.Boundaries;
 import main.AppController;
 import entity.SessionInfo;
 
@@ -12,10 +12,10 @@ public class HomePageController {
         sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public void start(BounderyEnum nextBoundery) {
+    public void start(Boundaries nextBoundery) {
         System.out.println("    [CONTROLLER] HomePage Controller started");
         try {
-            if(nextBoundery == BounderyEnum.ON_GOING_LOANS || nextBoundery == BounderyEnum.LOAN_HISTORY){
+            if(nextBoundery == Boundaries.ON_GOING_LOANS || nextBoundery == Boundaries.LOAN_HISTORY){
                 System.out.println("    [CONTROLLER][NCE] This feature is not implmented yet.");
                 throw new IllegalStateException("Not yet implemented");
             }
@@ -24,13 +24,13 @@ public class HomePageController {
         } catch (IllegalStateException e) {
 
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(BounderyEnum.ERROR);
+            sessionInfo.setNextBoundery(Boundaries.ERROR);
 
-            AppController.errorEncounterd();
+            //AppController.errorEncounterd();
 
-            sessionInfo.setNextBoundery(BounderyEnum.HOMEPAGE);
+            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
         } finally {
-            AppController.useCaseCompletion();
+            //AppController.useCaseCompletion();
         }
     }
 }
