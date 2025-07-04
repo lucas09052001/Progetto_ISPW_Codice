@@ -1,6 +1,7 @@
 package boundery.homepage;
 
 import boundery.Boundaries;
+import controller.homepage_controller.HomePageController;
 import repository.ColorRepository;
 import controller.homepage_controller.HomePageControllerV1;
 
@@ -8,12 +9,15 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class ServicesBand extends JPanel{
+public class ServicesBandV1 extends JPanel{
 
     final JButton discounts = new JButton("Discounts");
     final JLabel servicesText = new JLabel("Services");
+    final HomePageController controller;
 
-    public ServicesBand(){
+    public ServicesBandV1(HomePageController controller){
+        //Attributes
+        this.controller = controller;
 
         //Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -40,6 +44,6 @@ public class ServicesBand extends JPanel{
     public void handleDiscountsEvent(){
         System.out.println("[SYSTEM] Handling 'ViewDiscounts' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageControllerV1().start(Boundaries.DISCOUNTS);
+        controller.callObserver(Boundaries.DISCOUNTS);
     }
 }

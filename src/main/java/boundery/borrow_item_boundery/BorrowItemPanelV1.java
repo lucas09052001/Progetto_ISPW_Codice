@@ -1,22 +1,20 @@
 package boundery.borrow_item_boundery;
 
 import controller.borrowitem_controller.BorrowItemController;
-import controller.borrowitem_controller.BorrowItemControllerFactory;
 import repository.ColorRepository;
-import controller.borrowitem_controller.BorrowItemControllerV1;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class BorrowItemCentralPannelV1 extends JPanel {
+public class BorrowItemPanelV1 extends JPanel {
     JLabel topTextLabel;
     BorrowObjectPanel borrowObjectPanel_1;
     BorrowObjectPanel borrowObjectPanel_2;
     JButton nextItemsButton;
     BorrowItemController controller;
 
-    public BorrowItemCentralPannelV1(BorrowItemController controller){
+    public BorrowItemPanelV1(BorrowItemController controller){
         //Attributes
         this.controller = controller;
 

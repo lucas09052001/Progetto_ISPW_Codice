@@ -1,6 +1,6 @@
 package boundery;
 
-public enum BounderyEnum {
+public enum Boundaries {
     HOMEPAGE,
     AUTHENTICATE,
     LOAN_ITEM,

@@ -1,19 +1,20 @@
 package boundery.discounts_boundery;
 
 import boundery.general.micro_components.InteractivePanel;
-import controller.DiscountController;
+import controller.discount_controller.DiscountController;
+import controller.discount_controller.DiscountControllerV1;
 import entity.discount.DiscountDTO;
 import repository.PathRepository;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class DiscountPanel extends InteractivePanel {
+public class DiscountPanelV1 extends InteractivePanel {
 
     DiscountDTO discountDTO;
     DiscountController controller;
 
-    public DiscountPanel() {
+    public DiscountPanelV1() {
         super();
     }
 
@@ -73,8 +74,11 @@ public class DiscountPanel extends InteractivePanel {
 
     @Override
     protected void handleButtonEvent() {
-        System.out.println("[BOUNDERY] Handling Redeem event");
-        SwingUtilities.getWindowAncestor(this).dispose();
-        controller.redeemDiscount(discountDTO);
+
+        if(!(discountDTO == null)){
+            System.out.println("[BOUNDERY] Handling Redeem event");
+            controller.redeemDiscount(discountDTO);
+        }
+
     }
 }

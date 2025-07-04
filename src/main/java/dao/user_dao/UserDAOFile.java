@@ -32,26 +32,27 @@ public class UserDAOFile implements UserDAO {
     @Override
     public User fetchUserInfo(String username) throws DAOException {
 
-        System.out.println("        [DAO] Starting fetchUserInfo");
+        System.out.println("            [DAO] Starting fetchUserInfo");
 
         try {
 
-            System.out.println("        [DAO] Buffering Json");
+            System.out.println("            [DAO] Buffering Json");
             List<User> users = mapper.readValue(file, new TypeReference<>() {});
 
-            System.out.println("        [DAO] Extracting data of interest");
+            System.out.println("            [DAO] Extracting data of interest");
             for (User u : users) {
                 if (u.getUsername().equals(username)) {
-                    System.out.println("        [DAO] Match Found. Returning");
+                    System.out.println("            [DAO] Match Found. Returning");
                     return u;
                 }
             }
 
-            System.out.println("        [DAO] No match found.");
+            System.out.println("            [DAO] No match found.");
             return null;
 
         } catch (IOException e) {
-            throw new DAOException(e.getMessage());
+            System.out.println("           [DAO][CE] Critical error: " + e.getMessage());
+            throw new CriticalException("A critical error occurred");
         }
     }
 

@@ -12,19 +12,10 @@ public class LoanRequestDAONoPersistance implements LoanRequestDAO{
     String username;
     LoanRequestRepository repository = LoanRequestRepository.getInstance();
     ArrayList<LoanRequest> loanRequestList;
-    LoanPostDAO loanPostDAO;
 
     public LoanRequestDAONoPersistance(String username) {
         this.loanRequestList = repository.getLoanRequestList();
         this.username = username;
-    }
-
-    public LoanPostDAO getLoanPostDAO() {
-        return loanPostDAO;
-    }
-
-    public void setLoanPostDAO(LoanPostDAO loanPostDAO) {
-        this.loanPostDAO = loanPostDAO;
     }
 
     @Override

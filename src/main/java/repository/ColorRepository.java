@@ -1,4 +1,4 @@
-package boundery;
+package repository;
 
 public class ColorRepository {
     private static final String BACKGROUND_COLOR = "#3DDC97";

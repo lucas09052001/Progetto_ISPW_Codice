@@ -1,6 +1,7 @@
 package dao.loan_request_dao;
 
 import dao.ConnectionFactory;
+import dao.loan_post_dao.LoanPostDAO;
 import dao.loan_post_dao.LoanPostDAODB;
 import entity.loan.loan_post.LoanPost;
 import entity.loan.loan_request.LoanRequest;
@@ -12,15 +13,15 @@ import java.util.ArrayList;
 
 public class LoanRequestDAODB implements LoanRequestDAO{
 
-    String username;
-    LoanPostDAODB loanPostDAODB;
+    final String username;
+    LoanPostDAO loanPostDAO;
     final String insertionQuery = "INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES (?, ?, ?)";
     final String fetchAllQuery = "SELECT * FROM LoanRequest WHERE borrowingUsername <> ?";
 
 
-    public LoanRequestDAODB(String username){
+    public LoanRequestDAODB(String username, LoanPostDAO loanPostDAO){
         this.username = username;
-        loanPostDAODB = new LoanPostDAODB(username);
+        this.loanPostDAO = loanPostDAO;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class LoanRequestDAODB implements LoanRequestDAO{
                 String lendingUsername = rs.getString("lendingUsername");
                 String loanObjectName = rs.getString("loanObjectName");
 
-                loanPost  = loanPostDAODB.fetchById(lendingUsername, loanObjectName);
+                loanPost  = loanPostDAO.fetchById(lendingUsername, loanObjectName);
                 returnee.add(new LoanRequest(borrowingUsername, loanPost));
 
             }
@@ -74,7 +75,7 @@ public class LoanRequestDAODB implements LoanRequestDAO{
 
         } catch (SQLException e) {
             System.out.println("        [DAO][CE] SQL ERROR: " + e.getMessage());
-            throw new CriticalException("SQL ERROR: " + e.getMessage());
+            throw new DAOException(e.getMessage());
         }
     }
 

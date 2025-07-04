@@ -1,9 +1,12 @@
 package boundery.profile_boundery;
 
-import boundery.ColorRepository;
-import controller.ProfileController;
+import controller.profile_controller.ProfileController;
+import entity.user.User;
+import repository.ColorRepository;
+import controller.profile_controller.ProfileControllerV1;
 import entity.user.UserDTO;
 import exceptions.CriticalException;
+import repository.PathRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,15 +18,14 @@ public class ProfileTextPanel extends JPanel {
     JLabel pointsLabel;
 
     transient ProfileController controller;
-    transient UserDTO userDTO;
 
-    public ProfileTextPanel(){
+    public ProfileTextPanel(ProfileController controller){
+        //Attributes
+        this.controller = controller;
 
         //Controller interaction
-        controller = new ProfileController();
-        userDTO = controller.fetchUserInfo();
-        if(userDTO == null){
-            //This is unreachable code. See fetchUserInfo.
+        UserDTO dto  = controller.getUserInfo();
+        if(dto == null){
             SwingUtilities.getWindowAncestor(this).dispose();
         }
 
@@ -31,31 +33,31 @@ public class ProfileTextPanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.decode(ColorRepository.getDynamicColor()));
 
-        //Username label
+        //Instantiating components
         usernameLabel = new JLabel();
-        usernameLabel.setText("Username: " + userDTO.getUsername());
+        ratingLabel = new JLabel();
+        pointsLabel = new JLabel();
+
+        //Username label
+        usernameLabel.setText("Username: " + dto.getUsername());
         usernameLabel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
         usernameLabel.setForeground(Color.decode(ColorRepository.getForegroundColor()));
         usernameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
         //Rating label
-        ratingLabel = new JLabel();
-        int rating = (int) userDTO.getRating();
-        System.out.println("[SYSTEM] User rating is: " + rating);
-        String pathToRatingImage;
+        int rating = (int) dto.getRating();
+        String pathToRatingImage = PathRepository.getPathToEmptyImage();
         switch (rating){
-            case 0 -> pathToRatingImage = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/src/main/java/boundery/profile_boundery/NoRating.png";
-            case 1 -> pathToRatingImage = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/src/main/java/boundery/profile_boundery/1star.png";
-            case 2 -> pathToRatingImage = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/src/main/java/boundery/profile_boundery/2star.png";
-            case 3 -> pathToRatingImage = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/src/main/java/boundery/profile_boundery/3star.png";
-            default -> throw new CriticalException();
+            case 0 -> pathToRatingImage = PathRepository.getPathToZeroStar();
+            case 1 -> pathToRatingImage = PathRepository.getPathToOneStar();
+            case 2 -> pathToRatingImage = PathRepository.getPathToTwoStar();
+            case 3 -> pathToRatingImage = PathRepository.getPathToThreeStar();
         }
         ratingLabel.setIcon(new ImageIcon(pathToRatingImage));
         ratingLabel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
 
         //Points label
-        pointsLabel = new JLabel();
-        String points = Integer.toString(userDTO.getPoints());
+        String points = Integer.toString(dto.getPoints());
         pointsLabel.setText("Owned points " + points);
         pointsLabel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
         pointsLabel.setForeground(Color.decode(ColorRepository.getForegroundColor()));

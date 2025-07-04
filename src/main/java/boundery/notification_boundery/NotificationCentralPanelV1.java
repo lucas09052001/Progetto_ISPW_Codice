@@ -1,8 +1,9 @@
 package boundery.notification_boundery;
 
+import controller.notification_controller.NotificationController;
 import repository.ColorRepository;
-import controller.NotificationController;
-import entity.notification.CustomNotificationDTO;
+import controller.notification_controller.NotificationControllerV1;
+import entity.notification.NotificationDTO;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -10,28 +11,33 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotificationBounderyCentralPanel extends JPanel {
+public class NotificationCentralPanelV1 extends JPanel {
 
-    transient NotificationController controller = new NotificationController();
-    transient List<CustomNotificationDTO> notificationList = new ArrayList<>();
-    ArrayList<JLabel> labelList = new ArrayList<>();
-    JButton nextButton = new JButton();
+    transient NotificationController controller;
+    transient List<NotificationDTO> notificationList;
+    ArrayList<JLabel> labelList;
+    JButton nextButton;
 
-    public NotificationBounderyCentralPanel(){
+    public NotificationCentralPanelV1(NotificationController controller){
+        //Attributes
+        this.controller = controller;
+        notificationList = new ArrayList<>();
+        labelList = new ArrayList<>();
 
         //Basic Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.decode(ColorRepository.getDynamicColor()));
         setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
 
-        //Instantiate Labels
+        //Instantiate Components
+        nextButton = new JButton();
         labelList.add(new JLabel());
         labelList.add(new JLabel());
         labelList.add(new JLabel());
 
         //Controller interaction
         System.out.println("[BOUNDERY] NotificationBoundery asking controller to fetch notifications... ");
-        controller.fetchAllNotification();
+        controller.fetchAll();
 
         nextNotifications();
 
@@ -65,10 +71,10 @@ public class NotificationBounderyCentralPanel extends JPanel {
 
     private void buildNextNotification(JLabel l){
 
-        CustomNotificationDTO notificationDTO;
+        NotificationDTO notificationDTO;
 
         System.out.println("[BOUNDERY] Asking controller to handout next notification.");
-        notificationDTO = controller.handNextNotification();
+        notificationDTO = controller.handNext();
         System.out.println("[BOUNDERY] Done.");
 
         String text;

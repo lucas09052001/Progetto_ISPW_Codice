@@ -1,5 +1,6 @@
 package boundery.loan_item;
 
+import controller.loanitem_controller.LoanItemController;
 import repository.ColorRepository;
 import controller.loanitem_controller.LoanItemControllerV1;
 import entity.loan.LoanInterval;
@@ -11,33 +12,47 @@ import java.awt.*;
 
 import static entity.loan.LoanInterval.NULL;
 
-public class LoanItemBounderyCentralPanel extends JPanel {
+public class LoanItemCentralPanelV1 extends JPanel {
 
-    LoanItemControllerV1 controller = new LoanItemControllerV1();
-    String loanObjectName = "";
-    String description = "";
+    LoanItemController controller;
     LoanInterval interval = NULL;
 
-    JTextField nameTextField = new JTextField();
-    JTextField descriptionTextField = new JTextField();
-    JTextField pathToImageTextField = new JTextField();
+    JTextField nameTextField;
+    JTextField descriptionTextField;
+    JTextField pathToImageTextField;
 
-    JLabel intervalLabel = new JLabel();
-    JRadioButton hourIntervalRadioButton = new JRadioButton();
-    JRadioButton dayIntervalRadioButton = new JRadioButton();
-    JRadioButton weekIntervalRadioButton = new JRadioButton();
-    JRadioButton monthIntervalRadioButton = new JRadioButton();
-    ButtonGroup buttonGroup = new ButtonGroup();
-    JButton submitButton = new JButton();
-    JButton cancelButton = new JButton();
+    JLabel intervalLabel;
+    JRadioButton hourIntervalRadioButton;
+    JRadioButton dayIntervalRadioButton;
+    JRadioButton weekIntervalRadioButton;
+    JRadioButton monthIntervalRadioButton;
+    ButtonGroup buttonGroup;
+    JButton submitButton;
+    JButton cancelButton;
 
 
-    public LoanItemBounderyCentralPanel(){
+    public LoanItemCentralPanelV1(LoanItemController controller){
+        //Attributes
+        this.controller = controller;
 
         // Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.decode(ColorRepository.getDynamicColor()));
         setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
+
+        //Instantiating components
+        nameTextField = new JTextField();
+        descriptionTextField = new JTextField();
+        pathToImageTextField = new JTextField();
+
+        intervalLabel = new JLabel();
+        hourIntervalRadioButton = new JRadioButton();
+        dayIntervalRadioButton = new JRadioButton();
+        weekIntervalRadioButton = new JRadioButton();
+        monthIntervalRadioButton = new JRadioButton();
+        buttonGroup = new ButtonGroup();
+        submitButton = new JButton();
+        cancelButton = new JButton();
 
         // Object Name TextField
         Dimension fieldSize = new Dimension(200, 20);
@@ -56,10 +71,10 @@ public class LoanItemBounderyCentralPanel extends JPanel {
         add(Box.createVerticalGlue());
 
         // Path to image TextField
-        descriptionTextField.setText("Path to image");
-        descriptionTextField.setMaximumSize(fieldSize);
-        descriptionTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(descriptionTextField);
+        pathToImageTextField.setText("Path to image");
+        pathToImageTextField.setMaximumSize(fieldSize);
+        pathToImageTextField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(pathToImageTextField);
         add(Box.createVerticalGlue());
 
 
@@ -119,7 +134,6 @@ public class LoanItemBounderyCentralPanel extends JPanel {
 
     private void handleSubmitEvent(){
         System.out.println("[BOUNDERY] SubmitLoan Event triggered");
-        SwingUtilities.getWindowAncestor(this).dispose();
         controller.submit(nameTextField.getText(), descriptionTextField.getText(), interval, pathToImageTextField.getText());
     }
 

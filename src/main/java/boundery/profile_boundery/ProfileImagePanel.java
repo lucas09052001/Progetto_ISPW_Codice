@@ -1,6 +1,6 @@
 package boundery.profile_boundery;
 
-import boundery.ColorRepository;
+import repository.ColorRepository;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,13 +1,13 @@
 package entity.notification;
 
-public class CustomNotificationDTO {
+public class NotificationDTO {
 
     private int id;
     private String senderUsername;
     private String message;
     private boolean seen;
 
-    public CustomNotificationDTO(CustomNotification notification) {
+    public NotificationDTO(Notification notification) {
         this.id = notification.getId();
         this.senderUsername = notification.getSenderUsername();
         this.message = notification.getMessage();

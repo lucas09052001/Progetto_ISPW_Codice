@@ -1,7 +1,7 @@
 package boundery.borrow_item_boundery;
 
-import boundery.micro_components.InteractivePanel;
-import controller.BorrowItemController;
+import boundery.general.micro_components.InteractivePanel;
+import controller.borrowitem_controller.BorrowItemController;
 import entity.loan.loan_post.LoanPostDTO;
 import repository.PathRepository;
 

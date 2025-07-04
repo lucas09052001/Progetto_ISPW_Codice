@@ -1,6 +1,7 @@
 package boundery.homepage;
 
 import boundery.Boundaries;
+import controller.homepage_controller.HomePageController;
 import repository.ColorRepository;
 import controller.homepage_controller.HomePageControllerV1;
 
@@ -8,12 +9,15 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class LoansBand extends JPanel {
+public class LoansBandV1 extends JPanel {
     final JButton loanItem = new JButton("Loan Item");
     final JButton borrowItem = new JButton("Borrow Item");
     final JLabel loansText = new JLabel("Loans");
+    final HomePageController controller;
 
-    public LoansBand(){
+    public LoansBandV1(HomePageController controller){
+        //Attributes
+        this.controller = controller;
 
         //Look and feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -45,13 +49,13 @@ public class LoansBand extends JPanel {
     public void handleLoanItemEvent(){
         System.out.println("[SYSTEM] Handling 'LoanItem' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageControllerV1().start(Boundaries.LOAN_ITEM);
+        controller.callObserver(Boundaries.LOAN_ITEM);
     }
 
     public void handleBorrowItemEvent(){
         System.out.println("[SYSTEM] Handling 'BorrowItem' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageControllerV1().start(Boundaries.BORROW_ITEM);
+        controller.callObserver(Boundaries.BORROW_ITEM);
     }
 
 }

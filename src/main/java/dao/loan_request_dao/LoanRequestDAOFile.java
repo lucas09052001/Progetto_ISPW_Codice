@@ -18,19 +18,10 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
     ObjectMapper mapper;
     File file;
 
-    LoanPostDAO loanPostDAO;
-
     public LoanRequestDAOFile(String username){
         this.username = username;
+
         mapper = new ObjectMapper();
-    }
-
-    public LoanPostDAO getLoanPostDAO() {
-        return loanPostDAO;
-    }
-
-    public void setLoanPostDAO(LoanPostDAO loanPostDAO) {
-        this.loanPostDAO = loanPostDAO;
     }
 
     @Override

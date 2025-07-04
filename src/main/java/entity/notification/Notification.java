@@ -1,6 +1,6 @@
 package entity.notification;
 
-public class CustomNotification {
+public class Notification {
 
     private int id;
     private String senderUsername;
@@ -8,16 +8,16 @@ public class CustomNotification {
     private String message;
     private boolean seen;
 
-    public CustomNotification(){}
+    public Notification(){}
 
-    public CustomNotification(int id, String senderUsername, String message, boolean seen) {
+    public Notification(int id, String senderUsername, String message, boolean seen) {
         this.id = id;
         this.senderUsername = senderUsername;
         this.message = message;
         this.seen = seen;
     }
 
-    public CustomNotification(int id, String senderUsername, String receiverUsername, String message, boolean seen) {
+    public Notification(int id, String senderUsername, String receiverUsername, String message, boolean seen) {
         this.id = id;
         this.senderUsername = senderUsername;
         this.receiverUsername = receiverUsername;

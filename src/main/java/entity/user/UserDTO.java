@@ -9,6 +9,13 @@ public class UserDTO extends GenericDTO {
     public float rating;
     public int points;
 
+    public UserDTO(User user){
+        this.username = user.getUsername();
+        this.password = user.getPassword();
+        this.rating = user.getRating();
+        this.points = user.getPoints();
+    }
+
     public String getUsername() {
         return username;
     }

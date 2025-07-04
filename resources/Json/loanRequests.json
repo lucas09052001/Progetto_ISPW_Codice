@@ -16,4 +16,13 @@
     "loanInterval" : "HOUR",
     "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
   }
+}, {
+  "borrowingUsername" : "bob",
+  "loanPost" : {
+    "lendingUsername" : "alice",
+    "loanObjectName" : "Calcolatrice scientifica",
+    "loanDescription" : "Per esame di matematica",
+    "loanInterval" : "DAY",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
+  }
 } ]

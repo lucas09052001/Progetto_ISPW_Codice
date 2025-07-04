@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface LoanPostDAO {
     void submit(LoanPost loanPost) throws DAOException, CriticalException;
-    ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException;
+    ArrayList<LoanPost> fetchAll() throws DAOException, CriticalException;
     LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException, CriticalException;
     void deleteByID(LoanPost loanPost) throws DAOException;
 }

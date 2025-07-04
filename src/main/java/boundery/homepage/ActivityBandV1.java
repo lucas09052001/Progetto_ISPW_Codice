@@ -1,6 +1,7 @@
 package boundery.homepage;
 
 import boundery.Boundaries;
+import controller.homepage_controller.HomePageController;
 import repository.ColorRepository;
 import controller.homepage_controller.HomePageControllerV1;
 
@@ -8,14 +9,18 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class ActivityBand extends JPanel {
+public class ActivityBandV1 extends JPanel {
 
     final JButton onGoingLoans = new JButton("OnGoing Loans");
     final JButton loanHistory = new JButton("Loan History");
     final JButton loanRequests = new JButton("Loan Requests");
     final JLabel activityText = new JLabel("Activity");
+    final HomePageController controller;
 
-    public ActivityBand(){
+    public ActivityBandV1(HomePageController controller){
+
+        //Attributes
+        this.controller = controller;
 
         //Look and feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -52,19 +57,19 @@ public class ActivityBand extends JPanel {
     public void handleOnGoingLoansEvent(){
         System.out.println("[SYSTEM] Handling 'OnGoingLoans' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageControllerV1().start(Boundaries.ON_GOING_LOANS);
+        controller.callObserver(Boundaries.ON_GOING_LOANS);
     }
 
     public void handleLoanHistoryEvent(){
         System.out.println("[SYSTEM] Handling 'LoanHistory' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageControllerV1().start(Boundaries.LOAN_HISTORY);
+        controller.callObserver(Boundaries.LOAN_HISTORY);
     }
 
     public void handleLoanRequestsEvent(){
         System.out.println("[SYSTEM] Handling 'LoanRequests' event");
         SwingUtilities.getWindowAncestor(this).dispose();
-        new HomePageControllerV1().start(Boundaries.LOAN_REQUESTS);
+        controller.callObserver(Boundaries.LOAN_REQUESTS);
     }
 
 }

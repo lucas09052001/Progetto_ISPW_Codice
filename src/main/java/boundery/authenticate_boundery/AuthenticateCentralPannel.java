@@ -1,36 +1,48 @@
 package boundery.authenticate_boundery;
 
-import boundery.ColorRepository;
-import controller.AuthenticateController;
+import repository.ColorRepository;
+import controller.authenticate_controller.AuthenticateController;
 import entity.PersistencyPolicy;
-import main.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AuthenticateBounderyCentralPannel extends JPanel {
+public class AuthenticateCentralPannel extends JPanel {
 
-    private transient AuthenticateController controller = new AuthenticateController();
+    private final transient AuthenticateController controller;
+    PersistencyPolicy persistencyPolicy;
 
-    JButton loginButton = new JButton("Login");
-    JButton registerButton = new JButton("Register");
-    JTextField usernameTextField = new JTextField("bob");
-    JTextField passwordTextField = new JTextField("bob");
-    JLabel textPersistency = new JLabel("Choose the persistency policy: ");
-    JRadioButton persistencyPolicyDB = new JRadioButton("DB");
-    JRadioButton persistencyPolicyFile = new JRadioButton("File");
-    JRadioButton persistencyPolicyNoPersistency = new JRadioButton("No Persistency");
-    ButtonGroup gruppoBottoni = new ButtonGroup();
+    JButton loginButton;
+    JButton registerButton;
+    JTextField usernameTextField;
+    JTextField passwordTextField;
+    JLabel textPersistency;
+    JRadioButton persistencyPolicyDB;
+    JRadioButton persistencyPolicyFile;
+    JRadioButton persistencyPolicyNoPersistency;
+    ButtonGroup gruppoBottoni;
 
-    PersistencyPolicy persistencyPolicy = PersistencyPolicy.NULL;
 
-    public AuthenticateBounderyCentralPannel(Observer observer) {
+    public AuthenticateCentralPannel(AuthenticateController controller) {
 
-        // Look and Feel
+        //Attributes
+        this.controller = controller;
+        this.persistencyPolicy = PersistencyPolicy.NULL;
+
+        // Static Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.decode("#3DDC97"));
 
-        controller = new AuthenticateController(observer);
+        //Instantiating components
+        loginButton = new JButton("Login");
+        registerButton = new JButton("Register");
+        usernameTextField = new JTextField("bob");
+        passwordTextField = new JTextField("bob");
+        textPersistency = new JLabel("Choose the persistency policy: ");
+        persistencyPolicyDB = new JRadioButton("DB");
+        persistencyPolicyFile = new JRadioButton("File");
+        persistencyPolicyNoPersistency = new JRadioButton("No Persistency");
+        gruppoBottoni = new ButtonGroup();
 
         //TextFields
         Dimension fieldSize = new Dimension(400, 50);
@@ -75,18 +87,16 @@ public class AuthenticateBounderyCentralPannel extends JPanel {
         add(loginButton);
         add(registerButton);
 
-        setVisible(true);
     }
 
     public void handleLoginEvent(){
-        System.out.println("[SYSTEM] Initializing 'login' op in Authenticate_Controller");
+        System.out.println("[BOUNDARY] Asking CONTROLLER to perform 'login'");
         SwingUtilities.getWindowAncestor(this).dispose();
         controller.login(usernameTextField.getText(), passwordTextField.getText(), persistencyPolicy);
     }
 
-    public void handleRegisterEvent(){    //NON IMPLEMENTATO, DA NON CONSIDERARE
-        System.out.println("[EE] Not yet implemented");
-        System.exit(0);
+    public void handleRegisterEvent(){
+        System.out.println("[BOUNDERY] Not yet implemented");
     }
 
 }

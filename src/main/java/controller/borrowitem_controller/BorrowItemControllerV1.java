@@ -1,10 +1,7 @@
-package controller;
+package controller.borrowitem_controller;
 
 import boundery.Boundaries;
 import dao.loan_post_dao.LoanPostDAO;
-import dao.loan_post_dao.LoanPostDAODB;
-import dao.loan_post_dao.LoanPostDAOFile;
-import dao.loan_post_dao.LoanPostDAONoPersistance;
 import dao.loan_request_dao.LoanRequestDAO;
 import dao.loan_request_dao.LoanRequestDAODB;
 import dao.loan_request_dao.LoanRequestDAOFile;
@@ -14,61 +11,50 @@ import entity.SessionInfo;
 import entity.loan.loan_post.LoanPost;
 import entity.loan.loan_post.LoanPostDTO;
 import entity.loan.loan_request.LoanRequest;
+import entity.loan.loan_request.LoanRequestDTO;
 import exceptions.DAOException;
-import main.AppController;
+import main.Observer;
 
 import java.util.ArrayList;
 
-public class BorrowItemController {
+public class BorrowItemControllerV1 implements BorrowItemController{
 
     ArrayList<LoanPost> loanPostList;
+    Observer observer;
     SessionInfo sessionInfo;
     LoanPostDAO loanPostDAO;
     LoanRequestDAO loanRequestDAO;
     int lastHandedLoanPost;
 
-    public BorrowItemController(){
-        loanPostList = new ArrayList<>();
+    public BorrowItemControllerV1(Observer observer, LoanPostDAO loanPostDAO, LoanRequestDAO loanRequestDAO){
+        //Attributes
         sessionInfo = SessionInfo.getSessionInfo();
+        this.observer = observer;
+        this.loanPostDAO = loanPostDAO;
+        this.loanRequestDAO = loanRequestDAO;
 
-        PersistencyPolicy persistencyPolicy = sessionInfo.getPersistencyPolicy();
-        switch (persistencyPolicy){
-            case DB -> {
-                //loanPostDAO = new LoanPostDAODB(sessionInfo.getUsername());
-                loanRequestDAO = new LoanRequestDAODB(sessionInfo.getUsername());
-            }
-            case FILE -> {
-                //loanPostDAO = new LoanPostDAOFile(sessionInfo.getUsername());
-                loanRequestDAO = new LoanRequestDAOFile(sessionInfo.getUsername());
-            }
-            case NO_PERSISTANCE -> {
-                //loanPostDAO = new LoanPostDAONoPersistance(sessionInfo.getUsername());
-                loanRequestDAO = new LoanRequestDAONoPersistance(sessionInfo.getUsername());
-            }
-        }
+        loanPostList = new ArrayList<>();
 
         lastHandedLoanPost = 0;
 
-        fetchAllLoanPosts();
+        getAllLoanPosts();
     }
 
-    public void fetchAllLoanPosts(){
+    @Override
+    public void getAllLoanPosts(){
 
         try {
             System.out.println("[CONTROLLER] BorrowItemController asking dao layer to fetch loan posts... ");
-            loanPostList = loanPostDAO.fetchAllLoanPosts();
+            loanPostList = loanPostDAO.fetchAll();
         } catch (DAOException e) {
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(Boundaries.ERROR);
-
-            //AppController.errorEncounterd();
-
-            sessionInfo.setNextBoundery(Boundaries.AUTHENTICATE);
+            observer.errorOccurred(e.getMessage());
         }
 
     }
-    
-    public LoanPostDTO handNextLoanPost(){
+
+    @Override
+    public LoanPostDTO handNext(){
         LoanPostDTO loanPostDTO;
         
         if(!(lastHandedLoanPost == loanPostList.size())){
@@ -81,6 +67,7 @@ public class BorrowItemController {
         return loanPostDTO;
     }
 
+    @Override
     public void submitRequest(LoanPostDTO loanPostDTO){
 
         System.out.println("    [CONTROLLER] Starting 'submitRequest'");
@@ -96,29 +83,15 @@ public class BorrowItemController {
 
             loanRequestDAO.submitRequest(loanRequest);
 
-            System.out.println("    [CONTROLLER] Update SessionInfo with nextBoundery");
-            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
-
-            /*
-            METTI TASK COMPLETED SE HAI TEMPO
-             */
+            System.out.println("    [CONTROLLER] Calling observer");
+            observer.updateNewBoundery(Boundaries.HOMEPAGE);
 
         } catch (IllegalArgumentException | DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(Boundaries.ERROR);
+            observer.errorOccurred(e.getMessage());
 
-            //AppController.errorEncounterd();
-
-            sessionInfo.setNextBoundery(Boundaries.BORROW_ITEM);
-        } finally {
-            System.out.println("    [CONTROLLER] Completed");
-            //AppController.useCaseCompletion();
         }
-
-
-
-
     }
 
 }

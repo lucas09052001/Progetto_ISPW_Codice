@@ -1,4 +1,6 @@
-package boundery;
+package boundery.authenticate_boundery;
+
+import repository.ColorRepository;
 
 import javax.swing.*;
 import java.awt.*;

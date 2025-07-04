@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class UserDAODB implements UserDAO {
 
-    User user = new User();
+    User user;
     String username;
     final String fetchUserInfoQuery = "SELECT username, password, rating, points FROM Users WHERE username = ?";
     final String updateUserQuery = "UPDATE Users SET points = ? WHERE username = ?";
@@ -31,14 +31,15 @@ public class UserDAODB implements UserDAO {
         try (Connection connection = ConnectionFactory.upgrade();
              PreparedStatement stmt = connection.prepareStatement(fetchUserInfoQuery)){
 
-            System.out.println("[SYSTEM] Connection to DB established");
-
+            System.out.println("            [DAO] Connection to DB established");
             stmt.setString(1,username);
-
             ResultSet rs = stmt.executeQuery();
+            System.out.println("            [DAO] Query executed");
 
+            System.out.println("            [DAO] Handling query output");
             if(rs.next()){
-                System.out.println("[SYSTEM] User was fetched from DB"); //CONSOLE DEBUG
+
+                user = new User();
 
                 user.setUsername(username);
                 user.setPassword(rs.getString("password"));
@@ -46,15 +47,16 @@ public class UserDAODB implements UserDAO {
                 user.setPoints(rs.getInt("points"));
 
             }else{
-                System.out.println("[EE] User was not found in DB"); //CONSOLE DEBUG
-                throw new DAOException("No matching credentials");
+                System.out.println("            [DAO][NCE] User was not found in DB");
+                user = null;
             }
 
+            System.out.println("            [DAO] Returning");
             return user;
 
         } catch (SQLException e) {
-            System.out.println("[EE] SQL error " + e.getMessage()); //CONSOLE DEBUG
-            throw new CriticalException(e.getMessage());
+            System.out.println("            [DAO][CE] SQL error " + e.getMessage());
+            throw new DAOException(e.getMessage());
         }
     }
 

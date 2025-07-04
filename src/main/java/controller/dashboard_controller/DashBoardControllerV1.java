@@ -1,14 +1,19 @@
-package controller;
+package controller.dashboard_controller;
 
 import boundery.Boundaries;
 import entity.SessionInfo;
-import main.AppController;
+import main.Observer;
 
-public class DashBoardController {
+public class DashBoardControllerV1 implements DashBoardController{
 
-    public void start(Boundaries nextBoundery) {
-        SessionInfo.getSessionInfo().setNextBoundery(nextBoundery);
-        //AppController.useCaseCompletion();
+    Observer observer;
+
+    public DashBoardControllerV1(Observer observer){
+        this.observer = observer;
     }
 
+    @Override
+    public void callObserver(Boundaries boundary) {
+        observer.updateNewBoundery(boundary);
+    }
 }

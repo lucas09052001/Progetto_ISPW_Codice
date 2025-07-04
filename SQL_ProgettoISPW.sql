@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Progetto_ISPW.Users (
 USE Progetto_ISPW ;
 
 INSERT INTO Progetto_ISPW.Users (username, password, rating, points) VALUES
-('alice', 'alice', 4, 5000),
+('alice', 'alice', 2, 5000),
 ('bob', 'bob', 3, 1200);
 
 

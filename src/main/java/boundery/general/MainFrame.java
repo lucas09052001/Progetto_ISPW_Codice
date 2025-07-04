@@ -1,4 +1,4 @@
-package boundery;
+package boundery.general;
 
 import boundery.authenticate_boundery.AuthenticateCentralPannel;
 import repository.ColorRepository;

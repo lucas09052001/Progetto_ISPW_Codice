@@ -13,15 +13,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class LoanPostDAODB implements LoanPostDAO{
-    String username;
 
-    final String submitQuery = "INSERT INTO LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval) VALUES (?,?,?,?)";
+    final String submitQuery = "INSERT INTO LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage) VALUES (?,?,?,?,?)";
     final String fetchAllQuery = "SELECT lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage FROM LoanPost";
     final String fetchByIdQuery = "SELECT * FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
     final String deleteByIdQuery = "DELETE FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
 
-    public LoanPostDAODB(String username){
-        this.username = username;
+    public LoanPostDAODB(){
+        //No set up needed
     }
 
     @Override
@@ -36,13 +35,14 @@ public class LoanPostDAODB implements LoanPostDAO{
             stmt.setString(2, loanPost.getLoanObjectName());
             stmt.setString(3, loanPost.getLoanDescription());
             stmt.setString(4, loanPost.getLoanInterval().name());
+            stmt.setString(5, loanPost.getPathToImage());
 
             stmt.executeUpdate();
             System.out.println("        [DAO] Query executed");
 
         } catch (NullPointerException | SQLException e) {
             System.out.println("        [DAO][EE] SQL error " + e.getMessage());
-            throw new CriticalException();
+            throw new DAOException(e.getMessage());
         }
 
     }
@@ -75,7 +75,7 @@ public class LoanPostDAODB implements LoanPostDAO{
     }
 
     @Override
-    public ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException {
+    public ArrayList<LoanPost> fetchAll() throws DAOException, CriticalException {
 
         ArrayList<LoanPost> returnee = new ArrayList<>();
 

@@ -1,6 +1,6 @@
 package repository;
 
-import entity.notification.CustomNotification;
+import entity.notification.Notification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,16 +8,16 @@ import java.util.List;
 public class CustomNotificationRepository {
 
     private static CustomNotificationRepository instance;
-    private List<CustomNotification> listaNotifiche;
+    private List<Notification> listaNotifiche;
 
     private CustomNotificationRepository() {
         listaNotifiche = new ArrayList<>();
 
         // Notifiche di esempio
-        listaNotifiche.add(new CustomNotification(1, "alice", "bob", "TETTE", false));
-        listaNotifiche.add(new CustomNotification(1, "alice", "bob", "CULO", false));
-        listaNotifiche.add(new CustomNotification(1, "alice", "bob", "FIGA", false));
-        listaNotifiche.add(new CustomNotification(2, "bob", "alice", "CAZZO", false));
+        listaNotifiche.add(new Notification(1, "alice", "bob", "TETTE", false));
+        listaNotifiche.add(new Notification(1, "alice", "bob", "CULO", false));
+        listaNotifiche.add(new Notification(1, "alice", "bob", "FIGA", false));
+        listaNotifiche.add(new Notification(2, "bob", "alice", "CAZZO", false));
     }
 
     public static CustomNotificationRepository getNotificationRepository() {
@@ -27,11 +27,11 @@ public class CustomNotificationRepository {
         return instance;
     }
 
-    public List<CustomNotification> getCustomNotificationList() {
+    public List<Notification> getCustomNotificationList() {
         return listaNotifiche;
     }
 
-    public void setCustomNotificationList(List<CustomNotification> listaNotifiche) {
+    public void setCustomNotificationList(List<Notification> listaNotifiche) {
         this.listaNotifiche = listaNotifiche;
     }
 }

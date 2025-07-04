@@ -9,13 +9,11 @@ import repository.LoanPostRepository;
 import java.util.ArrayList;
 
 public class LoanPostDAONoPersistance implements LoanPostDAO{
-    String username;
     LoanPostRepository repository = LoanPostRepository.getInstance();
     ArrayList<LoanPost> loanPostList;
 
-    public LoanPostDAONoPersistance(String username) {
+    public LoanPostDAONoPersistance() {
         this.loanPostList = repository.getLoanPostList();
-        this.username = username;
     }
 
     @Override
@@ -26,7 +24,7 @@ public class LoanPostDAONoPersistance implements LoanPostDAO{
     }
 
     @Override
-    public ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException {
+    public ArrayList<LoanPost> fetchAll() throws DAOException, CriticalException {
         return repository.getLoanPostList();
     }
 

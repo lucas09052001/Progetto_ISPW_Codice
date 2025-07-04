@@ -1,7 +1,7 @@
 package dao.notification_dao;
 
 import dao.ConnectionFactory;
-import entity.notification.CustomNotification;
+import entity.notification.Notification;
 import exceptions.CriticalException;
 import exceptions.DAOException;
 
@@ -10,16 +10,15 @@ import java.util.ArrayList;
 
 public class NotificationDAODB implements NotificationDAO{
 
-    String username;
-    ArrayList<CustomNotification> notificationsList = new ArrayList<>();
+    ArrayList<Notification> notificationsList = new ArrayList<>();
     final String fetchAllNotificationQuery = "SELECT id, senderUsername, message, seen FROM CustomNotification WHERE receiverUsername = ?";
 
-    public NotificationDAODB(String username){
-        this.username = username;
+    public NotificationDAODB(){
+        //No set up needed
     }
 
     @Override
-    public ArrayList<CustomNotification> fetchAllUserNotification(String username) throws DAOException {
+    public ArrayList<Notification> fetchAllUserNotification(String username) throws DAOException {
 
         try (Connection connection = ConnectionFactory.upgrade();
              PreparedStatement stmt = connection.prepareStatement(fetchAllNotificationQuery)){
@@ -39,7 +38,7 @@ public class NotificationDAODB implements NotificationDAO{
                 String message = rs.getString("message");
                 boolean seen = rs.getBoolean("seen");
 
-                notificationsList.add(new CustomNotification(id, senderUsername, message, seen));
+                notificationsList.add(new Notification(id, senderUsername, message, seen));
             }
             System.out.println("[DAO] Done.");
 

@@ -9,26 +9,25 @@ import entity.SessionInfo;
 import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
 import exceptions.DAOException;
+import main.Observer;
 
 import static entity.loan.LoanInterval.NULL;
 
-public class LoanItemController {
+public class LoanItemControllerV1 implements LoanItemController{
 
     SessionInfo sessionInfo = SessionInfo.getSessionInfo();
-    String username = sessionInfo.getUsername();
+    String username;
     LoanPost loanPost;
     LoanPostDAO dao;
+    Observer observer;
 
-    public LoanItemController(){
-
-        switch (sessionInfo.getPersistencyPolicy()){
-            case DB -> dao = new LoanPostDAODB(username);
-            case FILE -> dao = new LoanPostDAOFile(username);
-            case NO_PERSISTANCE -> dao = new LoanPostDAONoPersistance(username);
-        }
-
+    public LoanItemControllerV1(Observer observer, LoanPostDAO dao, String username){
+        this.observer = observer;
+        this.dao = dao;
+        this.username = username;
     }
 
+    @Override
     public void submit(String loanObjectName, String loanDescription, LoanInterval loanInterval, String pathToIcon){
 
         System.out.println("    [CONTROLLER] Starting submit operation");
@@ -42,25 +41,13 @@ public class LoanItemController {
             System.out.println("    [CONTROLLER] Asking DAO to save on persistency");
             dao.submit(loanPost);
 
-//            IMPLEMENTA TASKCOMPLETED SOLO SE HAI TEMPO
-//            System.out.println("    [CONTROLLER] Update SessionInfo with nextBoundery = TaskCompleted");
-//            sessionInfo.setNextBoundery(BounderyEnum.TASK_COMPLETED);
-//            AppController.taskCompleted();
-
-            System.out.println("    [CONTROLLER] Update SessionInfo with nextBoundery");
-            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
+            System.out.println("    [CONTROLLER] Calling Observer");
+            observer.updateNewBoundery(Boundaries.HOMEPAGE);
 
         } catch (IllegalArgumentException | DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
-            sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(Boundaries.ERROR);
+            observer.errorOccurred(e.getMessage());
 
-            //AppController.errorEncounterd();
-
-            sessionInfo.setNextBoundery(Boundaries.LOAN_ITEM);
-        } finally {
-            System.out.println("    [CONTROLLER] Completed");
-            //AppController.useCaseCompletion();
         }
 
 

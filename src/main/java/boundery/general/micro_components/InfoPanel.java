@@ -1,4 +1,4 @@
-package boundery.micro_components;
+package boundery.general.micro_components;
 
 import repository.ColorRepository;
 

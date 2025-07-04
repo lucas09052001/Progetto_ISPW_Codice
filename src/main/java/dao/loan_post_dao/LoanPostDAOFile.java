@@ -14,14 +14,12 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class LoanPostDAOFile implements LoanPostDAO{
-    String username;
     String pathToJson = PathRepository.getPathToLoanPostJson();
     ObjectMapper mapper = new ObjectMapper();
     File file;
 
-    public LoanPostDAOFile(String username){
+    public LoanPostDAOFile(){
         this.file = new File(pathToJson);
-        this.username = username;
     }
 
     @Override
@@ -51,7 +49,7 @@ public class LoanPostDAOFile implements LoanPostDAO{
     }
 
     @Override
-    public ArrayList<LoanPost> fetchAllLoanPosts() throws DAOException, CriticalException {
+    public ArrayList<LoanPost> fetchAll() throws DAOException, CriticalException {
         try {
             return mapper.readValue(new File(PathRepository.getPathToLoanPostJson()), new TypeReference<ArrayList<LoanPost>>() {});
         } catch (IOException e) {

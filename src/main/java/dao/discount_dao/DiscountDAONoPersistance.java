@@ -1,22 +1,19 @@
 package dao.discount_dao;
 
 import entity.discount.Discount;
-import entity.discount.DiscountDTO;
-import entity.loan.loan_post.LoanPost;
 import exceptions.DAOException;
 import repository.DiscountRepository;
-import repository.LoanPostRepository;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class DiscountNoPersistance implements DiscountDAO{
+public class DiscountDAONoPersistance implements DiscountDAO{
 
     String username;
     DiscountRepository repository;
     ArrayList<Discount> discounts;
 
-    public DiscountNoPersistance(String username){
+    public DiscountDAONoPersistance(String username){
         this.username = username;
         repository = DiscountRepository.getInstance();
     }

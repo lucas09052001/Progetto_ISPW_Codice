@@ -1,15 +1,16 @@
 package entity;
 
-import boundery.BounderyEnum;
-import boundery.BounderyFactory;
+import boundery.Boundaries;
 
 public class SessionInfo {
     private static SessionInfo sessionInfo;
 
     private String username;
     private PersistencyPolicy persistencyPolicy;   //PER EVITARE LA SBATTI DEL LOG IN
-    private BounderyEnum nextBoundery;                                              /*TBR*/
+    private Boundaries nextBoundery;                                              /*TBR*/
     private String lastError;
+
+    private Version version = Version.V1;
 
     private SessionInfo(){}
 
@@ -28,11 +29,11 @@ public class SessionInfo {
         this.username = username;
     }
 
-    public BounderyEnum getNextBoundery() {
+    public Boundaries getNextBoundery() {
         return nextBoundery;
     }
-    public void setNextBoundery(BounderyEnum bounderyEnum) {
-        this.nextBoundery = bounderyEnum;
+    public void setNextBoundery(Boundaries boundaries) {
+        this.nextBoundery = boundaries;
     }
 
     public PersistencyPolicy getPersistencyPolicy() {return persistencyPolicy;}
@@ -40,4 +41,12 @@ public class SessionInfo {
 
     public String getLastError() {return lastError;}
     public void setLastError(String lastError) {this.lastError = lastError;}
+
+    public Version getVersion() {
+        return version;
+    }
+
+    public void setVersion(Version version) {
+        this.version = version;
+    }
 }

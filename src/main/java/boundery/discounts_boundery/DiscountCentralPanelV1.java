@@ -1,20 +1,23 @@
 package boundery.discounts_boundery;
 
+import controller.discount_controller.DiscountController;
 import repository.ColorRepository;
-import controller.DiscountController;
+import controller.discount_controller.DiscountControllerV1;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
-public class DiscountBounderyCentralPanel extends JPanel {
+public class DiscountCentralPanelV1 extends JPanel {
     JLabel topTextLabel;
-    DiscountPanel discountPanel1;
-    DiscountPanel discountPanel2;
+    DiscountPanelV1 discountPanelV11;
+    DiscountPanelV1 discountPanelV12;
     JButton nextItemsButton;
     DiscountController controller;
 
-    public DiscountBounderyCentralPanel(){
+    public DiscountCentralPanelV1(DiscountController controller){
+        //Attributes
+        this.controller = controller;
 
         //Static Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -23,10 +26,9 @@ public class DiscountBounderyCentralPanel extends JPanel {
 
         //Instantiating components
         topTextLabel = new JLabel();
-        discountPanel1 = new DiscountPanel();
-        discountPanel2 = new DiscountPanel();
+        discountPanelV11 = new DiscountPanelV1();
+        discountPanelV12 = new DiscountPanelV1();
         nextItemsButton = new JButton();
-        controller = new DiscountController();
 
         //Static set up
         topTextLabel.setText("Available Loans:");
@@ -35,10 +37,10 @@ public class DiscountBounderyCentralPanel extends JPanel {
         topTextLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         topTextLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        discountPanel1.setController(controller);
-        discountPanel1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        discountPanel2.setController(controller);
-        discountPanel2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        discountPanelV11.setController(controller);
+        discountPanelV11.setAlignmentX(Component.CENTER_ALIGNMENT);
+        discountPanelV12.setController(controller);
+        discountPanelV12.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         nextItemsButton.setText("Next items");
         nextItemsButton.addActionListener(e -> handleNextItemEvent());
@@ -48,9 +50,9 @@ public class DiscountBounderyCentralPanel extends JPanel {
         add(Box.createVerticalGlue());
         add(topTextLabel);
         add(Box.createVerticalGlue());
-        add(discountPanel1);
+        add(discountPanelV11);
         add(Box.createVerticalGlue());
-        add(discountPanel2);
+        add(discountPanelV12);
         add(Box.createVerticalGlue());
         add(nextItemsButton);
         add(Box.createVerticalGlue());
@@ -64,11 +66,11 @@ public class DiscountBounderyCentralPanel extends JPanel {
 
         System.out.println("[BOUNDERY] Populating BorrowObjects Panels");
 
-        discountPanel1.setDiscountDTO(controller.handNextDiscount());
-        discountPanel1.setUp();
+        discountPanelV11.setDiscountDTO(controller.handNext());
+        discountPanelV11.setUp();
 
-        discountPanel2.setDiscountDTO(controller.handNextDiscount());
-        discountPanel2.setUp();
+        discountPanelV12.setDiscountDTO(controller.handNext());
+        discountPanelV12.setUp();
 
         System.out.println("[BOUNDERY] Refreshing");
         revalidate();

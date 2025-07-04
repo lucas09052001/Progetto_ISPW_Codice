@@ -1,36 +1,20 @@
-package controller;
+package controller.homepage_controller;
 
 import boundery.Boundaries;
-import main.AppController;
 import entity.SessionInfo;
+import main.Observer;
 
-public class HomePageController {
+public class HomePageControllerV1 implements HomePageController {
 
-    SessionInfo sessionInfo;
+    Observer observer;
 
-    public HomePageController(){
-        sessionInfo = SessionInfo.getSessionInfo();
+    public HomePageControllerV1(Observer observer){
+        this.observer = observer;
     }
 
-    public void start(Boundaries nextBoundery) {
-        System.out.println("    [CONTROLLER] HomePage Controller started");
-        try {
-            if(nextBoundery == Boundaries.ON_GOING_LOANS || nextBoundery == Boundaries.LOAN_HISTORY){
-                System.out.println("    [CONTROLLER][NCE] This feature is not implmented yet.");
-                throw new IllegalStateException("Not yet implemented");
-            }
-            SessionInfo.getSessionInfo().setNextBoundery(nextBoundery);
-
-        } catch (IllegalStateException e) {
-
-            sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(Boundaries.ERROR);
-
-            //AppController.errorEncounterd();
-
-            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
-        } finally {
-            //AppController.useCaseCompletion();
-        }
+    @Override
+    public void callObserver(Boundaries boundary) {
+        System.out.println("    [CONTROLLER] HomePage Controller calling Observer");
+        observer.updateNewBoundery(boundary);
     }
 }

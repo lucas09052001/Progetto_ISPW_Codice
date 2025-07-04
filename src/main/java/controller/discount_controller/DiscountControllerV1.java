@@ -1,50 +1,33 @@
-package controller;
+package controller.discount_controller;
 
 import boundery.Boundaries;
 import dao.discount_dao.DiscountDAO;
-import dao.discount_dao.DiscountDAODB;
-import dao.discount_dao.DiscountDAOFile;
-import dao.discount_dao.DiscountNoPersistance;
 import dao.user_dao.UserDAO;
-import dao.user_dao.UserDAODB;
-import dao.user_dao.UserDAOFile;
-import dao.user_dao.UserDAONoPersistance;
 import entity.SessionInfo;
 import entity.discount.Discount;
 import entity.discount.DiscountDTO;
 import entity.user.User;
 import exceptions.DAOException;
-import main.AppController;
+import main.Observer;
 
 import java.util.ArrayList;
 
-public class DiscountController {
+public class DiscountControllerV1 implements DiscountController{
 
     SessionInfo sessionInfo;
     DiscountDAO discountDAO;
     UserDAO userDAO;
     ArrayList<Discount> discounts;
     int lastHandedDTO;
+    Observer observer;
+    String username;
 
-    public DiscountController(){
-        this.sessionInfo = SessionInfo.getSessionInfo();
-
-        switch (sessionInfo.getPersistencyPolicy()){
-            case DB -> {
-                discountDAO = new DiscountDAODB(sessionInfo.getUsername());
-                userDAO = new UserDAODB(sessionInfo.getUsername());
-            }
-            case FILE -> {
-                discountDAO = new DiscountDAOFile(sessionInfo.getUsername());
-                userDAO = new UserDAOFile(sessionInfo.getUsername());
-            }
-            case NO_PERSISTANCE -> {
-                discountDAO = new DiscountNoPersistance(sessionInfo.getUsername());
-                userDAO = new UserDAONoPersistance(sessionInfo.getUsername());
-            }
-            case NULL -> {  throw new RuntimeException();   //Unreachable code
-            }
-        }
+    public DiscountControllerV1(Observer observer, DiscountDAO discountDAO, UserDAO userDAO, String username){
+        //Attributes
+        this.username = username;
+        this.observer = observer;
+        this.discountDAO = discountDAO;
+        this.userDAO = userDAO;
 
         lastHandedDTO = 0;
         fetchAll();
@@ -56,13 +39,7 @@ public class DiscountController {
             discounts = discountDAO.fetchAll();
         } catch (DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
-            sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(Boundaries.ERROR);
-
-            //AppController.errorEncounterd();
-
-            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
-            //AppController.useCaseCompletion();
+            observer.errorOccurred(e.getMessage());
         }
     }
 
@@ -71,7 +48,7 @@ public class DiscountController {
         System.out.println("    [CONTROLLER] Starting 'redeemDiscount'");
 
         try {
-            User user = userDAO.fetchUserInfo(sessionInfo.getUsername());
+            User user = userDAO.fetchUserInfo(username);
 
             System.out.println("    [CONTROLLER] Checking if user has enough points to redeem");
             if(user.getPoints() < dto.getCost()){
@@ -84,34 +61,23 @@ public class DiscountController {
 
             Discount discount = new Discount();
             discount.setName(dto.getName());
-            discount.setOwnerUsername(sessionInfo.getUsername());
+            discount.setOwnerUsername(username);
 
             System.out.println("    [CONTROLLER] Asking DAO to update redeem discount");
             discountDAO.redeem(discount);
 
-            System.out.println("    [CONTROLLER] Update SessionInfo with nextBoundery");
-            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
+            System.out.println("    [CONTROLLER] Calling observer");
+            observer.updateNewBoundery(Boundaries.HOMEPAGE);
 
-            /*
-            METTI TASK COMPLETED SE HAI TEMPO
-             */
 
         } catch (IllegalStateException | DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
-            sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(Boundaries.ERROR);
-
-            //AppController.errorEncounterd();
-
-            sessionInfo.setNextBoundery(Boundaries.HOMEPAGE);
-        } finally {
-            System.out.println("    [CONTROLLER] Completed");
-            //AppController.useCaseCompletion();
+            observer.errorOccurred(e.getMessage());
         }
 
     }
 
-    public DiscountDTO handNextDiscount(){
+    public DiscountDTO handNext(){
         DiscountDTO discountDTO;
 
         if(!(lastHandedDTO == discounts.size())){

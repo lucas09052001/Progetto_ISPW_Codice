@@ -1,4 +1,4 @@
-package controller;
+package controller.notification_controller;
 
 import boundery.Boundaries;
 import dao.notification_dao.NotificationDAO;
@@ -7,57 +7,49 @@ import dao.notification_dao.NotificationDAOFile;
 import dao.notification_dao.NotificationDAONoPersistance;
 import entity.PersistencyPolicy;
 import entity.SessionInfo;
-import entity.notification.CustomNotification;
-import entity.notification.CustomNotificationDTO;
+import entity.notification.Notification;
+import entity.notification.NotificationDTO;
 import exceptions.CriticalException;
 import exceptions.DAOException;
-import main.AppController;
+import main.Observer;
 
 import java.util.ArrayList;
 
-public class NotificationController {
+public class NotificationControllerV1 implements NotificationController {
 
-    SessionInfo sessionInfo = SessionInfo.getSessionInfo();
-    ArrayList<CustomNotification> notificationList;
-    NotificationDAO dao;
-    int lastHandedNotification = 0;
+    SessionInfo sessionInfo;
+    ArrayList<Notification> notificationList;
+    NotificationDAO notificationDAO;
+    int lastHandedNotification;
+    Observer observer;
 
-    public NotificationController() {
-        //No set up needed
+    public NotificationControllerV1(Observer observer, NotificationDAO notificationDAO) {
+        sessionInfo = SessionInfo.getSessionInfo();
+        this.observer = observer;
+        this.notificationDAO = notificationDAO;
+        lastHandedNotification = 0;
     }
 
-    public void fetchAllNotification(){
-
-        String username = sessionInfo.getUsername();
-        PersistencyPolicy persistencyPolicy = sessionInfo.getPersistencyPolicy();
-        switch (persistencyPolicy){
-            case DB -> dao = new NotificationDAODB(username);
-            case FILE -> dao = new NotificationDAOFile(username);
-            case NO_PERSISTANCE -> dao = new NotificationDAONoPersistance(username);
-            case NULL -> throw new CriticalException();
-        }
+    public void fetchAll(){
 
         try {
             System.out.println("[CONTROLLER] NotificationController asking dao layer to fetch notifications... ");
-            notificationList = dao.fetchAllUserNotification(username);
+            notificationList = notificationDAO.fetchAllUserNotification(sessionInfo.getUsername());
             System.out.println("[CONTROLLER] Done.");
 
         } catch (DAOException e) {
             sessionInfo.setLastError(e.getMessage());
-            sessionInfo.setNextBoundery(Boundaries.ERROR);
+            observer.updateNewBoundery(Boundaries.ERROR);
 
-            //AppController.errorEncounterd();
-
-            sessionInfo.setNextBoundery(Boundaries.AUTHENTICATE);
         }
 
     }
 
-    public CustomNotificationDTO handNextNotification(){
-        CustomNotificationDTO notificationDTO;
+    public NotificationDTO handNext(){
+        NotificationDTO notificationDTO;
 
         if(!(lastHandedNotification == notificationList.size())){
-            notificationDTO = new CustomNotificationDTO(notificationList.get(lastHandedNotification));
+            notificationDTO = new NotificationDTO(notificationList.get(lastHandedNotification));
             lastHandedNotification++;
         }else{
             notificationDTO = null;
