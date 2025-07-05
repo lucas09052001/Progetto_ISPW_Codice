@@ -21,12 +21,8 @@ public class NotificationControllerFactory {
         NotificationDAO dao = daoFactory.generate();
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new NotificationControllerV1(observer, dao);
-            }
-            case null, default -> {
-                throw new FactoryException("[NOTIFICATION-CONTROLLER-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new NotificationControllerV1(observer, dao);
+            case null, default -> throw new FactoryException("[NOTIFICATION-CONTROLLER-FACTORY] Reached unreachable code");
         }
 
         return returnee;

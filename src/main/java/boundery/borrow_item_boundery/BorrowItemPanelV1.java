@@ -9,8 +9,8 @@ import java.awt.*;
 
 public class BorrowItemPanelV1 extends JPanel {
     JLabel topTextLabel;
-    BorrowObjectPanel borrowObjectPanel_1;
-    BorrowObjectPanel borrowObjectPanel_2;
+    BorrowObjectPanel borrowObjectPanel1;
+    BorrowObjectPanel borrowObjectPanel2;
     JButton nextItemsButton;
     transient BorrowItemController controller;
 
@@ -25,8 +25,8 @@ public class BorrowItemPanelV1 extends JPanel {
 
         //Instantiating components
         topTextLabel = new JLabel();
-        borrowObjectPanel_1 = new BorrowObjectPanel();
-        borrowObjectPanel_2 = new BorrowObjectPanel();
+        borrowObjectPanel1 = new BorrowObjectPanel();
+        borrowObjectPanel2 = new BorrowObjectPanel();
         nextItemsButton = new JButton();
 
         //Static set up
@@ -36,10 +36,10 @@ public class BorrowItemPanelV1 extends JPanel {
         topTextLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         topTextLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        borrowObjectPanel_1.setController(controller);
-        borrowObjectPanel_1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        borrowObjectPanel_2.setController(controller);
-        borrowObjectPanel_2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        borrowObjectPanel1.setController(controller);
+        borrowObjectPanel1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        borrowObjectPanel2.setController(controller);
+        borrowObjectPanel2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         nextItemsButton.setText("Next items");
         nextItemsButton.addActionListener(e -> handleNextItemEvent());
@@ -49,9 +49,9 @@ public class BorrowItemPanelV1 extends JPanel {
         add(Box.createVerticalGlue());
         add(topTextLabel);
         add(Box.createVerticalGlue());
-        add(borrowObjectPanel_1);
+        add(borrowObjectPanel1);
         add(Box.createVerticalGlue());
-        add(borrowObjectPanel_2);
+        add(borrowObjectPanel2);
         add(Box.createVerticalGlue());
         add(nextItemsButton);
         add(Box.createVerticalGlue());
@@ -65,11 +65,11 @@ public class BorrowItemPanelV1 extends JPanel {
 
         System.out.println("[BOUNDERY] Populating BorrowObjects Panels");
 
-        borrowObjectPanel_1.setLoanPostDTO(controller.handNext());
-        borrowObjectPanel_1.setUp();
+        borrowObjectPanel1.setLoanPostDTO(controller.handNext());
+        borrowObjectPanel1.setUp();
 
-        borrowObjectPanel_2.setLoanPostDTO(controller.handNext());
-        borrowObjectPanel_2.setUp();
+        borrowObjectPanel2.setLoanPostDTO(controller.handNext());
+        borrowObjectPanel2.setUp();
 
         System.out.println("[BOUNDERY] Refreshing");
         revalidate();

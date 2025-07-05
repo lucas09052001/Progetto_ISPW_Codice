@@ -13,10 +13,10 @@ import java.util.ArrayList;
 
 public class LoanPostDAODB implements LoanPostDAO{
 
-    final String submitQuery = "INSERT INTO LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage) VALUES (?,?,?,?,?)";
-    final String fetchAllQuery = "SELECT lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage FROM LoanPost";
-    final String fetchByIdQuery = "SELECT * FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
-    final String deleteByIdQuery = "DELETE FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
+    final static String submitQuery = "INSERT INTO LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage) VALUES (?,?,?,?,?)";
+    final static String fetchAllQuery = "SELECT lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage FROM LoanPost";
+    final static String fetchByIdQuery = "SELECT * FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
+    final static String deleteByIdQuery = "DELETE FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
 
     public LoanPostDAODB(){
         //No set up needed

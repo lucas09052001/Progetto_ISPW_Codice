@@ -13,7 +13,7 @@ public abstract class InteractivePanel extends JPanel {
     InfoPanel infoPanel;
     JButton genericButton;
 
-    public InteractivePanel(){
+    protected InteractivePanel(){
         icon = new JLabel();
         infoPanel = new InfoPanel();
         genericButton = new JButton();

@@ -18,15 +18,8 @@ public class AuthenticatePanelFactory {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
-
-            case V1 -> {
-                returnee = new AuthenticateCentralPannel(controller);
-            }
-
-            case null, default -> {
-                throw new FactoryException("[AUTHENTICATE-PANEL-FACTORY] Reached unreachable code");
-            }
-
+            case V1 -> returnee = new AuthenticateCentralPannel(controller);
+            case null, default -> throw new FactoryException("[AUTHENTICATE-PANEL-FACTORY] Reached unreachable code");
         }
 
         return returnee;

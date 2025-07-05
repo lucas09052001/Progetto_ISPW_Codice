@@ -50,15 +50,4 @@ public class User {
         this.points += points;
     }
 
-    public void updateRating(float add_rating){
-
-        if(add_rating < 1 || add_rating > 3){
-            System.out.println("[EE] Add rating to user rating has to respect 'add_rating < 1 || add_rating > 3'");
-            throw new IllegalArgumentException();
-        }
-
-        this.rating = (rating + add_rating) / 2;
-
-    }
-
 }

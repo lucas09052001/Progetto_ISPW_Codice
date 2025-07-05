@@ -33,11 +33,6 @@ public class DiscountPanelV1 extends InteractivePanel {
     }
 
     @Override
-    public void setUp() {
-        super.setUp();
-    }
-
-    @Override
     protected String getButtonText() {
         if(discountDTO == null){
             return "None";
@@ -73,7 +68,7 @@ public class DiscountPanelV1 extends InteractivePanel {
     @Override
     protected void handleButtonEvent() {
 
-        if(!(discountDTO == null)){
+        if(discountDTO != null){
             System.out.println("[BOUNDERY] Handling Redeem event");
             controller.redeemDiscount(discountDTO);
         }

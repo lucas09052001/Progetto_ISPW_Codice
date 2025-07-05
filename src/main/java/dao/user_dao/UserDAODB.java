@@ -13,8 +13,8 @@ public class UserDAODB implements UserDAO {
 
     User user;
     String username;
-    final String fetchUserInfoQuery = "SELECT username, password, rating, points FROM Users WHERE username = ?";
-    final String updateUserQuery = "UPDATE Users SET points = ? WHERE username = ?";
+    final static String fetchUserInfoQuery = "SELECT username, password, rating, points FROM Users WHERE username = ?";
+    final static String updateUserQuery = "UPDATE Users SET points = ? WHERE username = ?";
 
     public UserDAODB(){
         //No set up needed

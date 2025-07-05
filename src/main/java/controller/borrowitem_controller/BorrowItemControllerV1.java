@@ -52,7 +52,7 @@ public class BorrowItemControllerV1 implements BorrowItemController{
     public LoanPostDTO handNext(){
         LoanPostDTO loanPostDTO;
         
-        if(!(lastHandedLoanPost == loanPostList.size())){
+        if(lastHandedLoanPost != loanPostList.size()){
             loanPostDTO = new LoanPostDTO(loanPostList.get(lastHandedLoanPost));
             lastHandedLoanPost++;
         }else{

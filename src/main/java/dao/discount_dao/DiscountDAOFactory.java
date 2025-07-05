@@ -16,18 +16,10 @@ public class DiscountDAOFactory {
         DiscountDAO returnee;
 
         switch (sessionInfo.getPersistencyPolicy()){
-            case DB -> {
-                returnee = new DiscountDAODB();
-            }
-            case FILE -> {
-                returnee = new DiscountDAOFile();
-            }
-            case NO_PERSISTANCE -> {
-                returnee = new DiscountDAONoPersistance();
-            }
-            case null, default -> {
-                throw new FactoryException("[DISCOUNT-DAO-FACTORY] Reached unreachable code");
-            }
+            case DB -> returnee = new DiscountDAODB();
+            case FILE -> returnee = new DiscountDAOFile();
+            case NO_PERSISTANCE ->  returnee = new DiscountDAONoPersistance();
+            case null, default -> throw new FactoryException("[DISCOUNT-DAO-FACTORY] Reached unreachable code");
         }
 
         return returnee;

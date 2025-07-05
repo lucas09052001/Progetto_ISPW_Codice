@@ -13,8 +13,8 @@ public class LoanRequestDAODB implements LoanRequestDAO{
 
     final String username;
     LoanPostDAO loanPostDAO;
-    final String insertionQuery = "INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES (?, ?, ?)";
-    final String fetchAllQuery = "SELECT * FROM LoanRequest WHERE borrowingUsername <> ?";
+    final static String insertionQuery = "INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES (?, ?, ?)";
+    final static String fetchAllQuery = "SELECT * FROM LoanRequest WHERE borrowingUsername <> ?";
 
 
     public LoanRequestDAODB(String username, LoanPostDAO loanPostDAO){

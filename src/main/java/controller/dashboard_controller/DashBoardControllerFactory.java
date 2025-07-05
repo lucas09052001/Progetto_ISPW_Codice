@@ -4,7 +4,6 @@ import exceptions.FactoryException;
 import utilities.SessionInfo;
 import main.Observer;
 
-import java.awt.event.FocusAdapter;
 
 public class DashBoardControllerFactory {
 
@@ -20,13 +19,8 @@ public class DashBoardControllerFactory {
 
         System.out.println("[DASHBOARD-CONTROLLER-FACTORY] Generating");
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new DashBoardControllerV1(observer);
-            }
-
-            case null, default -> {
-                throw new FactoryException("[DASHBOARD-CONTROLLER-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new DashBoardControllerV1(observer);
+            case null, default -> throw new FactoryException("[DASHBOARD-CONTROLLER-FACTORY] Reached unreachable code");
         }
 
         System.out.println("    [DASHBOARD-CONTROLLER-FACTORY] Returning");

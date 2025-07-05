@@ -23,12 +23,8 @@ public class ProfileControllerFactory {
         UserDAO dao = daoFactory.generate();
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new ProfileControllerV1(observer, dao);
-            }
-            case null, default -> {
-                throw new FactoryException("[PROFILE-CONTROLLER-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new ProfileControllerV1(observer, dao);
+            case null, default -> throw new FactoryException("[PROFILE-CONTROLLER-FACTORY] Reached unreachable code");
         }
         System.out.println("PROFILE-CONTROLLER-FACTORY] Returning");
         return returnee;

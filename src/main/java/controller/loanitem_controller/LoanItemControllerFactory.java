@@ -22,12 +22,8 @@ public class LoanItemControllerFactory {
         LoanPostDAO dao = daoFactory.generate();
 
         switch(sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new LoanItemControllerV1(observer, dao, sessionInfo.getUsername());
-            }
-            case null, default -> {
-                throw new FactoryException("[LOANITEM-CONTROLLER-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new LoanItemControllerV1(observer, dao, sessionInfo.getUsername());
+            case null, default -> throw new FactoryException("[LOANITEM-CONTROLLER-FACTORY] Reached unreachable code");
         }
 
         return returnee;

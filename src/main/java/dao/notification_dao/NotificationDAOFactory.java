@@ -16,18 +16,10 @@ public class NotificationDAOFactory {
         NotificationDAO returnee;
 
         switch (sessionInfo.getPersistencyPolicy()){
-            case DB -> {
-                returnee = new NotificationDAODB();
-            }
-            case FILE -> {
-                returnee = new NotificationDAOFile();
-            }
-            case NO_PERSISTANCE -> {
-                returnee = new NotificationDAONoPersistance();
-            }
-            case null, default -> {
-                throw new FactoryException("[NOTIFICATION-DAO-FACTORY] Reached unreachable code");
-            }
+            case DB -> returnee = new NotificationDAODB();
+            case FILE -> returnee = new NotificationDAOFile();
+            case NO_PERSISTANCE -> returnee = new NotificationDAONoPersistance();
+            case null, default -> throw new FactoryException("[NOTIFICATION-DAO-FACTORY] Reached unreachable code");
         }
         return returnee;
     }

@@ -4,10 +4,10 @@ import entity.GenericDTO;
 
 public class UserDTO extends GenericDTO {
 
-    public String username;
-    public String password;
-    public float rating;
-    public int points;
+    private String username;
+    private String password;
+    private float rating;
+    private int points;
 
     public UserDTO(User user){
         this.username = user.getUsername();

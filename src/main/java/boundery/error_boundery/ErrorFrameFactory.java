@@ -16,12 +16,10 @@ public class ErrorFrameFactory {
         JFrame returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new ErrorFrameV1(errorMessage);
-            }
-            case null, default -> {
-                throw new FactoryException("[ERROR-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new ErrorFrameV1(errorMessage);
+
+            case null, default -> throw new FactoryException("[ERROR-FACTORY] Reached unreachable code");
+
         }
         return returnee;
     }

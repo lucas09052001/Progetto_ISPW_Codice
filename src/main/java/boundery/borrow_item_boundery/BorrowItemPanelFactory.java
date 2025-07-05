@@ -18,12 +18,8 @@ public class BorrowItemPanelFactory {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new BorrowItemPanelV1(controller);
-            }
-            case null, default -> {
-                throw new FactoryException("[BORROWITEM-PANEL-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new BorrowItemPanelV1(controller);
+            case null, default -> throw new FactoryException("[BORROWITEM-PANEL-FACTORY] Reached unreachable code");
         }
 
         return returnee;

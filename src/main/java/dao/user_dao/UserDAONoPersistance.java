@@ -1,11 +1,8 @@
 package dao.user_dao;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import entity.user.User;
 import exceptions.DAOException;
 import repository.UserRepository;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 

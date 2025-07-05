@@ -46,7 +46,7 @@ public class LoanRequestControllerV1 implements LoanRequestController{
     public LoanRequestDTO handNext(){
         LoanRequestDTO loanRequestDTO;
 
-        if(!(lastHandedLoanRequest == loanRequests.size())){
+        if(lastHandedLoanRequest != loanRequests.size()){
             loanRequestDTO = new LoanRequestDTO(loanRequests.get(lastHandedLoanRequest));
             lastHandedLoanRequest++;
         }else{

@@ -13,10 +13,12 @@ import java.util.ArrayList;
 public class DiscountDAODB implements DiscountDAO{
 
 
-    final String fetchAllQuery = "SELECT * FROM Discount WHERE ownerUsername IS NULL";   //Fetching only available to redeem discounts
-    final String redeemQuery = "UPDATE Discount SET ownerUsername = ? WHERE name = ?";
+    final static String fetchAllQuery = "SELECT * FROM Discount WHERE ownerUsername IS NULL";   //Fetching only available to redeem discounts
+    final static String redeemQuery = "UPDATE Discount SET ownerUsername = ? WHERE name = ?";
 
-    public DiscountDAODB(){}
+    public DiscountDAODB(){
+        //No set up needed
+    }
 
     @Override
     public ArrayList<Discount> fetchAll() throws DAOException{

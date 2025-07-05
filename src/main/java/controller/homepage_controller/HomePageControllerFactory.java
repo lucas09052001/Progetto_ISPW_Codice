@@ -16,12 +16,8 @@ public class HomePageControllerFactory {
         HomePageController returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new HomePageControllerV1(observer);
-            }
-            case null, default -> {
-                throw new FactoryException("[CONTROLLER][CE] Reached unreachable code");
-            }
+            case V1 -> returnee = new HomePageControllerV1(observer);
+            case null, default -> throw new FactoryException("[CONTROLLER][CE] Reached unreachable code");
         }
 
         return returnee;

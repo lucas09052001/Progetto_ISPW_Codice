@@ -19,12 +19,8 @@ public class LoanRequestCentralPanelFactory {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new LoanRequestCentralPanelV1(controller);
-            }
-            case null, default -> {
-                throw new FactoryException("[LOANREQUEST-PANEL-FACTORY]  Reached unreachable code");
-            }
+            case V1 -> returnee = new LoanRequestCentralPanelV1(controller);
+            case null, default -> throw new FactoryException("[LOANREQUEST-PANEL-FACTORY]  Reached unreachable code");
         }
         return returnee;
     }

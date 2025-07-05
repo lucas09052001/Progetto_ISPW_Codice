@@ -18,13 +18,8 @@ public class HomePagePanelFactory {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new HomepageBounderyCentralPannelV1(controller);
-            }
-
-            case null, default -> {
-                throw new FactoryException("[HOMEPAGE-PANEL-FACTORY][CE] Reached unreachable code");
-            }
+            case V1 -> returnee = new HomepageBounderyCentralPannelV1(controller);
+            case null, default -> throw new FactoryException("[HOMEPAGE-PANEL-FACTORY][CE] Reached unreachable code");
         }
 
         return returnee;

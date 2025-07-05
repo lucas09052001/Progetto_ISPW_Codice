@@ -45,7 +45,7 @@ public class AuthenticateMainFrame extends JFrame {
 
     public void refresh(JPanel newCentralPanel){
 
-        if(!(centralPanel == null)){
+        if(centralPanel != null){
             remove(centralPanel);
         }
         centralPanel = newCentralPanel;

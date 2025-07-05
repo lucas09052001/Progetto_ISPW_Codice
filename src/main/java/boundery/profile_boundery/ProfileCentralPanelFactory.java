@@ -19,12 +19,8 @@ public class ProfileCentralPanelFactory {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new ProfileCentralPanelV1(controller);
-            }
-            case null, default -> {
-                throw new FactoryException("[PROFILE-PANEL-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new ProfileCentralPanelV1(controller);
+            case null, default -> throw new FactoryException("[PROFILE-PANEL-FACTORY] Reached unreachable code");
         }
 
         return returnee;

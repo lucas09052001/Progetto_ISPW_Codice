@@ -80,7 +80,7 @@ public class DiscountControllerV1 implements DiscountController{
     public DiscountDTO handNext(){
         DiscountDTO discountDTO;
 
-        if(!(lastHandedDTO == discounts.size())){
+        if(lastHandedDTO != discounts.size()){
             discountDTO = new DiscountDTO(discounts.get(lastHandedDTO));
             lastHandedDTO++;
         }else{

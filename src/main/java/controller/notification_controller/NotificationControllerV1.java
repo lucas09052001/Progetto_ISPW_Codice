@@ -43,7 +43,7 @@ public class NotificationControllerV1 implements NotificationController {
     public NotificationDTO handNext(){
         NotificationDTO notificationDTO;
 
-        if(!(lastHandedNotification == notificationList.size())){
+        if(lastHandedNotification != notificationList.size()){
             notificationDTO = new NotificationDTO(notificationList.get(lastHandedNotification));
             lastHandedNotification++;
         }else{

@@ -26,6 +26,10 @@ public class AuthenticateControllerV1 implements AuthenticateController{
         System.out.println("    [CONTROLLER] Starting 'login'");
         try{
 
+            if(persistencyPolicy == PersistencyPolicy.NULL){
+                throw new IllegalArgumentException("Choose persistency policy");
+            }
+
             sessionInfo.setPersistencyPolicy(persistencyPolicy);
             System.out.println("    [CONTROLLER] Asking DAO-FACTORY for dao");
             UserDAO dao = daoFactory.generate();
@@ -42,7 +46,7 @@ public class AuthenticateControllerV1 implements AuthenticateController{
                 observer.updateNewBoundery(Boundaries.HOMEPAGE);
             }
 
-        } catch (DAOException e) {
+        } catch ( IllegalArgumentException | DAOException e) {
             observer.errorOccurred(e.getMessage());
         }
     }

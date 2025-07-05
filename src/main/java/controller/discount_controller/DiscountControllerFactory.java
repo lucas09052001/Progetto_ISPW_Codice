@@ -26,12 +26,8 @@ public class DiscountControllerFactory {
         DiscountDAO discountDAO = discountDAOFactory.generate();
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new DiscountControllerV1(observer, discountDAO, userDAO, sessionInfo.getUsername());
-            }
-            case null, default -> {
-                throw new FactoryException("[DISCOUNT-CONTROLLER-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new DiscountControllerV1(observer, discountDAO, userDAO, sessionInfo.getUsername());
+            case null, default -> throw new FactoryException("[DISCOUNT-CONTROLLER-FACTORY] Reached unreachable code");
         }
 
         return returnee;

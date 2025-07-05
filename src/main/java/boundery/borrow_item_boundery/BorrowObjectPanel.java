@@ -17,11 +17,6 @@ public class BorrowObjectPanel extends InteractivePanel {
         super();
     }
 
-    @Override
-    public void setUp() {
-        super.setUp();
-    }
-
     public void setController(BorrowItemController controller){
         this.controller = controller;
     }

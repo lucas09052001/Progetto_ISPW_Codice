@@ -19,12 +19,8 @@ public class NotificationPanelFactory {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new NotificationCentralPanelV1(controller);
-            }
-            case null, default -> {
-                throw new FactoryException("Reached unreachable code");
-            }
+            case V1 -> returnee = new NotificationCentralPanelV1(controller);
+            case null, default -> throw new FactoryException("Reached unreachable code");
         }
         return returnee;
     }

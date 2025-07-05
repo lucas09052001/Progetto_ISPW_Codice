@@ -22,18 +22,10 @@ public class LoanRequestDAOFactory {
         LoanPostDAO loanPostDAO = loanPostDAOFactory.generate();
 
         switch (sessionInfo.getPersistencyPolicy()){
-            case DB -> {
-                returnee = new LoanRequestDAODB(username, loanPostDAO);
-            }
-            case FILE -> {
-                returnee = new LoanRequestDAOFile(username);
-            }
-            case NO_PERSISTANCE -> {
-                returnee = new LoanRequestDAONoPersistance(username);
-            }
-            case null, default -> {
-                throw new FactoryException("[LOANREQUEST-DAO-FACTORY] Reached unreachable code");
-            }
+            case DB -> returnee = new LoanRequestDAODB(username, loanPostDAO);
+            case FILE -> returnee = new LoanRequestDAOFile(username);
+            case NO_PERSISTANCE -> returnee = new LoanRequestDAONoPersistance(username);
+            case null, default -> throw new FactoryException("[LOANREQUEST-DAO-FACTORY] Reached unreachable code");
         }
 
         return returnee;

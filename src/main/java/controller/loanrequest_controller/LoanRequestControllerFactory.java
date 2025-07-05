@@ -31,12 +31,8 @@ public class LoanRequestControllerFactory {
         LoanEffectiveDAO loanEffectiveDAO = loanEffectiveDAOFactory.generate();
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new LoanRequestControllerV1(observer, loanPostDAO, loanRequestDAO, loanEffectiveDAO);
-            }
-            case null, default -> {
-                throw new FactoryException("[LOANREQUEST-CONTROLLER-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new LoanRequestControllerV1(observer, loanPostDAO, loanRequestDAO, loanEffectiveDAO);
+            case null, default -> throw new FactoryException("[LOANREQUEST-CONTROLLER-FACTORY] Reached unreachable code");
         }
 
         return returnee;

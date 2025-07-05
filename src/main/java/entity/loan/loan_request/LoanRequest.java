@@ -1,7 +1,6 @@
 package entity.loan.loan_request;
 
 import entity.loan.loan_post.LoanPost;
-import entity.user.User;
 
 public class LoanRequest {
     private String borrowingUsername;

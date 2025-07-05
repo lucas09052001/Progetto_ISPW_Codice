@@ -8,11 +8,11 @@ import utilities.PathUtility;
 import java.util.ArrayList;
 
 
-public class LoanRequestPanelV1 extends InteractivePanel {
+public class LoanRequestPanel extends InteractivePanel {
     transient LoanRequestDTO dto;
     transient LoanRequestController controller;
 
-    public LoanRequestPanelV1() {
+    public LoanRequestPanel() {
         super();
     }
 
@@ -30,11 +30,6 @@ public class LoanRequestPanelV1 extends InteractivePanel {
 
     public void setController(LoanRequestController controller) {
         this.controller = controller;
-    }
-
-    @Override
-    public void setUp() {
-        super.setUp();
     }
 
     @Override
@@ -72,7 +67,7 @@ public class LoanRequestPanelV1 extends InteractivePanel {
     @Override
     protected void handleButtonEvent() {
 
-        if(!(dto == null)){
+        if(dto != null){
             controller.acceptRequest(dto);
         }
 

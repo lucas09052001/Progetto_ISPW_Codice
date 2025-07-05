@@ -19,12 +19,10 @@ public class DiscountCentralPanelFactory {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> {
-                returnee = new DiscountCentralPanelV1(controller);
-            }
-            case null, default -> {
-                throw new FactoryException("[DISCOUNT-PANEL-FACTORY] Reached unreachable code");
-            }
+            case V1 -> returnee = new DiscountCentralPanelV1(controller);
+
+            case null, default -> throw new FactoryException("[DISCOUNT-PANEL-FACTORY] Reached unreachable code");
+
         }
 
         return returnee;

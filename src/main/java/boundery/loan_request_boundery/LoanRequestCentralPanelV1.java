@@ -10,8 +10,8 @@ import java.awt.*;
 public class LoanRequestCentralPanelV1 extends JPanel {
 
     JLabel topTextLabel;
-    LoanRequestPanelV1 loanRequestPanel_V1_1;
-    LoanRequestPanelV1 loanRequestPanel_V1_2;
+    LoanRequestPanel loanRequestPanel1;
+    LoanRequestPanel loanRequestPanel2;
     JButton nextItemsButton;
     transient LoanRequestController controller;
 
@@ -26,8 +26,8 @@ public class LoanRequestCentralPanelV1 extends JPanel {
 
         //Instantiating components
         topTextLabel = new JLabel();
-        loanRequestPanel_V1_1 = new LoanRequestPanelV1();
-        loanRequestPanel_V1_2 = new LoanRequestPanelV1();
+        loanRequestPanel1 = new LoanRequestPanel();
+        loanRequestPanel2 = new LoanRequestPanel();
         nextItemsButton = new JButton();
 
         //Static set up
@@ -37,10 +37,10 @@ public class LoanRequestCentralPanelV1 extends JPanel {
         topTextLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         topTextLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        loanRequestPanel_V1_1.setController(controller);
-        loanRequestPanel_V1_1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loanRequestPanel_V1_2.setController(controller);
-        loanRequestPanel_V1_2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loanRequestPanel1.setController(controller);
+        loanRequestPanel1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        loanRequestPanel2.setController(controller);
+        loanRequestPanel2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         nextItemsButton.setText("Next items");
         nextItemsButton.addActionListener(e -> handleNextItemEvent());
@@ -50,9 +50,9 @@ public class LoanRequestCentralPanelV1 extends JPanel {
         add(Box.createVerticalGlue());
         add(topTextLabel);
         add(Box.createVerticalGlue());
-        add(loanRequestPanel_V1_1);
+        add(loanRequestPanel1);
         add(Box.createVerticalGlue());
-        add(loanRequestPanel_V1_2);
+        add(loanRequestPanel2);
         add(Box.createVerticalGlue());
         add(nextItemsButton);
         add(Box.createVerticalGlue());
@@ -66,11 +66,11 @@ public class LoanRequestCentralPanelV1 extends JPanel {
 
         System.out.println("[BOUNDERY] Populating BorrowObjects Panels");
 
-        loanRequestPanel_V1_1.setDto(controller.handNext());
-        loanRequestPanel_V1_1.setUp();
+        loanRequestPanel1.setDto(controller.handNext());
+        loanRequestPanel1.setUp();
 
-        loanRequestPanel_V1_2.setDto(controller.handNext());
-        loanRequestPanel_V1_2.setUp();
+        loanRequestPanel2.setDto(controller.handNext());
+        loanRequestPanel2.setUp();
 
         System.out.println("[BOUNDERY] Refreshing");
         revalidate();
