@@ -1,6 +1,7 @@
 package boundery.profile_boundery;
 
 import utilities.ColorUtility;
+import utilities.PathUtility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +16,11 @@ public class ProfileImagePanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.decode(ColorUtility.getDynamicColor()));
 
+        ImageIcon imageIcon = new ImageIcon(PathUtility.getPathToEmptyProfilePicture());
+
+
         //Components
-        profileImage.setIcon(new ImageIcon
-                ("/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/src/main/java/boundery/profile_boundery/NoProfilePicture.png")
-        );
+        profileImage.setIcon(imageIcon);
         profileImage.setAlignmentX(Component.CENTER_ALIGNMENT);
         profileImage.setAlignmentY(Component.CENTER_ALIGNMENT);
 

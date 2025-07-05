@@ -2,6 +2,7 @@ package utilities;
 
 public class PathUtility {
 
+    private static final String PATH_TO_EMPTY_PROFILE_PICTURE = "resources/ImageRepository/NoProfilePicture.png";
     private static final String PATH_TO_EMPTY_IMAGE = "resources/ImageRepository/EmptyImage.png";
     private static final String PATH_TO_LOAN_REQUEST_JSON = "resources/Json/loanRequests.json";
     private static final String PATH_TO_LOAN_POST_JSON = "resources/Json/loanPost.json";
@@ -63,5 +64,9 @@ public class PathUtility {
 
     public static String getPathToThreeStar() {
         return PATH_TO_THREE_STAR;
+    }
+
+    public static String getPathToEmptyProfilePicture() {
+        return PATH_TO_EMPTY_PROFILE_PICTURE;
     }
 }
