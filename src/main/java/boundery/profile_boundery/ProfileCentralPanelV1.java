@@ -11,7 +11,7 @@ public class ProfileCentralPanelV1 extends JPanel {
 
     ProfileImagePanel profileImagePanel;
     ProfileTextPanel profileTextPanel;
-    ProfileController controller;
+    transient ProfileController controller;
 
     public ProfileCentralPanelV1(ProfileController controller){
         //Attributes

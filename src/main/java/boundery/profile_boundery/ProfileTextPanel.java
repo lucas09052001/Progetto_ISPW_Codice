@@ -45,10 +45,10 @@ public class ProfileTextPanel extends JPanel {
         int rating = (int) dto.getRating();
         String pathToRatingImage = PathUtility.getPathToEmptyImage();
         switch (rating){
-            case 0 -> pathToRatingImage = PathUtility.getPathToZeroStar();
             case 1 -> pathToRatingImage = PathUtility.getPathToOneStar();
             case 2 -> pathToRatingImage = PathUtility.getPathToTwoStar();
             case 3 -> pathToRatingImage = PathUtility.getPathToThreeStar();
+            default -> pathToRatingImage = PathUtility.getPathToZeroStar();
         }
         ratingLabel.setIcon(new ImageIcon(pathToRatingImage));
         ratingLabel.setBackground(Color.decode(ColorUtility.getDynamicColor()));

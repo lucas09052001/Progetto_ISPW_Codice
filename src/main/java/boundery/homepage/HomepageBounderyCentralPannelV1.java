@@ -8,9 +8,9 @@ import java.awt.*;
 
 public class HomepageBounderyCentralPannelV1 extends JPanel {
 
-    final LoansBandV1 loansBandV1;
-    final ActivityBandV1 activityBandV1;
-    final ServicesBandV1 servicesBandV1;
+    LoansBandV1 loansBandV1;
+    ActivityBandV1 activityBandV1;
+    ServicesBandV1 servicesBandV1;
 
     public HomepageBounderyCentralPannelV1(HomePageController controller){
         //Attributes

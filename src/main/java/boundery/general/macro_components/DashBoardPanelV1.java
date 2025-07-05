@@ -14,7 +14,7 @@ public class DashBoardPanelV1 extends JPanel {
     JButton viewProfileInfo;
     JButton homepage;
     JLabel logoImage;
-    DashBoardController controller;
+    transient DashBoardController controller;
 
     public DashBoardPanelV1(DashBoardController controller){
 

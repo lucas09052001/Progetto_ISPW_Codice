@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 
 public class LoanRequestPanelV1 extends InteractivePanel {
-    LoanRequestDTO dto;
-    LoanRequestController controller;
+    transient LoanRequestDTO dto;
+    transient LoanRequestController controller;
 
     public LoanRequestPanelV1() {
         super();

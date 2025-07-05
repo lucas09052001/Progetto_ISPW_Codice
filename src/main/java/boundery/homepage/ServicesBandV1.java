@@ -10,9 +10,9 @@ import java.awt.*;
 
 public class ServicesBandV1 extends JPanel{
 
-    final JButton discounts = new JButton("Discounts");
-    final JLabel servicesText = new JLabel("Services");
-    final HomePageController controller;
+    JButton discounts = new JButton("Discounts");
+    JLabel servicesText = new JLabel("Services");
+    transient HomePageController controller;
 
     public ServicesBandV1(HomePageController controller){
         //Attributes

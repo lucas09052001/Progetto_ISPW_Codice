@@ -17,8 +17,7 @@ public class DiscountDAOFile implements DiscountDAO{
     File file;
     ObjectMapper mapper;
 
-    public DiscountDAOFile(String username) {
-        this.username = username;
+    public DiscountDAOFile() {
         file = new File(PathUtility.getPathToDiscountJson());
         mapper = new ObjectMapper();
     }

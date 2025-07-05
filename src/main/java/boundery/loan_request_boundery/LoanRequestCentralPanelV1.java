@@ -13,7 +13,7 @@ public class LoanRequestCentralPanelV1 extends JPanel {
     LoanRequestPanelV1 loanRequestPanel_V1_1;
     LoanRequestPanelV1 loanRequestPanel_V1_2;
     JButton nextItemsButton;
-    LoanRequestController controller;
+    transient LoanRequestController controller;
 
     public LoanRequestCentralPanelV1(LoanRequestController controller){
         //Attributes

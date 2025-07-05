@@ -13,7 +13,7 @@ import static entity.loan.LoanInterval.NULL;
 
 public class LoanItemCentralPanelV1 extends JPanel {
 
-    LoanItemController controller;
+    transient LoanItemController controller;
     LoanInterval interval = NULL;
 
     JTextField nameTextField;
@@ -137,7 +137,7 @@ public class LoanItemCentralPanelV1 extends JPanel {
     }
 
     private void handleCancelEvent(){
-
+        System.out.println("[BOUNDERY] Minor Function. Not yet implemented");
     }
 
 

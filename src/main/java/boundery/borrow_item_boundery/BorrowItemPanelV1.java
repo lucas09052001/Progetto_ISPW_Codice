@@ -12,7 +12,7 @@ public class BorrowItemPanelV1 extends JPanel {
     BorrowObjectPanel borrowObjectPanel_1;
     BorrowObjectPanel borrowObjectPanel_2;
     JButton nextItemsButton;
-    BorrowItemController controller;
+    transient BorrowItemController controller;
 
     public BorrowItemPanelV1(BorrowItemController controller){
         //Attributes

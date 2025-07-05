@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class BorrowObjectPanel extends InteractivePanel {
 
-    LoanPostDTO loanPostDTO;
-    BorrowItemController controller;
+    transient LoanPostDTO loanPostDTO;
+    transient BorrowItemController controller;
 
     BorrowObjectPanel(){
         super();

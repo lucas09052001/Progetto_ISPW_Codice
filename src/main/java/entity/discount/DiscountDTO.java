@@ -48,4 +48,12 @@ public class DiscountDTO {
     public void setCost(int cost) {
         this.cost = cost;
     }
+
+    public String getOwnerUsername() {
+        return ownerUsername;
+    }
+
+    public void setOwnerUsername(String ownerUsername) {
+        this.ownerUsername = ownerUsername;
+    }
 }

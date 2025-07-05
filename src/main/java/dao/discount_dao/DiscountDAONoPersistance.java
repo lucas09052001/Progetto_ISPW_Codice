@@ -9,12 +9,10 @@ import java.util.Objects;
 
 public class DiscountDAONoPersistance implements DiscountDAO{
 
-    String username;
     DiscountRepository repository;
     ArrayList<Discount> discounts;
 
-    public DiscountDAONoPersistance(String username){
-        this.username = username;
+    public DiscountDAONoPersistance(){
         repository = DiscountRepository.getInstance();
     }
 

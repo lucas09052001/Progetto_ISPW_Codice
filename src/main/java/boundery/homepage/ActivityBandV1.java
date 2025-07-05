@@ -10,11 +10,11 @@ import java.awt.*;
 
 public class ActivityBandV1 extends JPanel {
 
-    final JButton onGoingLoans = new JButton("OnGoing Loans");
-    final JButton loanHistory = new JButton("Loan History");
-    final JButton loanRequests = new JButton("Loan Requests");
-    final JLabel activityText = new JLabel("Activity");
-    final HomePageController controller;
+    JButton onGoingLoans = new JButton("OnGoing Loans");
+    JButton loanHistory = new JButton("Loan History");
+    JButton loanRequests = new JButton("Loan Requests");
+    JLabel activityText = new JLabel("Activity");
+    transient HomePageController controller;
 
     public ActivityBandV1(HomePageController controller){
 

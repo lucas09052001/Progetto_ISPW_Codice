@@ -9,10 +9,10 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class LoansBandV1 extends JPanel {
-    final JButton loanItem = new JButton("Loan Item");
-    final JButton borrowItem = new JButton("Borrow Item");
-    final JLabel loansText = new JLabel("Loans");
-    final HomePageController controller;
+    JButton loanItem = new JButton("Loan Item");
+    JButton borrowItem = new JButton("Borrow Item");
+    JLabel loansText = new JLabel("Loans");
+    transient HomePageController controller;
 
     public LoansBandV1(HomePageController controller){
         //Attributes

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class DiscountPanelV1 extends InteractivePanel {
 
-    DiscountDTO discountDTO;
-    DiscountController controller;
+    transient DiscountDTO discountDTO;
+    transient DiscountController controller;
 
     public DiscountPanelV1() {
         super();

@@ -12,7 +12,7 @@ public class DiscountCentralPanelV1 extends JPanel {
     DiscountPanelV1 discountPanelV11;
     DiscountPanelV1 discountPanelV12;
     JButton nextItemsButton;
-    DiscountController controller;
+    transient DiscountController controller;
 
     public DiscountCentralPanelV1(DiscountController controller){
         //Attributes

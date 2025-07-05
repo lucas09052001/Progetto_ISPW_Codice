@@ -26,7 +26,7 @@ public class UserRepository {
         listaUtenti = new ArrayList<>();
 
         listaUtenti.add(new User("alice", "alice", 4, 50000));
-        listaUtenti.add(new User("bob", "bob", 5, 100));
+        listaUtenti.add(new User("bob", "bob", 5, 1100));
 
     }
 

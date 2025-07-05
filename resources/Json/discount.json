@@ -3,7 +3,7 @@
   "pathToImage" : "/images/summer.jpg",
   "percentage" : 20,
   "cost" : 100,
-  "ownerUsername" : "alice"
+  "ownerUsername" : null
 }, {
   "name" : "WinterBlowout",
   "pathToImage" : "/images/winter.jpg",
