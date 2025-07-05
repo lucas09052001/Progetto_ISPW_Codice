@@ -2,11 +2,9 @@ package boundery.loan_request_boundery;
 
 import boundery.general.micro_components.InteractivePanel;
 import controller.loanrequest_controller.LoanRequestController;
-import controller.loanrequest_controller.LoanRequestControllerV1;
 import entity.loan.loan_request.LoanRequestDTO;
-import repository.PathRepository;
+import utilities.PathUtility;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 
@@ -51,7 +49,7 @@ public class LoanRequestPanelV1 extends InteractivePanel {
     @Override
     protected String getPathToIcon() {
         if(dto == null){
-            return PathRepository.getPathToEmptyImage();
+            return PathUtility.getPathToEmptyImage();
         }else{
             return dto.getLoanPost().getPathToImage();
         }

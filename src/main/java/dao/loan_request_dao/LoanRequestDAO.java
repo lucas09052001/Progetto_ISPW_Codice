@@ -6,7 +6,7 @@ import exceptions.DAOException;
 import java.util.ArrayList;
 
 public interface LoanRequestDAO {
-    ArrayList<LoanRequest> fetchAll();
+    ArrayList<LoanRequest> fetchAll() throws  DAOException;
     void deleteAllRelative(LoanRequest loanRequest) throws  DAOException;
     void submitRequest(LoanRequest loanRequest) throws DAOException;
 }

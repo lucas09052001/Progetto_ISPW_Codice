@@ -1,7 +1,7 @@
 package boundery.homepage;
 
 import controller.homepage_controller.HomePageController;
-import repository.ColorRepository;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,9 +19,9 @@ public class HomepageBounderyCentralPannelV1 extends JPanel {
         servicesBandV1 = new ServicesBandV1(controller);
 
         //Look and Feel
-        setBackground(Color.decode(ColorRepository.getDynamicColor()));
+        setBackground(Color.decode(ColorUtility.getDynamicColor()));
         setLayout(new GridLayout(1, 3, 10, 0));
-        setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        setBackground(Color.decode(ColorUtility.getBackgroundColor()));
 
         //Components
         add(loansBandV1);

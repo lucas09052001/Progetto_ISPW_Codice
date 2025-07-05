@@ -4,11 +4,9 @@ import boundery.Boundaries;
 import dao.loan_effective_dao.LoanEffectiveDAO;
 import dao.loan_post_dao.LoanPostDAO;
 import dao.loan_request_dao.LoanRequestDAO;
-import entity.SessionInfo;
 import entity.loan.loan_effective.LoanEffective;
 import entity.loan.loan_request.LoanRequest;
 import entity.loan.loan_request.LoanRequestDTO;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 import main.Observer;
 
@@ -38,7 +36,11 @@ public class LoanRequestControllerV1 implements LoanRequestController{
 
     @Override
     public void fetchAll(){
-       loanRequests = loanRequestDAO.fetchAll();
+        try {
+            loanRequests = loanRequestDAO.fetchAll();
+        } catch (DAOException e) {
+            observer.errorOccurred(e.getMessage());
+        }
     }
 
     public LoanRequestDTO handNext(){

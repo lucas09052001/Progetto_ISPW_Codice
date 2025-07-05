@@ -2,7 +2,6 @@ package dao.notification_dao;
 
 import dao.ConnectionFactory;
 import entity.notification.Notification;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 
 import java.sql.*;
@@ -46,7 +45,7 @@ public class NotificationDAODB implements NotificationDAO{
 
         } catch (SQLException e) {
             System.out.println("[EE] SQL error " + e.getMessage()); //CONSOLE DEBUG
-            throw new CriticalException(e.getMessage());
+            throw new DAOException(e.getMessage());
         }
     }
 }

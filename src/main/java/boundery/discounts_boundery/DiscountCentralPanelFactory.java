@@ -1,7 +1,8 @@
 package boundery.discounts_boundery;
 
 import controller.discount_controller.DiscountController;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ public class DiscountCentralPanelFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(DiscountController controller){
+    public JPanel generate(DiscountController controller) throws FactoryException {
 
         JPanel returnee;
 
@@ -22,7 +23,7 @@ public class DiscountCentralPanelFactory {
                 returnee = new DiscountCentralPanelV1(controller);
             }
             case null, default -> {
-                throw new RuntimeException("[DISCOUNT-PANEL-FACTORY] Reached unreachable code");
+                throw new FactoryException("[DISCOUNT-PANEL-FACTORY] Reached unreachable code");
             }
         }
 

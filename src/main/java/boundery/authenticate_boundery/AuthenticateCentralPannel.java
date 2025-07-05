@@ -1,8 +1,8 @@
 package boundery.authenticate_boundery;
 
-import repository.ColorRepository;
+import utilities.ColorUtility;
 import controller.authenticate_controller.AuthenticateController;
-import entity.PersistencyPolicy;
+import utilities.PersistencyPolicy;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,7 +59,7 @@ public class AuthenticateCentralPannel extends JPanel {
 
         //RadioButtons for persistency policy
         textPersistency.setAlignmentX(Component.CENTER_ALIGNMENT);
-        textPersistency.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        textPersistency.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
         add(textPersistency);
 
         gruppoBottoni.add(persistencyPolicyDB);

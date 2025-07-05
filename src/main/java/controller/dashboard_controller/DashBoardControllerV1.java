@@ -1,7 +1,6 @@
 package controller.dashboard_controller;
 
 import boundery.Boundaries;
-import entity.SessionInfo;
 import main.Observer;
 
 public class DashBoardControllerV1 implements DashBoardController{

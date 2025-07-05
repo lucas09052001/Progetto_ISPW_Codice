@@ -1,6 +1,6 @@
 package boundery.general.micro_components;
 
-import repository.ColorRepository;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -20,8 +20,8 @@ public abstract class InteractivePanel extends JPanel {
 
         //Static Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
-        setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        setBorder(new LineBorder(Color.decode(ColorUtility.getForegroundColor())));
+        setBackground(Color.decode(ColorUtility.getBackgroundColor()));
 
         //Static set up
         genericButton.addActionListener(e -> handleButtonEvent());

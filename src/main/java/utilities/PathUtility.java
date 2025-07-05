@@ -1,6 +1,6 @@
-package repository;
+package utilities;
 
-public class PathRepository {
+public class PathUtility {
     private static final String pathToEmptyImage = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png";
     private static final String pathToLoanRequestJson = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/Json/loanRequests.json";
     private static final String pathToLoanPostJson = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/Json/loanPost.json";
@@ -14,7 +14,7 @@ public class PathRepository {
     private static final String pathToThreeStar = "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/src/main/java/boundery/profile_boundery/3star.png";
 
 
-    private PathRepository() {
+    private PathUtility() {
         throw new IllegalStateException("Utility class");
     }
 

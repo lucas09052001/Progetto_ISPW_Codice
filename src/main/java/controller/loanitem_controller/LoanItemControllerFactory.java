@@ -2,7 +2,8 @@ package controller.loanitem_controller;
 
 import dao.loan_post_dao.LoanPostDAO;
 import dao.loan_post_dao.LoanPostDAOFactory;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 import main.Observer;
 
 public class LoanItemControllerFactory {
@@ -15,7 +16,7 @@ public class LoanItemControllerFactory {
         daoFactory = new LoanPostDAOFactory();
     }
 
-    public LoanItemController generate(Observer observer){
+    public LoanItemController generate(Observer observer) throws FactoryException {
 
         LoanItemController returnee;
         LoanPostDAO dao = daoFactory.generate();
@@ -25,8 +26,7 @@ public class LoanItemControllerFactory {
                 returnee = new LoanItemControllerV1(observer, dao, sessionInfo.getUsername());
             }
             case null, default -> {
-                System.out.println("[LOANITEM-CONTROLLER-FACTORY] Reached unreachable code");
-                throw new RuntimeException("[LOANITEM-CONTROLLER-FACTORY] Reached unreachable code");
+                throw new FactoryException("[LOANITEM-CONTROLLER-FACTORY] Reached unreachable code");
             }
         }
 

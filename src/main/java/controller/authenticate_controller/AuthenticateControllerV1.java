@@ -2,11 +2,10 @@ package controller.authenticate_controller;
 
 import boundery.Boundaries;
 import dao.user_dao.*;
-import entity.PersistencyPolicy;
-import entity.SessionInfo;
+import utilities.PersistencyPolicy;
+import utilities.SessionInfo;
 import entity.user.User;
 import exceptions.DAOException;
-import exceptions.NoMatchException;
 import main.Observer;
 
 public class AuthenticateControllerV1 implements AuthenticateController{
@@ -34,22 +33,17 @@ public class AuthenticateControllerV1 implements AuthenticateController{
             System.out.println("    [CONTROLLER] Asking DAO to fetch user info");
             User user = dao.fetchUserInfo(username);
 
-            if(user == null){
-                sessionInfo.setPersistencyPolicy(PersistencyPolicy.NULL);
-                throw new NoMatchException("No matching credentials");
-            }else if(!password.equals(user.getPassword())){
-                sessionInfo.setPersistencyPolicy(PersistencyPolicy.NULL);
-                throw new NoMatchException("No matching credentials");
+            if((user == null)  || (!password.equals(user.getPassword()))){
+                observer.errorOccurred("No matching credentials");
             }else{
                 sessionInfo.setUsername(username);
                 sessionInfo.setPersistencyPolicy(persistencyPolicy);
+
+                observer.updateNewBoundery(Boundaries.HOMEPAGE);
             }
 
-            observer.updateNewBoundery(Boundaries.HOMEPAGE);
-
-        } catch (NoMatchException | DAOException e) {
+        } catch (DAOException e) {
             observer.errorOccurred(e.getMessage());
-
         }
     }
 }

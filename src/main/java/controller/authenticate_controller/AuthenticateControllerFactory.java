@@ -1,7 +1,7 @@
 package controller.authenticate_controller;
 
-import dao.user_dao.UserDAOFactory;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 import main.Observer;
 
 public class AuthenticateControllerFactory {
@@ -12,7 +12,7 @@ public class AuthenticateControllerFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public AuthenticateController generate(Observer observer){
+    public AuthenticateController generate(Observer observer) throws FactoryException {
 
         AuthenticateController returnee;
 
@@ -22,7 +22,7 @@ public class AuthenticateControllerFactory {
             }
 
             case null, default -> { //Unreachable Code
-                throw new RuntimeException("AuthenticateControllerFactory reached unreachable code");
+                throw new FactoryException("AuthenticateControllerFactory reached unreachable code");
             }
         }
 

@@ -1,8 +1,7 @@
 package boundery.loan_item;
 
 import controller.loanitem_controller.LoanItemController;
-import repository.ColorRepository;
-import controller.loanitem_controller.LoanItemControllerV1;
+import utilities.ColorUtility;
 import entity.loan.LoanInterval;
 
 import javax.swing.*;
@@ -37,8 +36,8 @@ public class LoanItemCentralPanelV1 extends JPanel {
 
         // Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.decode(ColorRepository.getDynamicColor()));
-        setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
+        setBackground(Color.decode(ColorUtility.getDynamicColor()));
+        setBorder(new LineBorder(Color.decode(ColorUtility.getForegroundColor())));
 
         //Instantiating components
         nameTextField = new JTextField();
@@ -81,8 +80,8 @@ public class LoanItemCentralPanelV1 extends JPanel {
         // Interval Label
         intervalLabel.setText("Maximum loan interval will be:");
         intervalLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        intervalLabel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
-        intervalLabel.setForeground(Color.decode(ColorRepository.getForegroundColor()));
+        intervalLabel.setBackground(Color.decode(ColorUtility.getDynamicColor()));
+        intervalLabel.setForeground(Color.decode(ColorUtility.getForegroundColor()));
         intervalLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         add(intervalLabel);
         add(Box.createVerticalGlue());

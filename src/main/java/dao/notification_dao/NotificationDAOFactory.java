@@ -1,6 +1,7 @@
 package dao.notification_dao;
 
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 public class NotificationDAOFactory {
 
@@ -10,7 +11,7 @@ public class NotificationDAOFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public NotificationDAO generate(){
+    public NotificationDAO generate() throws FactoryException {
 
         NotificationDAO returnee;
 
@@ -25,8 +26,7 @@ public class NotificationDAOFactory {
                 returnee = new NotificationDAONoPersistance();
             }
             case null, default -> {
-                System.out.println("[NOTIFICATION-DAO-FACTORY] Reached unreachable code");
-                throw new RuntimeException("[NOTIFICATION-DAO-FACTORY] Reached unreachable code");
+                throw new FactoryException("[NOTIFICATION-DAO-FACTORY] Reached unreachable code");
             }
         }
         return returnee;

@@ -3,7 +3,6 @@ package dao.loan_post_dao;
 import dao.ConnectionFactory;
 import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 
 import java.sql.Connection;
@@ -24,7 +23,7 @@ public class LoanPostDAODB implements LoanPostDAO{
     }
 
     @Override
-    public void submit(LoanPost loanPost) throws DAOException, CriticalException {
+    public void submit(LoanPost loanPost) throws DAOException {
 
         try(Connection connection = ConnectionFactory.upgrade();
             PreparedStatement stmt = connection.prepareStatement(submitQuery)) {
@@ -48,7 +47,7 @@ public class LoanPostDAODB implements LoanPostDAO{
     }
 
     @Override
-    public LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException, CriticalException {
+    public LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException {
 
         try(Connection connection = ConnectionFactory.upgrade();
             PreparedStatement stmt = connection.prepareStatement(fetchByIdQuery)) {
@@ -70,12 +69,12 @@ public class LoanPostDAODB implements LoanPostDAO{
 
         } catch (SQLException e) {
             System.out.println("        [DAO][EE] SQL error " + e.getMessage());
-            throw new CriticalException();
+            throw new DAOException(e.getMessage());
         }
     }
 
     @Override
-    public ArrayList<LoanPost> fetchAll() throws DAOException, CriticalException {
+    public ArrayList<LoanPost> fetchAll() throws DAOException {
 
         ArrayList<LoanPost> returnee = new ArrayList<>();
 

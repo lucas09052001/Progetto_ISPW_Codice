@@ -6,7 +6,8 @@ import dao.loan_post_dao.LoanPostDAO;
 import dao.loan_post_dao.LoanPostDAOFactory;
 import dao.loan_request_dao.LoanRequestDAO;
 import dao.loan_request_dao.LoanRequestDAOFactory;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 import main.Observer;
 
 public class LoanRequestControllerFactory {
@@ -22,7 +23,7 @@ public class LoanRequestControllerFactory {
         loanEffectiveDAOFactory = new LoanEffectiveDAOFactory();
     }
 
-    public LoanRequestController generate(Observer observer){
+    public LoanRequestController generate(Observer observer) throws FactoryException {
 
         LoanRequestController returnee;
         LoanPostDAO loanPostDAO = loanPostDAOFactory.generate();
@@ -34,8 +35,7 @@ public class LoanRequestControllerFactory {
                 returnee = new LoanRequestControllerV1(observer, loanPostDAO, loanRequestDAO, loanEffectiveDAO);
             }
             case null, default -> {
-                System.out.println("[LOANREQUEST-CONTROLLER-FACTORY] Reached unreachable code");
-                throw new RuntimeException("[LOANREQUEST-CONTROLLER-FACTORY] Reached unreachable code");
+                throw new FactoryException("[LOANREQUEST-CONTROLLER-FACTORY] Reached unreachable code");
             }
         }
 

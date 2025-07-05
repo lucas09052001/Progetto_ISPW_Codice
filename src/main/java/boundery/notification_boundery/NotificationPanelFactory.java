@@ -1,7 +1,8 @@
 package boundery.notification_boundery;
 
 import controller.notification_controller.NotificationController;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ public class NotificationPanelFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(NotificationController controller){
+    public JPanel generate(NotificationController controller) throws FactoryException {
 
         JPanel returnee;
 
@@ -22,8 +23,7 @@ public class NotificationPanelFactory {
                 returnee = new NotificationCentralPanelV1(controller);
             }
             case null, default -> {
-                System.out.println("    [NOTIFICATION-PANEL-FACTORY] Reached unreachable code");
-                throw new RuntimeException("Reached unreachable code");
+                throw new FactoryException("Reached unreachable code");
             }
         }
         return returnee;

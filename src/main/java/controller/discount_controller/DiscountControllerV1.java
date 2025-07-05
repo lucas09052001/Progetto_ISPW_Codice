@@ -3,7 +3,7 @@ package controller.discount_controller;
 import boundery.Boundaries;
 import dao.discount_dao.DiscountDAO;
 import dao.user_dao.UserDAO;
-import entity.SessionInfo;
+import utilities.SessionInfo;
 import entity.discount.Discount;
 import entity.discount.DiscountDTO;
 import entity.user.User;

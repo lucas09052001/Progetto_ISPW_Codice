@@ -1,8 +1,8 @@
 package boundery.homepage;
 
 import controller.homepage_controller.HomePageController;
-import controller.homepage_controller.HomePageControllerV1;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -13,7 +13,7 @@ public class HomePagePanelFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(HomePageController controller){
+    public JPanel generate(HomePageController controller) throws FactoryException {
 
         JPanel returnee;
 
@@ -23,8 +23,7 @@ public class HomePagePanelFactory {
             }
 
             case null, default -> {
-                System.out.println("    [HOMEPAGE-PANEL-FACTORY][CE] Reached unreachable code");
-                throw new RuntimeException("[HOMEPAGE-PANEL-FACTORY][CE] Reached unreachable code");
+                throw new FactoryException("[HOMEPAGE-PANEL-FACTORY][CE] Reached unreachable code");
             }
         }
 

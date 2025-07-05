@@ -31,6 +31,7 @@ import controller.dashboard_controller.DashBoardController;
 import controller.dashboard_controller.DashBoardControllerFactory;
 import controller.homepage_controller.HomePageController;
 import controller.homepage_controller.HomePageControllerFactory;
+import exceptions.FactoryException;
 
 
 import javax.swing.*;
@@ -70,76 +71,76 @@ public class AppController implements Observer{
 
         System.out.print("[APP-CONTROLLER] Updating to: ");
 
-        switch (nextBoundary){
-            case AUTHENTICATE -> {
-                System.out.println("Authenticate");
-                AuthenticateController controller = new AuthenticateControllerFactory().generate(this);
-                this.nextBoundary = new AuthenticatePanelFactory().generate(controller);
-                start();
-            }
+        try {
+            switch (nextBoundary){
+                case AUTHENTICATE -> {
+                    System.out.println("Authenticate");
+                    AuthenticateController controller = new AuthenticateControllerFactory().generate(this);
+                    this.nextBoundary = new AuthenticatePanelFactory().generate(controller);
+                    start();
+                }
 
-            case HOMEPAGE -> {
-                System.out.println("HomePage");
-                HomePageController controller = new HomePageControllerFactory().generate(this);
-                this.nextBoundary = new HomePagePanelFactory().generate(controller);
-                go();
-            }
+                case HOMEPAGE -> {
+                    System.out.println("HomePage");
+                    HomePageController controller = new HomePageControllerFactory().generate(this);
+                    this.nextBoundary = new HomePagePanelFactory().generate(controller);
+                    go();
+                }
 
-            case PROFILE -> {
-                System.out.println("Profile");
-                ProfileController controller = new ProfileControllerFactory().generate(this);
-                this.nextBoundary = new ProfileCentralPanelFactory().generate(controller);
-                go();
-            }
+                case PROFILE -> {
+                    System.out.println("Profile");
+                    ProfileController controller = new ProfileControllerFactory().generate(this);
+                    this.nextBoundary = new ProfileCentralPanelFactory().generate(controller);
+                    go();
+                }
 
-            case NOTIFICATION -> {
-                System.out.println("Notification");
-                NotificationController controller = new NotificationControllerFactory().generate(this);
-                this.nextBoundary = new NotificationPanelFactory().generate(controller);
-                go();
-            }
+                case NOTIFICATION -> {
+                    System.out.println("Notification");
+                    NotificationController controller = new NotificationControllerFactory().generate(this);
+                    this.nextBoundary = new NotificationPanelFactory().generate(controller);
+                    go();
+                }
 
-            case LOAN_ITEM -> {
-                System.out.println("Loan Item");
-                LoanItemController controller = new LoanItemControllerFactory().generate(this);
-                this.nextBoundary = new LoanItemPanelFactory().generate(controller);
-                go();
-            }
+                case LOAN_ITEM -> {
+                    System.out.println("Loan Item");
+                    LoanItemController controller = new LoanItemControllerFactory().generate(this);
+                    this.nextBoundary = new LoanItemPanelFactory().generate(controller);
+                    go();
+                }
 
-            case BORROW_ITEM ->  {
-                System.out.println("Borrow item");
-                BorrowItemController controller = new BorrowItemControllerFactory().generate(this);
-                this.nextBoundary = new BorrowItemPanelFactory().generate(controller);
-                go();
-            }
+                case BORROW_ITEM ->  {
+                    System.out.println("Borrow item");
+                    BorrowItemController controller = new BorrowItemControllerFactory().generate(this);
+                    this.nextBoundary = new BorrowItemPanelFactory().generate(controller);
+                    go();
+                }
 
-            case LOAN_REQUESTS -> {
-                System.out.println("Loan request");
-                LoanRequestController controller = new LoanRequestControllerFactory().generate(this);
-                this.nextBoundary = new LoanRequestCentralPanelFactory().generate(controller);
-                go();
-            }
+                case LOAN_REQUESTS -> {
+                    System.out.println("Loan request");
+                    LoanRequestController controller = new LoanRequestControllerFactory().generate(this);
+                    this.nextBoundary = new LoanRequestCentralPanelFactory().generate(controller);
+                    go();
+                }
 
-            case LOAN_HISTORY ->{
-                throw new RuntimeException("Not Yet implmented");
-            }
+                case LOAN_HISTORY, ON_GOING_LOANS ->{
+                    throw new RuntimeException("Not Yet implmented");
+                }
 
-            case ON_GOING_LOANS -> {
-                throw new RuntimeException("Not Yet implmented");
-            }
+                case DISCOUNTS -> {
+                    System.out.println("Discounts");
+                    DiscountController controller = new DiscountControllerFactory().generate(this);
+                    this.nextBoundary = new DiscountCentralPanelFactory().generate(controller);
+                    go();
+                }
 
-            case DISCOUNTS -> {
-                System.out.println("Discounts");
-                DiscountController controller = new DiscountControllerFactory().generate(this);
-                this.nextBoundary = new DiscountCentralPanelFactory().generate(controller);
-                go();
-            }
+                case null, default -> {
+                    System.out.println("[APP-CONTROLLER][CE] Reached unreachable code");
+                    throw new RuntimeException("[APP-CONTROLLER][CE] Reached unreachable code");
+                }
 
-            case null, default -> {
-                System.out.println("[APP-CONTROLLER][CE] Reached unreachable code");
-                throw new RuntimeException("[APP-CONTROLLER][CE] Reached unreachable code");
             }
-
+        } catch (FactoryException e) {
+            errorOccurred("A critical error occurred in system dynamic");
         }
 
     }

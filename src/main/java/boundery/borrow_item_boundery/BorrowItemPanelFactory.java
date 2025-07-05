@@ -1,7 +1,8 @@
 package boundery.borrow_item_boundery;
 
 import controller.borrowitem_controller.BorrowItemController;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ public class BorrowItemPanelFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(BorrowItemController controller){
+    public JPanel generate(BorrowItemController controller) throws FactoryException {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
@@ -21,8 +22,7 @@ public class BorrowItemPanelFactory {
                 returnee = new BorrowItemPanelV1(controller);
             }
             case null, default -> {
-                System.out.println("[BORROWITEM-PANEL-FACTORY] Reached unreachable code");
-                throw new RuntimeException("[BORROWITEM-PANEL-FACTORY] Reached unreachable code");
+                throw new FactoryException("[BORROWITEM-PANEL-FACTORY] Reached unreachable code");
             }
         }
 

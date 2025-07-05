@@ -3,15 +3,10 @@ package controller.borrowitem_controller;
 import boundery.Boundaries;
 import dao.loan_post_dao.LoanPostDAO;
 import dao.loan_request_dao.LoanRequestDAO;
-import dao.loan_request_dao.LoanRequestDAODB;
-import dao.loan_request_dao.LoanRequestDAOFile;
-import dao.loan_request_dao.LoanRequestDAONoPersistance;
-import entity.PersistencyPolicy;
-import entity.SessionInfo;
+import utilities.SessionInfo;
 import entity.loan.loan_post.LoanPost;
 import entity.loan.loan_post.LoanPostDTO;
 import entity.loan.loan_request.LoanRequest;
-import entity.loan.loan_request.LoanRequestDTO;
 import exceptions.DAOException;
 import main.Observer;
 

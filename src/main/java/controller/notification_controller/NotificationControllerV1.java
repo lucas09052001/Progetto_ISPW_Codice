@@ -2,14 +2,9 @@ package controller.notification_controller;
 
 import boundery.Boundaries;
 import dao.notification_dao.NotificationDAO;
-import dao.notification_dao.NotificationDAODB;
-import dao.notification_dao.NotificationDAOFile;
-import dao.notification_dao.NotificationDAONoPersistance;
-import entity.PersistencyPolicy;
-import entity.SessionInfo;
+import utilities.SessionInfo;
 import entity.notification.Notification;
 import entity.notification.NotificationDTO;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 import main.Observer;
 

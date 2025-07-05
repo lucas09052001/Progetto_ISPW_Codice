@@ -1,6 +1,6 @@
 package boundery.authenticate_boundery;
 
-import repository.ColorRepository;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,10 +30,10 @@ public class AuthenticateMainFrame extends JFrame {
         westPannel = new JPanel();
 
         //Forming components
-        northPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
-        southPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
-        eastPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
-        westPannel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        northPannel.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
+        southPannel.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
+        eastPannel.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
+        westPannel.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
 
         //Adding Components to frame
         add(northPannel, BorderLayout.NORTH);

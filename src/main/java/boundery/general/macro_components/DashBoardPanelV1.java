@@ -1,9 +1,9 @@
 package boundery.general.macro_components;
 
 import boundery.Boundaries;
-import repository.ColorRepository;
+import utilities.ColorUtility;
 import controller.dashboard_controller.DashBoardController;
-import repository.PathRepository;
+import utilities.PathUtility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +26,7 @@ public class DashBoardPanelV1 extends JPanel {
         //Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        setBackground(Color.decode(ColorUtility.getBackgroundColor()));
 
         //Instantiating Components
         viewNotificationButton = new JButton("Notification");
@@ -40,7 +40,7 @@ public class DashBoardPanelV1 extends JPanel {
         add(Box.createHorizontalGlue());
 
         //Image label
-        ImageIcon icon = new ImageIcon(PathRepository.getPathToLogoImage());
+        ImageIcon icon = new ImageIcon(PathUtility.getPathToLogoImage());
         logoImage.setIcon(icon);
         add(logoImage);
         add(Box.createHorizontalGlue());

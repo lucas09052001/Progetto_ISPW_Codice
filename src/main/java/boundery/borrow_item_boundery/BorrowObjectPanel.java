@@ -3,7 +3,7 @@ package boundery.borrow_item_boundery;
 import boundery.general.micro_components.InteractivePanel;
 import controller.borrowitem_controller.BorrowItemController;
 import entity.loan.loan_post.LoanPostDTO;
-import repository.PathRepository;
+import utilities.PathUtility;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class BorrowObjectPanel extends InteractivePanel {
     @Override
     protected String getPathToIcon() {
         if(loanPostDTO == null){
-            return PathRepository.getPathToEmptyImage();
+            return PathUtility.getPathToEmptyImage();
         }else{
             return loanPostDTO.getPathToIcon();
         }

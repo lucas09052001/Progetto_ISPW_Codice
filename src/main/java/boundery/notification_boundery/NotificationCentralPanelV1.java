@@ -1,8 +1,7 @@
 package boundery.notification_boundery;
 
 import controller.notification_controller.NotificationController;
-import repository.ColorRepository;
-import controller.notification_controller.NotificationControllerV1;
+import utilities.ColorUtility;
 import entity.notification.NotificationDTO;
 
 import javax.swing.*;
@@ -26,8 +25,8 @@ public class NotificationCentralPanelV1 extends JPanel {
 
         //Basic Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.decode(ColorRepository.getDynamicColor()));
-        setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
+        setBackground(Color.decode(ColorUtility.getDynamicColor()));
+        setBorder(new LineBorder(Color.decode(ColorUtility.getForegroundColor())));
 
         //Instantiate Components
         nextButton = new JButton();
@@ -85,9 +84,9 @@ public class NotificationCentralPanelV1 extends JPanel {
         }
 
         l.setText(text);
-        l.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
-        l.setForeground(Color.decode(ColorRepository.getForegroundColor()));
-        l.setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
+        l.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
+        l.setForeground(Color.decode(ColorUtility.getForegroundColor()));
+        l.setBorder(new LineBorder(Color.decode(ColorUtility.getForegroundColor())));
         l.setFont(new Font("Arial", Font.PLAIN, 20));
         l.setAlignmentX(Component.CENTER_ALIGNMENT);
 

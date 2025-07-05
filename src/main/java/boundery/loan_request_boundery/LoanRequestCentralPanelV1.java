@@ -1,8 +1,7 @@
 package boundery.loan_request_boundery;
 
 import controller.loanrequest_controller.LoanRequestController;
-import repository.ColorRepository;
-import controller.loanrequest_controller.LoanRequestControllerV1;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -22,8 +21,8 @@ public class LoanRequestCentralPanelV1 extends JPanel {
 
         //Static Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.decode(ColorRepository.getDynamicColor()));
-        setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
+        setBackground(Color.decode(ColorUtility.getDynamicColor()));
+        setBorder(new LineBorder(Color.decode(ColorUtility.getForegroundColor())));
 
         //Instantiating components
         topTextLabel = new JLabel();
@@ -33,8 +32,8 @@ public class LoanRequestCentralPanelV1 extends JPanel {
 
         //Static set up
         topTextLabel.setText("Available Loans:");
-        topTextLabel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
-        topTextLabel.setForeground(Color.decode(ColorRepository.getForegroundColor()));
+        topTextLabel.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
+        topTextLabel.setForeground(Color.decode(ColorUtility.getForegroundColor()));
         topTextLabel.setFont(new Font("Arial", Font.PLAIN, 15));
         topTextLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 

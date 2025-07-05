@@ -2,8 +2,7 @@ package boundery.homepage;
 
 import boundery.Boundaries;
 import controller.homepage_controller.HomePageController;
-import repository.ColorRepository;
-import controller.homepage_controller.HomePageControllerV1;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -21,14 +20,14 @@ public class ServicesBandV1 extends JPanel{
 
         //Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.decode(ColorRepository.getDynamicColor()));
-        setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
+        setBackground(Color.decode(ColorUtility.getDynamicColor()));
+        setBorder(new LineBorder(Color.decode(ColorUtility.getForegroundColor())));
 
         //Label
-        servicesText.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        servicesText.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
         servicesText.setAlignmentX(Component.CENTER_ALIGNMENT);
         servicesText.setFont(new Font("Arial", Font.PLAIN, 20));
-        servicesText.setForeground(Color.decode(ColorRepository.getForegroundColor()));
+        servicesText.setForeground(Color.decode(ColorUtility.getForegroundColor()));
         add(servicesText);
         add(Box.createVerticalGlue());
 

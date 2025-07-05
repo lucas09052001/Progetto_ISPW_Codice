@@ -1,7 +1,6 @@
 package controller.homepage_controller;
 
 import boundery.Boundaries;
-import entity.SessionInfo;
 import main.Observer;
 
 public class HomePageControllerV1 implements HomePageController {

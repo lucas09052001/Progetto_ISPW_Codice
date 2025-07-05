@@ -1,13 +1,10 @@
 package dao.loan_effective_dao;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.loan.loan_effective.LoanEffective;
-import entity.loan.loan_request.LoanRequest;
-import exceptions.CriticalException;
 import exceptions.DAOException;
-import repository.PathRepository;
+import utilities.PathUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +20,7 @@ public class LoanEffectiveDAOFile implements LoanEffectiveDAO{
 
     @Override
     public void save(LoanEffective loanEffective) throws DAOException {
-        File file = new File(PathRepository.getPathToLoanEffectiveJson());
+        File file = new File(PathUtility.getPathToLoanEffectiveJson());
         try {
             System.out.println("        [DAO] Buffering Json");
             ArrayList<LoanEffective> buffer = mapper.readValue(file, new TypeReference<ArrayList<LoanEffective>>() {});
@@ -37,7 +34,7 @@ public class LoanEffectiveDAOFile implements LoanEffectiveDAO{
         } catch (IOException e) {
             System.out.println("        [DAO][CE] Something went wrong while reading Json file:");
             System.out.println(e.getMessage());
-            throw new CriticalException();
+            throw new DAOException(e.getMessage());
         }
     }
 }

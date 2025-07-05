@@ -1,7 +1,8 @@
 package boundery.authenticate_boundery;
 
 import controller.authenticate_controller.AuthenticateController;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -12,7 +13,7 @@ public class AuthenticatePanelFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(AuthenticateController controller){
+    public JPanel generate(AuthenticateController controller) throws FactoryException {
 
         JPanel returnee;
 
@@ -22,8 +23,8 @@ public class AuthenticatePanelFactory {
                 returnee = new AuthenticateCentralPannel(controller);
             }
 
-            case null, default -> {   //Questo codice è da togliere dato che SessionInfo avrà necessariaemente Version settato (da constructor)
-                throw new RuntimeException();
+            case null, default -> {
+                throw new FactoryException("[AUTHENTICATE-PANEL-FACTORY] Reached unreachable code");
             }
 
         }

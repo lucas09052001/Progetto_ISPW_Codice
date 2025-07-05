@@ -1,9 +1,9 @@
 package boundery.loan_item;
 
 import controller.loanitem_controller.LoanItemController;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
-import javax.management.remote.JMXPrincipal;
 import javax.swing.*;
 
 public class LoanItemPanelFactory {
@@ -12,7 +12,7 @@ public class LoanItemPanelFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(LoanItemController controller){
+    public JPanel generate(LoanItemController controller) throws FactoryException {
 
         JPanel returnee;
 
@@ -21,8 +21,7 @@ public class LoanItemPanelFactory {
                 returnee = new LoanItemCentralPanelV1(controller);
             }
             case null, default -> {
-                System.out.println("[LOANITEM-PANEL-FACTORY] Reached unreachable code");
-                throw new RuntimeException("[LOANITEM-PANEL-FACTORY] Reached unreachable code");
+                throw new FactoryException("[LOANITEM-PANEL-FACTORY] Reached unreachable code");
             }
         }
 

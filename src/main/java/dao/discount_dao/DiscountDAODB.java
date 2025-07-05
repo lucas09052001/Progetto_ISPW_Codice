@@ -2,8 +2,6 @@ package dao.discount_dao;
 
 import dao.ConnectionFactory;
 import entity.discount.Discount;
-import entity.loan.LoanInterval;
-import entity.loan.loan_post.LoanPost;
 import exceptions.DAOException;
 
 import java.sql.Connection;

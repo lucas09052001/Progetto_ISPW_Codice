@@ -1,6 +1,6 @@
 package boundery.error_boundery;
 
-import repository.ColorRepository;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class ErrorFrameV1 extends JFrame implements ErrorFrame{
 
         // Look and Feel
         setSize(300, 150);
-        setBackground(Color.decode(ColorRepository.getErrorColor()));
+        setBackground(Color.decode(ColorUtility.getErrorColor()));
         setLocationRelativeTo(null);
 
         // Usa layout verticale
@@ -22,7 +22,7 @@ public class ErrorFrameV1 extends JFrame implements ErrorFrame{
 
         // Label per il messaggio di errore
         errorLabel = new JLabel(errorMessage);
-        errorLabel.setBackground(Color.decode(ColorRepository.getErrorColor()));
+        errorLabel.setBackground(Color.decode(ColorUtility.getErrorColor()));
 
         // Bottone "OK"
         okButton = new JButton("Ok");

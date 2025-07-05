@@ -1,7 +1,8 @@
 package boundery.general.macro_components;
 
 import controller.dashboard_controller.DashBoardController;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ public class DashBoardPanelFactory {
         sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(DashBoardController controller){
+    public JPanel generate(DashBoardController controller) throws FactoryException {
 
         JPanel returnee;
 
@@ -23,8 +24,7 @@ public class DashBoardPanelFactory {
             }
 
             case null, default -> {
-                System.out.println("    [DASHBOARD-FACTORY][CE] Reached unreachable code");
-                throw new RuntimeException("[DASHBOARD-FACTORY][CE] Reached unreachable code");
+                throw new FactoryException("[DASHBOARD-FACTORY][CE] Reached unreachable code");
             }
         }
 

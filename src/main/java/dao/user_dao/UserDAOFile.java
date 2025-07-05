@@ -1,11 +1,10 @@
 package dao.user_dao;
 
 import entity.user.User;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import repository.PathRepository;
+import utilities.PathUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,13 +19,13 @@ public class UserDAOFile implements UserDAO {
 
     public UserDAOFile(){
         this.mapper = new ObjectMapper();
-        this.file = new File(PathRepository.getPathToUserJson());
+        this.file = new File(PathUtility.getPathToUserJson());
     }
 
     public UserDAOFile(String username) {
         this.username = username;
         this.mapper = new ObjectMapper();
-        this.file = new File(PathRepository.getPathToUserJson());
+        this.file = new File(PathUtility.getPathToUserJson());
     }
 
     @Override
@@ -52,7 +51,7 @@ public class UserDAOFile implements UserDAO {
 
         } catch (IOException e) {
             System.out.println("           [DAO][CE] Critical error: " + e.getMessage());
-            throw new CriticalException("A critical error occurred");
+            throw new DAOException(e.getMessage());
         }
     }
 

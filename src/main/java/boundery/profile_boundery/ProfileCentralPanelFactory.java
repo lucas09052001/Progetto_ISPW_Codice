@@ -1,7 +1,8 @@
 package boundery.profile_boundery;
 
 import controller.profile_controller.ProfileController;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -13,7 +14,7 @@ public class ProfileCentralPanelFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(ProfileController controller){
+    public JPanel generate(ProfileController controller) throws FactoryException {
 
         JPanel returnee;
 
@@ -22,8 +23,7 @@ public class ProfileCentralPanelFactory {
                 returnee = new ProfileCentralPanelV1(controller);
             }
             case null, default -> {
-                System.out.println("    [PROFILE-PANEL-FACTORY] Reached unreachable code");
-                throw new RuntimeException("[PROFILE-PANEL-FACTORY] Reached unreachable code");
+                throw new FactoryException("[PROFILE-PANEL-FACTORY] Reached unreachable code");
             }
         }
 

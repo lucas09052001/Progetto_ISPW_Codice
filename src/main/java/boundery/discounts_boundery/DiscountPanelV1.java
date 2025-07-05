@@ -2,11 +2,9 @@ package boundery.discounts_boundery;
 
 import boundery.general.micro_components.InteractivePanel;
 import controller.discount_controller.DiscountController;
-import controller.discount_controller.DiscountControllerV1;
 import entity.discount.DiscountDTO;
-import repository.PathRepository;
+import utilities.PathUtility;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class DiscountPanelV1 extends InteractivePanel {
@@ -51,7 +49,7 @@ public class DiscountPanelV1 extends InteractivePanel {
     @Override
     protected String getPathToIcon() {
         if(discountDTO == null){
-            return PathRepository.getPathToEmptyImage();
+            return PathUtility.getPathToEmptyImage();
         }else{
             return discountDTO.getPathToImage();
         }

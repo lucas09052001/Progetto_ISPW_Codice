@@ -1,12 +1,9 @@
 package boundery.profile_boundery;
 
 import controller.profile_controller.ProfileController;
-import entity.user.User;
-import repository.ColorRepository;
-import controller.profile_controller.ProfileControllerV1;
+import utilities.ColorUtility;
 import entity.user.UserDTO;
-import exceptions.CriticalException;
-import repository.PathRepository;
+import utilities.PathUtility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +28,7 @@ public class ProfileTextPanel extends JPanel {
 
         //Basic Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.decode(ColorRepository.getDynamicColor()));
+        setBackground(Color.decode(ColorUtility.getDynamicColor()));
 
         //Instantiating components
         usernameLabel = new JLabel();
@@ -40,27 +37,27 @@ public class ProfileTextPanel extends JPanel {
 
         //Username label
         usernameLabel.setText("Username: " + dto.getUsername());
-        usernameLabel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
-        usernameLabel.setForeground(Color.decode(ColorRepository.getForegroundColor()));
+        usernameLabel.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
+        usernameLabel.setForeground(Color.decode(ColorUtility.getForegroundColor()));
         usernameLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
         //Rating label
         int rating = (int) dto.getRating();
-        String pathToRatingImage = PathRepository.getPathToEmptyImage();
+        String pathToRatingImage = PathUtility.getPathToEmptyImage();
         switch (rating){
-            case 0 -> pathToRatingImage = PathRepository.getPathToZeroStar();
-            case 1 -> pathToRatingImage = PathRepository.getPathToOneStar();
-            case 2 -> pathToRatingImage = PathRepository.getPathToTwoStar();
-            case 3 -> pathToRatingImage = PathRepository.getPathToThreeStar();
+            case 0 -> pathToRatingImage = PathUtility.getPathToZeroStar();
+            case 1 -> pathToRatingImage = PathUtility.getPathToOneStar();
+            case 2 -> pathToRatingImage = PathUtility.getPathToTwoStar();
+            case 3 -> pathToRatingImage = PathUtility.getPathToThreeStar();
         }
         ratingLabel.setIcon(new ImageIcon(pathToRatingImage));
-        ratingLabel.setBackground(Color.decode(ColorRepository.getDynamicColor()));
+        ratingLabel.setBackground(Color.decode(ColorUtility.getDynamicColor()));
 
         //Points label
         String points = Integer.toString(dto.getPoints());
         pointsLabel.setText("Owned points " + points);
-        pointsLabel.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
-        pointsLabel.setForeground(Color.decode(ColorRepository.getForegroundColor()));
+        pointsLabel.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
+        pointsLabel.setForeground(Color.decode(ColorUtility.getForegroundColor()));
         pointsLabel.setFont(new Font("Arial", Font.PLAIN, 25));
 
         //Components

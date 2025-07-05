@@ -1,7 +1,5 @@
 package dao;
 
-import exceptions.CriticalException;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,9 +11,8 @@ import java.util.Properties;
 public class ConnectionFactory {
     private static Connection connection;
 
-    private ConnectionFactory() {}
+    private ConnectionFactory()  {}
 
-    //Viene eseguito ogni volta che è chiamato un metodo statico o è acceduta una variabile statica.
     static {
         try (InputStream input = new FileInputStream("resources/db.properties")) {
             Properties properties = new Properties();
@@ -27,9 +24,9 @@ public class ConnectionFactory {
 
             connection = DriverManager.getConnection(connectionUrl, user, pass);
         } catch (IOException | SQLException e) {
-            //Qui ci sta bene tirare una eccezione personalizzata così che questa possa venir propagata
-            //fino al controller e lì venir gestita.
-            e.printStackTrace();
+            //These excepetions get triggered only if connection to db gets rejected or resources file is
+            //unreachable which is a failure externally dictated and as such it is not handled directly
+            throw new RuntimeException();
         }
     }
 
@@ -51,9 +48,9 @@ public class ConnectionFactory {
 
             return DriverManager.getConnection(connectionUrl, user, pass);
         } catch (IOException | SQLException e) {
-
-            System.out.println("[SYSTEM] Errore di sistema: " + e.getMessage());
-            throw new CriticalException("Errore critico di sistema. L'applicazione verrà immediatamente terminata");
+            //These excepetions get triggered only if connection to db gets rejected or resources file is
+            //unreachable which is a failure externally dictated and as such it is not handled directly
+            throw new RuntimeException();
         }
     }
 }

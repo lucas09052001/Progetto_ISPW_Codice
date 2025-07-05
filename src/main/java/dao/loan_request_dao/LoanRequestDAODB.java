@@ -2,10 +2,8 @@ package dao.loan_request_dao;
 
 import dao.ConnectionFactory;
 import dao.loan_post_dao.LoanPostDAO;
-import dao.loan_post_dao.LoanPostDAODB;
 import entity.loan.loan_post.LoanPost;
 import entity.loan.loan_request.LoanRequest;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 
 import java.sql.*;
@@ -25,7 +23,7 @@ public class LoanRequestDAODB implements LoanRequestDAO{
     }
 
     @Override
-    public ArrayList<LoanRequest> fetchAll() {  //Except the requests made by the current user
+    public ArrayList<LoanRequest> fetchAll() throws  DAOException{  //Except the requests made by the current user
 
         ArrayList<LoanRequest> returnee = new ArrayList<>();
 
@@ -53,7 +51,7 @@ public class LoanRequestDAODB implements LoanRequestDAO{
 
         } catch (DAOException | SQLException e) {
             System.out.println("        [DAO][CE] SQL ERROR: " + e.getMessage());
-            throw new CriticalException("SQL ERROR: " + e.getMessage());
+            throw new DAOException(e.getMessage());
         }
     }
 

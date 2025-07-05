@@ -1,6 +1,7 @@
 package boundery.error_boundery;
 
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -11,7 +12,7 @@ public class ErrorFrameFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JFrame generate(String errorMessage){
+    public JFrame generate(String errorMessage) throws FactoryException {
         JFrame returnee;
 
         switch (sessionInfo.getVersion()){
@@ -19,7 +20,7 @@ public class ErrorFrameFactory {
                 returnee = new ErrorFrameV1(errorMessage);
             }
             case null, default -> {
-                throw new RuntimeException("ErrorFrameFactory reached unreachable code");
+                throw new FactoryException("[ERROR-FACTORY] Reached unreachable code");
             }
         }
         return returnee;

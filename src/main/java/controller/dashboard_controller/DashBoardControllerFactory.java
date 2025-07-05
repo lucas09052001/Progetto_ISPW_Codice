@@ -1,9 +1,10 @@
 package controller.dashboard_controller;
 
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 import main.Observer;
 
-import javax.swing.*;
+import java.awt.event.FocusAdapter;
 
 public class DashBoardControllerFactory {
 
@@ -13,19 +14,18 @@ public class DashBoardControllerFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public DashBoardController generate(Observer observer){
+    public DashBoardController generate(Observer observer) throws FactoryException {
 
         DashBoardController returnee;
 
-        System.out.println("    [DASHBOARD-CONTROLLER-FACTORY] Generating");
+        System.out.println("[DASHBOARD-CONTROLLER-FACTORY] Generating");
         switch (sessionInfo.getVersion()){
             case V1 -> {
                 returnee = new DashBoardControllerV1(observer);
             }
 
             case null, default -> {
-                System.out.println("    [DASHBOARD-CONTROLLER-FACTORY] Reached unreachable code");
-                throw new RuntimeException();
+                throw new FactoryException("[DASHBOARD-CONTROLLER-FACTORY] Reached unreachable code");
             }
         }
 

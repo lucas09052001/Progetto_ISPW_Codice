@@ -1,13 +1,13 @@
-package repository;
+package utilities;
 
-public class ColorRepository {
+public class ColorUtility {
     private static final String BACKGROUND_COLOR = "#3DDC97";
     private static final String DYNAMIC_COLOR = "#46237A";
     private static final String FOREGROUND_COLOR = "#FCFCFC";
     private static final String ERROR_COLOR = "#f9e109";
 
 
-    private ColorRepository() {
+    private ColorUtility() {
         throw new IllegalStateException("Utility class");
     }
 

@@ -1,6 +1,7 @@
 package dao.discount_dao;
 
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 public class DiscountDAOFactory {
 
@@ -10,7 +11,7 @@ public class DiscountDAOFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public DiscountDAO generate(){
+    public DiscountDAO generate() throws FactoryException {
 
         DiscountDAO returnee;
 
@@ -25,7 +26,7 @@ public class DiscountDAOFactory {
                 returnee = new DiscountDAONoPersistance(sessionInfo.getUsername());
             }
             case null, default -> {
-                throw new RuntimeException("[DISCOUNT-DAO-FACTORY] Reached unreachable code");
+                throw new FactoryException("[DISCOUNT-DAO-FACTORY] Reached unreachable code");
             }
         }
 

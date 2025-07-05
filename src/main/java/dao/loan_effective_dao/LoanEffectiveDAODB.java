@@ -3,7 +3,6 @@ package dao.loan_effective_dao;
 
 import dao.ConnectionFactory;
 import entity.loan.loan_effective.LoanEffective;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 
 import java.sql.Connection;
@@ -36,7 +35,7 @@ public class LoanEffectiveDAODB implements LoanEffectiveDAO {
 
         } catch (SQLException e) {
             System.out.println("        [DAO][CE] SQL ERROR: " + e.getMessage());
-            throw new CriticalException("SQL ERROR: " + e.getMessage());
+            throw new DAOException("SQL ERROR: " + e.getMessage());
         }
     }
 }

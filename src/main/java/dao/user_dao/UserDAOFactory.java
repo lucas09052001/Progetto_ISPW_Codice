@@ -1,7 +1,7 @@
 package dao.user_dao;
 
-import entity.SessionInfo;
-import exceptions.NoMatchException;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 public class UserDAOFactory {
     SessionInfo sessionInfo;
@@ -10,7 +10,7 @@ public class UserDAOFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public UserDAO generate() throws NoMatchException{
+    public UserDAO generate() throws FactoryException {
 
         UserDAO returnee;
 
@@ -22,7 +22,7 @@ public class UserDAOFactory {
             }
             case NO_PERSISTANCE -> { returnee = new UserDAONoPersistance();
             }
-            case null, default -> {  throw new NoMatchException("In UserDaoFactory reached unreachable code");
+            case null, default -> {  throw new FactoryException("In UserDaoFactory reached unreachable code");
             }
         }
 

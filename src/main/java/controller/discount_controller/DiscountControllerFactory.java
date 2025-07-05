@@ -2,10 +2,10 @@ package controller.discount_controller;
 
 import dao.discount_dao.DiscountDAO;
 import dao.discount_dao.DiscountDAOFactory;
-import dao.discount_dao.DiscountDAOFile;
 import dao.user_dao.UserDAO;
 import dao.user_dao.UserDAOFactory;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 import main.Observer;
 
 public class DiscountControllerFactory {
@@ -19,7 +19,7 @@ public class DiscountControllerFactory {
         this.discountDAOFactory = new DiscountDAOFactory();
     }
 
-    public DiscountController generate(Observer observer){
+    public DiscountController generate(Observer observer) throws FactoryException {
 
         DiscountController returnee;
         UserDAO userDAO = userDAOFactory.generate();
@@ -30,7 +30,7 @@ public class DiscountControllerFactory {
                 returnee = new DiscountControllerV1(observer, discountDAO, userDAO, sessionInfo.getUsername());
             }
             case null, default -> {
-                throw new RuntimeException("[DISCOUNT-CONTROLLER-FACTORY] Reached unreachable code");
+                throw new FactoryException("[DISCOUNT-CONTROLLER-FACTORY] Reached unreachable code");
             }
         }
 

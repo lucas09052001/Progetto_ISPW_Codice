@@ -2,10 +2,7 @@ package controller.loanitem_controller;
 
 import boundery.Boundaries;
 import dao.loan_post_dao.LoanPostDAO;
-import dao.loan_post_dao.LoanPostDAODB;
-import dao.loan_post_dao.LoanPostDAOFile;
-import dao.loan_post_dao.LoanPostDAONoPersistance;
-import entity.SessionInfo;
+import utilities.SessionInfo;
 import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
 import exceptions.DAOException;

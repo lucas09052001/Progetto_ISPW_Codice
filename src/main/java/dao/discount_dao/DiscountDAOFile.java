@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.discount.Discount;
 import exceptions.DAOException;
-import repository.PathRepository;
+import utilities.PathUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class DiscountDAOFile implements DiscountDAO{
 
     public DiscountDAOFile(String username) {
         this.username = username;
-        file = new File(PathRepository.getPathToDiscountJson());
+        file = new File(PathUtility.getPathToDiscountJson());
         mapper = new ObjectMapper();
     }
 

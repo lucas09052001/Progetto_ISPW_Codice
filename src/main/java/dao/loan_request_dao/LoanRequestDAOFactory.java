@@ -2,7 +2,8 @@ package dao.loan_request_dao;
 
 import dao.loan_post_dao.LoanPostDAO;
 import dao.loan_post_dao.LoanPostDAOFactory;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 public class LoanRequestDAOFactory {
 
@@ -14,7 +15,7 @@ public class LoanRequestDAOFactory {
         loanPostDAOFactory = new LoanPostDAOFactory();
     }
 
-    public LoanRequestDAO generate(){
+    public LoanRequestDAO generate() throws FactoryException {
 
         LoanRequestDAO returnee;
         String username = sessionInfo.getUsername();
@@ -31,8 +32,7 @@ public class LoanRequestDAOFactory {
                 returnee = new LoanRequestDAONoPersistance(username);
             }
             case null, default -> {
-                System.out.println("[LOANREQUEST-DAO-FACTORY] Reached unreachable code");
-                throw new RuntimeException("[LOANREQUEST-DAO-FACTORY] Reached unreachable code");
+                throw new FactoryException("[LOANREQUEST-DAO-FACTORY] Reached unreachable code");
             }
         }
 

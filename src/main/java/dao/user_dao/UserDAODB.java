@@ -2,7 +2,6 @@ package dao.user_dao;
 
 import dao.ConnectionFactory;
 import entity.user.User;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 
 import java.sql.Connection;
@@ -78,7 +77,7 @@ public class UserDAODB implements UserDAO {
 
         } catch (SQLException e) {
             System.out.println("[EE] SQL error " + e.getMessage()); //CONSOLE DEBUG
-            throw new CriticalException(e.getMessage());
+            throw new DAOException(e.getMessage());
         }
     }
 }

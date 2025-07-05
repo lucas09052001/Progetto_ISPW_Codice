@@ -1,8 +1,7 @@
 package boundery.profile_boundery;
 
 import controller.profile_controller.ProfileController;
-import controller.profile_controller.ProfileControllerFactory;
-import repository.ColorRepository;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -20,8 +19,8 @@ public class ProfileCentralPanelV1 extends JPanel {
 
         //Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        setBackground(Color.decode(ColorRepository.getDynamicColor()));
-        setBorder(new LineBorder(Color.decode(ColorRepository.getForegroundColor())));
+        setBackground(Color.decode(ColorUtility.getDynamicColor()));
+        setBorder(new LineBorder(Color.decode(ColorUtility.getForegroundColor())));
 
         //Instantiating components
         profileImagePanel = new ProfileImagePanel();

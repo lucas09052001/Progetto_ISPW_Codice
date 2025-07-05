@@ -11,15 +11,9 @@ import java.util.Objects;
 
 public class UserDAONoPersistance implements UserDAO {
 
-    String username;
     UserRepository repository;
 
     public UserDAONoPersistance(){
-        repository = UserRepository.getUserRepository();
-    }
-
-    public UserDAONoPersistance(String username) {
-        this.username = username;
         repository = UserRepository.getUserRepository();
     }
 

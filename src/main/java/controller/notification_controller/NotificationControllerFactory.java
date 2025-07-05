@@ -2,7 +2,8 @@ package controller.notification_controller;
 
 import dao.notification_dao.NotificationDAO;
 import dao.notification_dao.NotificationDAOFactory;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 import main.Observer;
 
 public class NotificationControllerFactory {
@@ -14,7 +15,7 @@ public class NotificationControllerFactory {
         daoFactory = new NotificationDAOFactory();
     }
 
-    public NotificationController generate(Observer observer){
+    public NotificationController generate(Observer observer) throws FactoryException {
 
         NotificationController returnee;
         NotificationDAO dao = daoFactory.generate();
@@ -24,8 +25,7 @@ public class NotificationControllerFactory {
                 returnee = new NotificationControllerV1(observer, dao);
             }
             case null, default -> {
-                System.out.println("    [NOTIFICATION-CONTROLLER-FACTORY] Reached unreachable code");
-                throw new RuntimeException("[NOTIFICATION-CONTROLLER-FACTORY] Reached unreachable code");
+                throw new FactoryException("[NOTIFICATION-CONTROLLER-FACTORY] Reached unreachable code");
             }
         }
 

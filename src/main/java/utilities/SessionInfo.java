@@ -1,4 +1,4 @@
-package entity;
+package utilities;
 
 import boundery.Boundaries;
 

@@ -1,6 +1,6 @@
 package boundery.profile_boundery;
 
-import repository.ColorRepository;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +13,7 @@ public class ProfileImagePanel extends JPanel {
 
         //Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.decode(ColorRepository.getDynamicColor()));
+        setBackground(Color.decode(ColorUtility.getDynamicColor()));
 
         //Components
         profileImage.setIcon(new ImageIcon

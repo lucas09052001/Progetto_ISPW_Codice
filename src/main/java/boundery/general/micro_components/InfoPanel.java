@@ -1,6 +1,6 @@
 package boundery.general.micro_components;
 
-import repository.ColorRepository;
+import utilities.ColorUtility;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class InfoPanel extends JPanel {
 
         //Static Look and Feel
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.decode(ColorRepository.getBackgroundColor()));
+        setBackground(Color.decode(ColorUtility.getBackgroundColor()));
 
         //Instantiating attributes
         labelList = new ArrayList<>();
@@ -30,8 +30,8 @@ public class InfoPanel extends JPanel {
             JLabel curr = new JLabel();
 
             //Static look and feel of labels
-            curr.setBackground(Color.decode(ColorRepository.getBackgroundColor()));
-            curr.setForeground(Color.decode(ColorRepository.getForegroundColor()));
+            curr.setBackground(Color.decode(ColorUtility.getBackgroundColor()));
+            curr.setForeground(Color.decode(ColorUtility.getForegroundColor()));
             curr.setFont(new Font("Arial", Font.PLAIN, 16));
             labelList.add(curr);
         }

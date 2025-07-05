@@ -5,12 +5,12 @@ import entity.notification.Notification;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomNotificationRepository {
+public class NotificationRepository {
 
-    private static CustomNotificationRepository instance;
+    private static NotificationRepository instance;
     private List<Notification> listaNotifiche;
 
-    private CustomNotificationRepository() {
+    private NotificationRepository() {
         listaNotifiche = new ArrayList<>();
 
         // Notifiche di esempio
@@ -20,9 +20,9 @@ public class CustomNotificationRepository {
         listaNotifiche.add(new Notification(2, "bob", "alice", "CAZZO", false));
     }
 
-    public static CustomNotificationRepository getNotificationRepository() {
+    public static NotificationRepository getNotificationRepository() {
         if (instance == null) {
-            instance = new CustomNotificationRepository();
+            instance = new NotificationRepository();
         }
         return instance;
     }

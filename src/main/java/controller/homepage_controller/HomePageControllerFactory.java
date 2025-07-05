@@ -1,6 +1,7 @@
 package controller.homepage_controller;
 
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 import main.Observer;
 
 public class HomePageControllerFactory {
@@ -10,7 +11,7 @@ public class HomePageControllerFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public HomePageController generate(Observer observer){
+    public HomePageController generate(Observer observer) throws FactoryException {
 
         HomePageController returnee;
 
@@ -19,8 +20,7 @@ public class HomePageControllerFactory {
                 returnee = new HomePageControllerV1(observer);
             }
             case null, default -> {
-                System.out.println("        [CONTROLLER][CE] Reached unreachable code");
-                throw new RuntimeException("[CONTROLLER][CE] Reached unreachable code");
+                throw new FactoryException("[CONTROLLER][CE] Reached unreachable code");
             }
         }
 

@@ -1,8 +1,8 @@
 package boundery.loan_request_boundery;
 
-import boundery.loan_item.LoanItemCentralPanelV1;
 import controller.loanrequest_controller.LoanRequestController;
-import entity.SessionInfo;
+import exceptions.FactoryException;
+import utilities.SessionInfo;
 
 import javax.swing.*;
 
@@ -14,7 +14,7 @@ public class LoanRequestCentralPanelFactory {
         this.sessionInfo = SessionInfo.getSessionInfo();
     }
 
-    public JPanel generate(LoanRequestController controller){
+    public JPanel generate(LoanRequestController controller) throws FactoryException {
 
         JPanel returnee;
 
@@ -23,7 +23,7 @@ public class LoanRequestCentralPanelFactory {
                 returnee = new LoanRequestCentralPanelV1(controller);
             }
             case null, default -> {
-                throw new RuntimeException("[LOANREQUEST-PANEL-FACTORY]  Reached unreachable code");
+                throw new FactoryException("[LOANREQUEST-PANEL-FACTORY]  Reached unreachable code");
             }
         }
         return returnee;

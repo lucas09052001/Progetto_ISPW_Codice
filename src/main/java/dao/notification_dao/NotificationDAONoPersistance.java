@@ -2,7 +2,7 @@ package dao.notification_dao;
 
 import entity.notification.Notification;
 import exceptions.DAOException;
-import repository.CustomNotificationRepository;
+import repository.NotificationRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public class NotificationDAONoPersistance implements NotificationDAO{
 
 
-    CustomNotificationRepository repository = CustomNotificationRepository.getNotificationRepository();
+    NotificationRepository repository = NotificationRepository.getNotificationRepository();
     ArrayList<Notification> notificationsList = new ArrayList<>();
 
     public NotificationDAONoPersistance() {

@@ -2,19 +2,16 @@ package dao.loan_post_dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.source.tree.AnnotatedTypeTree;
 import entity.loan.loan_post.LoanPost;
-import exceptions.CriticalException;
 import exceptions.DAOException;
-import repository.PathRepository;
+import utilities.PathUtility;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class LoanPostDAOFile implements LoanPostDAO{
-    String pathToJson = PathRepository.getPathToLoanPostJson();
+    String pathToJson = PathUtility.getPathToLoanPostJson();
     ObjectMapper mapper = new ObjectMapper();
     File file;
 
@@ -23,7 +20,7 @@ public class LoanPostDAOFile implements LoanPostDAO{
     }
 
     @Override
-    public void submit(LoanPost loanPost) throws DAOException, CriticalException {
+    public void submit(LoanPost loanPost) throws DAOException {
 
         System.out.println("        [DAO] Initiating submit operation");
         try{
@@ -49,16 +46,16 @@ public class LoanPostDAOFile implements LoanPostDAO{
     }
 
     @Override
-    public ArrayList<LoanPost> fetchAll() throws DAOException, CriticalException {
+    public ArrayList<LoanPost> fetchAll() throws DAOException {
         try {
-            return mapper.readValue(new File(PathRepository.getPathToLoanPostJson()), new TypeReference<ArrayList<LoanPost>>() {});
+            return mapper.readValue(new File(PathUtility.getPathToLoanPostJson()), new TypeReference<ArrayList<LoanPost>>() {});
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException, CriticalException {
+    public LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException {
 
         try {
             System.out.println("        [DAO] Buffering Json");
@@ -71,7 +68,7 @@ public class LoanPostDAOFile implements LoanPostDAO{
             }
             return null;
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new DAOException(e.getMessage());
         }
     }
 
@@ -79,12 +76,12 @@ public class LoanPostDAOFile implements LoanPostDAO{
     public void deleteByID(LoanPost loanPost) throws DAOException {
 
         try {
-            File filecurr = new File(PathRepository.getPathToLoanPostJson());
+            File filecurr = new File(PathUtility.getPathToLoanPostJson());
 
             System.out.println("        [DAO] Starting deleteById");
 
             System.out.println("        [DAO] Buffering Json");
-            ArrayList<LoanPost> buffer = mapper.readValue(filecurr, new TypeReference<ArrayList<LoanPost>>() {});
+            ArrayList<LoanPost> buffer = mapper.readValue(filecurr, new TypeReference<>() {});
 
             System.out.println("        [DAO] Deleting entity");
             for(LoanPost l : buffer){

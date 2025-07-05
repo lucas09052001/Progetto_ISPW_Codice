@@ -3,7 +3,6 @@ package dao.notification_dao;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.notification.Notification;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 
 import java.io.File;
@@ -44,7 +43,7 @@ public class NotificationDAOFile implements NotificationDAO {
             System.out.println("[EE] Qualcosa è andato storto nel fetch dei dati dal Json");
             System.out.println(e.getMessage());
 
-            throw new CriticalException("Errore di IO nel file Json");
+            throw new DAOException(e.getMessage());
         }
     }
 }

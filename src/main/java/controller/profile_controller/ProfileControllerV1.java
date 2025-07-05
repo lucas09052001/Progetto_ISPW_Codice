@@ -2,10 +2,9 @@ package controller.profile_controller;
 
 import boundery.Boundaries;
 import dao.user_dao.*;
-import entity.SessionInfo;
+import utilities.SessionInfo;
 import entity.user.User;
 import entity.user.UserDTO;
-import exceptions.CriticalException;
 import exceptions.DAOException;
 import main.Observer;
 

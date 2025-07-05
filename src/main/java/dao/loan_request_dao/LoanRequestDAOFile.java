@@ -2,11 +2,9 @@ package dao.loan_request_dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dao.loan_post_dao.LoanPostDAO;
 import entity.loan.loan_request.LoanRequest;
-import exceptions.CriticalException;
 import exceptions.DAOException;
-import repository.PathRepository;
+import utilities.PathUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +27,7 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
 
         System.out.println("        [DAO] Initiating submitRequest operation");
         try{
-            file = new File(PathRepository.getPathToLoanRequestJson());
+            file = new File(PathUtility.getPathToLoanRequestJson());
 
             System.out.println("        [DAO] Buffering current loan posts");
             ArrayList<LoanRequest> currentRequests;
@@ -54,13 +52,13 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
 
 
     @Override
-    public ArrayList<LoanRequest> fetchAll() {
+    public ArrayList<LoanRequest> fetchAll() throws DAOException{
 
         ArrayList<LoanRequest> returnee = new ArrayList<>();
 
         try {
             System.out.println("        [DAO] Buffering Json");
-            ArrayList<LoanRequest> buffer = mapper.readValue(new File(PathRepository.getPathToLoanRequestJson()), new TypeReference<ArrayList<LoanRequest>>() {});
+            ArrayList<LoanRequest> buffer = mapper.readValue(new File(PathUtility.getPathToLoanRequestJson()), new TypeReference<ArrayList<LoanRequest>>() {});
             System.out.println("        [DAO] Extracting entities of interest");
             for(LoanRequest l : buffer){
                 if(!l.getBorrowingUsername().equals(username)){
@@ -71,15 +69,14 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
             return returnee;
 
         } catch (IOException e) {
-            System.out.println("        [DAO][CE] Something went wrong while reading Json file:");
-            System.out.println(e.getMessage());
-            throw new CriticalException();
+            System.out.println("        [DAO][CE] Something went wrong while reading Json file");
+            throw new DAOException(e.getMessage());
         }
     }
 
     @Override
     public void deleteAllRelative(LoanRequest loanRequest) throws DAOException {
-        File file = new File(PathRepository.getPathToLoanRequestJson());
+        File file = new File(PathUtility.getPathToLoanRequestJson());
         try {
             System.out.println("        [DAO] Buffering Json");
             ArrayList<LoanRequest> buffer = mapper.readValue(file, new TypeReference<ArrayList<LoanRequest>>() {});
@@ -110,9 +107,8 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, buffer);
 
         } catch (IOException e) {
-            System.out.println("        [DAO][CE] Something went wrong while reading Json file:");
-            System.out.println(e.getMessage());
-            throw new CriticalException();
+            System.out.println("        [DAO][CE] Something went wrong while reading Json file");
+            throw new DAOException();
         }
 
     }
