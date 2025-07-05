@@ -77,7 +77,7 @@ public class NotificationCentralPanelV1 extends JPanel {
         System.out.println("[BOUNDERY] Done.");
 
         String text;
-        if(!(notificationDTO == null)){
+        if(notificationDTO != null){
             text = "From: " + notificationDTO.getSenderUsername() + ". Message: " + notificationDTO.getMessage();
         }else{
             text = "No new notification";

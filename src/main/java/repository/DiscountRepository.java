@@ -3,7 +3,6 @@ package repository;
 import entity.discount.Discount;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DiscountRepository {
 

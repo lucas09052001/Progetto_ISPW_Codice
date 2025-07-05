@@ -13,10 +13,10 @@ import java.util.ArrayList;
 
 public class LoanPostDAODB implements LoanPostDAO{
 
-    final static String submitQuery = "INSERT INTO LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage) VALUES (?,?,?,?,?)";
-    final static String fetchAllQuery = "SELECT lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage FROM LoanPost";
-    final static String fetchByIdQuery = "SELECT * FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
-    final static String deleteByIdQuery = "DELETE FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
+    static final String SUBMIT_QUERY = "INSERT INTO LoanPost(lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage) VALUES (?,?,?,?,?)";
+    static final String FETCH_ALL_QUERY = "SELECT lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage FROM LoanPost";
+    static final String FETCH_BY_ID_QUERY = "SELECT * FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
+    static final String DELETE_BY_ID_QUERY = "DELETE FROM LoanPost WHERE lendingUsername = ? AND loanObjectName = ?";
 
     public LoanPostDAODB(){
         //No set up needed
@@ -26,7 +26,7 @@ public class LoanPostDAODB implements LoanPostDAO{
     public void submit(LoanPost loanPost) throws DAOException {
 
         try(Connection connection = ConnectionFactory.upgrade();
-            PreparedStatement stmt = connection.prepareStatement(submitQuery)) {
+            PreparedStatement stmt = connection.prepareStatement(SUBMIT_QUERY)) {
 
             System.out.println("        [DAO] Connection to DB established");
 
@@ -50,7 +50,7 @@ public class LoanPostDAODB implements LoanPostDAO{
     public LoanPost fetchById(String lendingUsername, String loanObjectName) throws DAOException {
 
         try(Connection connection = ConnectionFactory.upgrade();
-            PreparedStatement stmt = connection.prepareStatement(fetchByIdQuery)) {
+            PreparedStatement stmt = connection.prepareStatement(FETCH_BY_ID_QUERY)) {
 
             System.out.println("        [DAO] Connection to DB established");
 
@@ -79,7 +79,7 @@ public class LoanPostDAODB implements LoanPostDAO{
         ArrayList<LoanPost> returnee = new ArrayList<>();
 
         try(Connection connection = ConnectionFactory.upgrade();
-            PreparedStatement stmt = connection.prepareStatement(fetchAllQuery)) {
+            PreparedStatement stmt = connection.prepareStatement(FETCH_ALL_QUERY)) {
 
             System.out.println("        [DAO] Connection to DB established");
 
@@ -112,7 +112,7 @@ public class LoanPostDAODB implements LoanPostDAO{
          */
 
         try(Connection connection = ConnectionFactory.upgrade();
-            PreparedStatement stmt = connection.prepareStatement(deleteByIdQuery)) {
+            PreparedStatement stmt = connection.prepareStatement(DELETE_BY_ID_QUERY)) {
 
             System.out.println("        [DAO] Connection to DB established");
 

@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class DiscountDAODB implements DiscountDAO{
 
 
-    final static String fetchAllQuery = "SELECT * FROM Discount WHERE ownerUsername IS NULL";   //Fetching only available to redeem discounts
-    final static String redeemQuery = "UPDATE Discount SET ownerUsername = ? WHERE name = ?";
+    static final String FETCH_ALL_QUERY = "SELECT * FROM Discount WHERE ownerUsername IS NULL";   //Fetching only available to redeem discounts
+    static final String REDEEM_QUERY = "UPDATE Discount SET ownerUsername = ? WHERE name = ?";
 
     public DiscountDAODB(){
         //No set up needed
@@ -26,7 +26,7 @@ public class DiscountDAODB implements DiscountDAO{
         ArrayList<Discount> returnee = new ArrayList<>();
 
         try(Connection connection = ConnectionFactory.upgrade();
-            PreparedStatement stmt = connection.prepareStatement(fetchAllQuery)) {
+            PreparedStatement stmt = connection.prepareStatement(FETCH_ALL_QUERY)) {
 
             System.out.println("        [DAO] Connection to DB established");
 
@@ -56,7 +56,7 @@ public class DiscountDAODB implements DiscountDAO{
     public void redeem(Discount discount) throws DAOException {
 
         try(Connection connection = ConnectionFactory.upgrade();
-            PreparedStatement stmt = connection.prepareStatement(redeemQuery)) {
+            PreparedStatement stmt = connection.prepareStatement(REDEEM_QUERY)) {
 
             System.out.println("        [DAO] Connection to DB established");
 

@@ -122,9 +122,7 @@ public class AppController implements Observer{
                     go();
                 }
 
-                case LOAN_HISTORY, ON_GOING_LOANS ->{
-                    throw new RuntimeException("Not Yet implmented");
-                }
+                case LOAN_HISTORY, ON_GOING_LOANS -> throw new RuntimeException("Not Yet implmented");
 
                 case DISCOUNTS -> {
                     System.out.println("Discounts");
@@ -133,10 +131,7 @@ public class AppController implements Observer{
                     go();
                 }
 
-                case null, default -> {
-                    System.out.println("[APP-CONTROLLER][CE] Reached unreachable code");
-                    throw new RuntimeException("[APP-CONTROLLER][CE] Reached unreachable code");
-                }
+                case null, default -> throw new RuntimeException("[APP-CONTROLLER][CE] Reached unreachable code");
 
             }
         } catch (FactoryException e) {

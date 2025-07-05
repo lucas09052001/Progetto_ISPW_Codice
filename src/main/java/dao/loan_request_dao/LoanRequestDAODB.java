@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class LoanRequestDAODB implements LoanRequestDAO{
 
-    final String username;
-    LoanPostDAO loanPostDAO;
-    final static String insertionQuery = "INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES (?, ?, ?)";
-    final static String fetchAllQuery = "SELECT * FROM LoanRequest WHERE borrowingUsername <> ?";
+    private String username;
+    private LoanPostDAO loanPostDAO;
+    static final String INSERTION_QUERY = "INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES (?, ?, ?)";
+    static final String FETCH_ALL_QUERY = "SELECT * FROM LoanRequest WHERE borrowingUsername <> ?";
 
 
     public LoanRequestDAODB(String username, LoanPostDAO loanPostDAO){
@@ -28,7 +28,7 @@ public class LoanRequestDAODB implements LoanRequestDAO{
         ArrayList<LoanRequest> returnee = new ArrayList<>();
 
         try (Connection conn = ConnectionFactory.upgrade();
-             PreparedStatement stmt = conn.prepareStatement(fetchAllQuery)) {
+             PreparedStatement stmt = conn.prepareStatement(FETCH_ALL_QUERY)) {
 
             stmt.setString(1, username);
 
@@ -59,7 +59,7 @@ public class LoanRequestDAODB implements LoanRequestDAO{
     public void submitRequest(LoanRequest loanRequest) throws DAOException {
 
         try (Connection conn = ConnectionFactory.upgrade();
-             PreparedStatement stmt = conn.prepareStatement(insertionQuery)) {
+             PreparedStatement stmt = conn.prepareStatement(INSERTION_QUERY)) {
 
             stmt.setString(1, loanRequest.getBorrowingUsername());
             stmt.setString(2, loanRequest.getLoanPost().getLendingUsername());

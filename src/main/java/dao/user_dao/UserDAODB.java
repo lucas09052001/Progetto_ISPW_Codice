@@ -13,8 +13,8 @@ public class UserDAODB implements UserDAO {
 
     User user;
     String username;
-    final static String fetchUserInfoQuery = "SELECT username, password, rating, points FROM Users WHERE username = ?";
-    final static String updateUserQuery = "UPDATE Users SET points = ? WHERE username = ?";
+    static final String FETCH_USER_INFO_QUERY = "SELECT username, password, rating, points FROM Users WHERE username = ?";
+    static final String UPDATE_USER_QUERY = "UPDATE Users SET points = ? WHERE username = ?";
 
     public UserDAODB(){
         //No set up needed
@@ -28,7 +28,7 @@ public class UserDAODB implements UserDAO {
     public User fetchUserInfo(String username) throws DAOException {
 
         try (Connection connection = ConnectionFactory.upgrade();
-             PreparedStatement stmt = connection.prepareStatement(fetchUserInfoQuery)){
+             PreparedStatement stmt = connection.prepareStatement(FETCH_USER_INFO_QUERY)){
 
             System.out.println("            [DAO] Connection to DB established");
             stmt.setString(1,username);
@@ -64,7 +64,7 @@ public class UserDAODB implements UserDAO {
         System.out.println("        [DAO] Starting updateUser");
 
         try (Connection connection = ConnectionFactory.upgrade();
-             PreparedStatement stmt = connection.prepareStatement(updateUserQuery)){
+             PreparedStatement stmt = connection.prepareStatement(UPDATE_USER_QUERY)){
 
             System.out.println("        [DAO] Connection to DB established");
 

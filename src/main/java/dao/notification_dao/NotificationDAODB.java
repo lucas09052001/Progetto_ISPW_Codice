@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class NotificationDAODB implements NotificationDAO{
 
-    ArrayList<Notification> notificationsList = new ArrayList<>();
-    final static String fetchAllNotificationQuery = "SELECT id, senderUsername, message, seen FROM CustomNotification WHERE receiverUsername = ?";
+    private ArrayList<Notification> notificationsList = new ArrayList<>();
+    static final String FETCH_ALL_NOTIFICATION_QUERY = "SELECT id, senderUsername, message, seen FROM CustomNotification WHERE receiverUsername = ?";
 
     public NotificationDAODB(){
         //No set up needed
@@ -20,7 +20,7 @@ public class NotificationDAODB implements NotificationDAO{
     public ArrayList<Notification> fetchAllUserNotification(String username) throws DAOException {
 
         try (Connection connection = ConnectionFactory.upgrade();
-             PreparedStatement stmt = connection.prepareStatement(fetchAllNotificationQuery)){
+             PreparedStatement stmt = connection.prepareStatement(FETCH_ALL_NOTIFICATION_QUERY)){
 
             System.out.println("[DAO] Connection to DB established");
 

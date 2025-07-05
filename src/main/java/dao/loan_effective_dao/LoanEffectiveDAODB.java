@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class LoanEffectiveDAODB implements LoanEffectiveDAO {
 
     String username;
-    final static String saveQuery = "INSERT INTO LoanEffective(borrowingUsername, lendingUsername, loanObjectName) VALUES(?,?,?)";
+    static final String SAVE_QUERY = "INSERT INTO LoanEffective(borrowingUsername, lendingUsername, loanObjectName) VALUES(?,?,?)";
 
     public LoanEffectiveDAODB(String username){
         this.username = username;
@@ -21,7 +21,7 @@ public class LoanEffectiveDAODB implements LoanEffectiveDAO {
     @Override
     public void save(LoanEffective loanEffective) throws DAOException {
         try (Connection conn = ConnectionFactory.upgrade();
-             PreparedStatement stmt = conn.prepareStatement(saveQuery)) {
+             PreparedStatement stmt = conn.prepareStatement(SAVE_QUERY)) {
 
             stmt.setString(1, loanEffective.getBorrowingUsername());
             stmt.setString(2, loanEffective.getLendingUsername());
