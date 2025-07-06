@@ -6,6 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
         AppController appController = new AppController();
-        appController.updateNewBoundery(Boundaries.AUTHENTICATE);
+        appController.updateNewBoundary(Boundaries.AUTHENTICATE);
     }
 }

@@ -78,7 +78,7 @@ public class LoanRequestControllerV1 implements LoanRequestController{
 
 
             System.out.println("    [CONTROLLER] Calling observer");
-            observer.updateNewBoundery(Boundaries.HOMEPAGE);
+            observer.updateNewBoundary(Boundaries.HOMEPAGE);
 
         } catch (DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");

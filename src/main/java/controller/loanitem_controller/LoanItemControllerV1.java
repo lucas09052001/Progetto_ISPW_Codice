@@ -2,7 +2,6 @@ package controller.loanitem_controller;
 
 import boundery.Boundaries;
 import dao.loan_post_dao.LoanPostDAO;
-import utilities.SessionInfo;
 import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
 import exceptions.DAOException;
@@ -12,11 +11,10 @@ import static entity.loan.LoanInterval.NULL;
 
 public class LoanItemControllerV1 implements LoanItemController{
 
-    SessionInfo sessionInfo = SessionInfo.getSessionInfo();
-    String username;
-    LoanPost loanPost;
-    LoanPostDAO dao;
-    Observer observer;
+    private LoanPost loanPost;
+    private LoanPostDAO dao;
+    private Observer observer;
+    private String username;
 
     public LoanItemControllerV1(Observer observer, LoanPostDAO dao, String username){
         this.observer = observer;
@@ -34,12 +32,12 @@ public class LoanItemControllerV1 implements LoanItemController{
                 throw new IllegalArgumentException("One of your inputs was considered invalid. Please try again.");
             }
 
-            loanPost = new LoanPost(sessionInfo.getUsername(), loanObjectName, loanDescription, loanInterval, pathToIcon);
+            loanPost = new LoanPost(username, loanObjectName, loanDescription, loanInterval, pathToIcon);
             System.out.println("    [CONTROLLER] Asking DAO to save on persistency");
             dao.submit(loanPost);
 
             System.out.println("    [CONTROLLER] Calling Observer");
-            observer.updateNewBoundery(Boundaries.HOMEPAGE);
+            observer.updateNewBoundary(Boundaries.HOMEPAGE);
 
         } catch (IllegalArgumentException | DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");

@@ -79,7 +79,7 @@ public class BorrowItemControllerV1 implements BorrowItemController{
             loanRequestDAO.submitRequest(loanRequest);
 
             System.out.println("    [CONTROLLER] Calling observer");
-            observer.updateNewBoundery(Boundaries.HOMEPAGE);
+            observer.updateNewBoundary(Boundaries.HOMEPAGE);
 
         } catch (IllegalArgumentException | DAOException e) {
             System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");

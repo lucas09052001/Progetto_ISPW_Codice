@@ -11,26 +11,26 @@ import java.awt.*;
 
 import static entity.loan.LoanInterval.NULL;
 
-public class LoanItemCentralPanelV1 extends JPanel {
+public class LoanItemCentralPanel extends JPanel {
 
-    transient LoanItemController controller;
-    LoanInterval interval = NULL;
+    private transient LoanItemController controller;
+    private LoanInterval interval = NULL;
 
-    JTextField nameTextField;
-    JTextField descriptionTextField;
-    JTextField pathToImageTextField;
+    private JTextField nameTextField;
+    private JTextField descriptionTextField;
+    private JTextField pathToImageTextField;
 
-    JLabel intervalLabel;
-    JRadioButton hourIntervalRadioButton;
-    JRadioButton dayIntervalRadioButton;
-    JRadioButton weekIntervalRadioButton;
-    JRadioButton monthIntervalRadioButton;
-    ButtonGroup buttonGroup;
-    JButton submitButton;
-    JButton cancelButton;
+    private JLabel intervalLabel;
+    private JRadioButton hourIntervalRadioButton;
+    private JRadioButton dayIntervalRadioButton;
+    private JRadioButton weekIntervalRadioButton;
+    private JRadioButton monthIntervalRadioButton;
+    private ButtonGroup buttonGroup;
+    private JButton submitButton;
+    private JButton cancelButton;
 
 
-    public LoanItemCentralPanelV1(LoanItemController controller){
+    public LoanItemCentralPanel(LoanItemController controller){
         //Attributes
         this.controller = controller;
 

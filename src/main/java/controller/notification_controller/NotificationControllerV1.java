@@ -33,8 +33,7 @@ public class NotificationControllerV1 implements NotificationController {
             System.out.println("[CONTROLLER] Done.");
 
         } catch (DAOException e) {
-            sessionInfo.setLastError(e.getMessage());
-            observer.updateNewBoundery(Boundaries.ERROR);
+            observer.errorOccurred(e.getMessage());
 
         }
 

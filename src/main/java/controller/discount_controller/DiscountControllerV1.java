@@ -67,7 +67,7 @@ public class DiscountControllerV1 implements DiscountController{
             discountDAO.redeem(discount);
 
             System.out.println("    [CONTROLLER] Calling observer");
-            observer.updateNewBoundery(Boundaries.HOMEPAGE);
+            observer.updateNewBoundary(Boundaries.HOMEPAGE);
 
 
         } catch (IllegalStateException | DAOException e) {

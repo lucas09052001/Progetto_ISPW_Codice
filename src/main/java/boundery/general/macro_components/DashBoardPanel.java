@@ -8,15 +8,15 @@ import utilities.PathUtility;
 import javax.swing.*;
 import java.awt.*;
 
-public class DashBoardPanelV1 extends JPanel {
+public class DashBoardPanel extends JPanel {
 
-    JButton viewNotificationButton;
-    JButton viewProfileInfo;
-    JButton homepage;
-    JLabel logoImage;
-    transient DashBoardController controller;
+    private JButton viewNotificationButton;
+    private JButton viewProfileInfo;
+    private JButton homepage;
+    private JLabel logoImage;
+    private transient DashBoardController controller;
 
-    public DashBoardPanelV1(DashBoardController controller){
+    public DashBoardPanel(DashBoardController controller){
 
         System.out.println("    [DASHBOARD] Starting");
 

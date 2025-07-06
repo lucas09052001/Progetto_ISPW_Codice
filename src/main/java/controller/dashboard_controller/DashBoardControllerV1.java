@@ -13,6 +13,6 @@ public class DashBoardControllerV1 implements DashBoardController{
 
     @Override
     public void callObserver(Boundaries boundary) {
-        observer.updateNewBoundery(boundary);
+        observer.updateNewBoundary(boundary);
     }
 }

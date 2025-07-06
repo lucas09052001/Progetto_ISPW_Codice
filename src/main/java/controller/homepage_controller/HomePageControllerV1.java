@@ -14,6 +14,6 @@ public class HomePageControllerV1 implements HomePageController {
     @Override
     public void callObserver(Boundaries boundary) {
         System.out.println("    [CONTROLLER] HomePage Controller calling Observer");
-        observer.updateNewBoundery(boundary);
+        observer.updateNewBoundary(boundary);
     }
 }

@@ -19,7 +19,7 @@ public class DashBoardPanelFactory {
         JPanel returnee;
 
         switch (sessionInfo.getVersion()){
-            case V1 -> returnee = new DashBoardPanelV1(controller);
+            case V1 -> returnee = new DashBoardPanel(controller);
             case null, default -> throw new FactoryException("[DASHBOARD-FACTORY][CE] Reached unreachable code");
         }
 

@@ -10,6 +10,5 @@ public enum Boundaries {
     ON_GOING_LOANS,
     LOAN_HISTORY,
     LOAN_REQUESTS,
-    DISCOUNTS,
-    ERROR
+    DISCOUNTS
 }

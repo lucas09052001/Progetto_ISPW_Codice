@@ -30,11 +30,7 @@ public class ProfileControllerV1 implements ProfileController {
             return new UserDTO(user);
 
         } catch (DAOException e) {
-            //This is unreachable code. This exception gets triggered only when fetching from persistency via username returns no matches
-            //as the user is already authenticated when this class is running this exception will never be thrown.
-
-            sessionInfo.setLastError(e.getMessage());
-            observer.updateNewBoundery(Boundaries.ERROR);
+            observer.errorOccurred(e.getMessage());
             return null;
         }
 

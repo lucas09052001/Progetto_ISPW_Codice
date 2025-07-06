@@ -3,11 +3,11 @@ package entity.loan.loan_post;
 import entity.loan.LoanInterval;
 
 public class LoanPost {
-    String lendingUsername;
-    String loanObjectName;
-    String loanDescription;
-    LoanInterval loanInterval;
-    String pathToImage;
+    private String lendingUsername;
+    private String loanObjectName;
+    private String loanDescription;
+    private LoanInterval loanInterval;
+    private String pathToImage;
 
     public LoanPost(){}
 

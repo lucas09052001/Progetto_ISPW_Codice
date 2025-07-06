@@ -59,8 +59,8 @@ CREATE TABLE LoanPost (
 );
 
 INSERT INTO LoanPost (lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage) VALUES
-('alice', 'Calcolatrice scientifica', 'Calcolatrice scientifica perfettamente funzionante, non grafica.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
-('alice', 'Zaino trekking', 'Zaino da escursione impermeabile, 50L.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
+('alice', 'Calcolatrice scientifica', 'Calcolatrice scientifica perfettamente funzionante, non grafica.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Calcolatrice.png'),
+('alice', 'Zaino trekking', 'Zaino da escursione impermeabile, 50L.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/ZainoTrekking.png'),
 ('bob', 'Appunti ISPW', 'Appunti dettagliati per superare il corso con 30 e lode.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
 ('bob', 'Set cacciaviti', 'Set completo di cacciaviti di precisione.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
 ('bob', 'Coda di cavallo', 'Per le persone senza una coda di cavallo', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
@@ -83,7 +83,12 @@ CREATE TABLE LoanRequest(
 
 INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES
 ('bob', 'alice', 'Calcolatrice scientifica'),
-('alice', 'bob', 'Appunti ISPW');
+('bob', 'alice', 'Zaino Trekking'),
+('bob', 'alice', 'Cuffiette'),
+('alice', 'bob', 'Appunti ISPW'),
+('alice', 'bob', 'Guanti'),
+('alice', 'bob', 'Occhiali da lavoro');
+
 
 -- -----------------------------------------------------
 -- Table Progetto_ISPW.EffectiveLoan

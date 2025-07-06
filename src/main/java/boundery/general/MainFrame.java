@@ -9,12 +9,11 @@ import java.awt.*;
 public final class MainFrame extends JFrame {
 
     //MainFrame components
-    JPanel dashBoard;
-    JPanel centralPanel;
-    JPanel northPannel;
-    JPanel southPannel;
-    JPanel eastPannel = new JPanel();
-    JPanel westPannel;
+    private JPanel dashBoard;
+    private JPanel centralPanel;
+    private JPanel southPannel;
+    private JPanel eastPannel = new JPanel();
+    private JPanel westPannel;
 
 
     public MainFrame(JPanel dashboard) {

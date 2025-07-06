@@ -61,11 +61,11 @@ public class AppController implements Observer{
     public void errorOccurred(String errorMessage) {
         System.out.println("[APP-CONTROLLER] Error occurred: " + errorMessage);
         new ErrorFrameFactory().generate(errorMessage);
-        updateNewBoundery(current);
+        updateNewBoundary(current);
     }
 
     @Override
-    public void updateNewBoundery(Boundaries nextBoundary) {
+    public void updateNewBoundary(Boundaries nextBoundary) {
 
         current = nextBoundary;
 

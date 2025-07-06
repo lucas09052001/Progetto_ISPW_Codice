@@ -3,6 +3,6 @@ package main;
 import boundery.Boundaries;
 
 public interface Observer {
-    void updateNewBoundery(Boundaries boundery);
+    void updateNewBoundary(Boundaries boundary);
     void errorOccurred(String errorMessage);
 }

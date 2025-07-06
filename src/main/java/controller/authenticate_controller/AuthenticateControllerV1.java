@@ -43,7 +43,7 @@ public class AuthenticateControllerV1 implements AuthenticateController{
                 sessionInfo.setUsername(username);
                 sessionInfo.setPersistencyPolicy(persistencyPolicy);
 
-                observer.updateNewBoundery(Boundaries.HOMEPAGE);
+                observer.updateNewBoundary(Boundaries.HOMEPAGE);
             }
 
         } catch ( IllegalArgumentException | DAOException e) {
