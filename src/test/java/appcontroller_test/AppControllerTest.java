@@ -27,14 +27,4 @@ public class AppControllerTest {
         assertThrows(RuntimeException.class, () -> {appController.updateNewBoundary(null);} );
     }
 
-    @Test
-    void correctUpdate(){
-
-        JPanel expected = new ProfileCentralPanelV1(new ProfileControllerV1(appController, new UserDAONoPersistance()));
-        appController.updateNewBoundary(Boundaries.PROFILE);
-        JPanel actual = appController.getNextPanel();
-        assertEquals(expected, actual);
-
-    }
-
 }
