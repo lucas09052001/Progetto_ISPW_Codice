@@ -37,7 +37,7 @@ import exceptions.FactoryException;
 import javax.swing.*;
 
 public class AppController implements Observer{
-    JPanel nextBoundary;
+    JPanel nextPanel;
     MainFrame mainFrame;
     Boundaries current;
 
@@ -47,14 +47,31 @@ public class AppController implements Observer{
         this.mainFrame = new MainFrame(dashbordPanel);
     }
 
+    public Boundaries getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Boundaries current) {
+        this.current = current;
+    }
+
+    public JPanel getNextPanel() {
+        return nextPanel;
+    }
+
+    public void setNextPanel(JPanel nextPanel) {
+        this.nextPanel = nextPanel;
+    }
+
     private void start(){
         System.out.println("[APP-CONTROLLER] Starting application");
-        new AuthenticateMainFrame().refresh(nextBoundary);
+        new AuthenticateMainFrame().refresh(nextPanel);
     }
+
 
     private void go() {
         System.out.println("[APP-CONTROLLER] Going to next UC");
-        mainFrame.refresh(nextBoundary);
+        mainFrame.refresh(nextPanel);
     }
 
     @Override
@@ -67,7 +84,7 @@ public class AppController implements Observer{
     @Override
     public void updateNewBoundary(Boundaries nextBoundary) {
 
-        current = nextBoundary;
+        setCurrent(nextBoundary);
 
         System.out.print("[APP-CONTROLLER] Updating to: ");
 
@@ -76,49 +93,49 @@ public class AppController implements Observer{
                 case AUTHENTICATE -> {
                     System.out.println("Authenticate");
                     AuthenticateController controller = new AuthenticateControllerFactory().generate(this);
-                    this.nextBoundary = new AuthenticatePanelFactory().generate(controller);
+                    this.nextPanel = new AuthenticatePanelFactory().generate(controller);
                     start();
                 }
 
                 case HOMEPAGE -> {
                     System.out.println("HomePage");
                     HomePageController controller = new HomePageControllerFactory().generate(this);
-                    this.nextBoundary = new HomePagePanelFactory().generate(controller);
+                    this.nextPanel = new HomePagePanelFactory().generate(controller);
                     go();
                 }
 
                 case PROFILE -> {
                     System.out.println("Profile");
                     ProfileController controller = new ProfileControllerFactory().generate(this);
-                    this.nextBoundary = new ProfileCentralPanelFactory().generate(controller);
+                    this.nextPanel = new ProfileCentralPanelFactory().generate(controller);
                     go();
                 }
 
                 case NOTIFICATION -> {
                     System.out.println("Notification");
                     NotificationController controller = new NotificationControllerFactory().generate(this);
-                    this.nextBoundary = new NotificationPanelFactory().generate(controller);
+                    this.nextPanel = new NotificationPanelFactory().generate(controller);
                     go();
                 }
 
                 case LOAN_ITEM -> {
                     System.out.println("Loan Item");
                     LoanItemController controller = new LoanItemControllerFactory().generate(this);
-                    this.nextBoundary = new LoanItemPanelFactory().generate(controller);
+                    this.nextPanel = new LoanItemPanelFactory().generate(controller);
                     go();
                 }
 
                 case BORROW_ITEM ->  {
                     System.out.println("Borrow item");
                     BorrowItemController controller = new BorrowItemControllerFactory().generate(this);
-                    this.nextBoundary = new BorrowItemPanelFactory().generate(controller);
+                    this.nextPanel = new BorrowItemPanelFactory().generate(controller);
                     go();
                 }
 
                 case LOAN_REQUESTS -> {
                     System.out.println("Loan request");
                     LoanRequestController controller = new LoanRequestControllerFactory().generate(this);
-                    this.nextBoundary = new LoanRequestCentralPanelFactory().generate(controller);
+                    this.nextPanel = new LoanRequestCentralPanelFactory().generate(controller);
                     go();
                 }
 
@@ -127,7 +144,7 @@ public class AppController implements Observer{
                 case DISCOUNTS -> {
                     System.out.println("Discounts");
                     DiscountController controller = new DiscountControllerFactory().generate(this);
-                    this.nextBoundary = new DiscountCentralPanelFactory().generate(controller);
+                    this.nextPanel = new DiscountCentralPanelFactory().generate(controller);
                     go();
                 }
 
