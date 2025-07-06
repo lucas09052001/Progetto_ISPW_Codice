@@ -1,6 +1,5 @@
 package controller.notification_controller;
 
-import boundery.Boundaries;
 import dao.notification_dao.NotificationDAO;
 import utilities.SessionInfo;
 import entity.notification.Notification;

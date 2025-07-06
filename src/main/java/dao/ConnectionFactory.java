@@ -24,9 +24,9 @@ public class ConnectionFactory {
 
             connection = DriverManager.getConnection(connectionUrl, user, pass);
         } catch (IOException | SQLException e) {
-            //These excepetions get triggered only if connection to db gets rejected or resources file is
+            //These exceptions get triggered only if connection to db gets rejected or resources file is
             //unreachable which is a failure externally dictated and as such it is not handled directly
-            e.printStackTrace();
+            //e.printStackTrace();
             throw new RuntimeException("Critical system error");
         }
     }

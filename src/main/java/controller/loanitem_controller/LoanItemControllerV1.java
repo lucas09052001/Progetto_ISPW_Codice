@@ -11,7 +11,6 @@ import static entity.loan.LoanInterval.NULL;
 
 public class LoanItemControllerV1 implements LoanItemController{
 
-    private LoanPost loanPost;
     private LoanPostDAO dao;
     private Observer observer;
     private String username;
@@ -24,6 +23,8 @@ public class LoanItemControllerV1 implements LoanItemController{
 
     @Override
     public void submit(String loanObjectName, String loanDescription, LoanInterval loanInterval, String pathToIcon){
+
+        LoanPost loanPost;
 
         System.out.println("    [CONTROLLER] Starting submit operation");
         try {

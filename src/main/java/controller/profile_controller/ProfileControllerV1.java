@@ -1,6 +1,5 @@
 package controller.profile_controller;
 
-import boundery.Boundaries;
 import dao.user_dao.*;
 import utilities.SessionInfo;
 import entity.user.User;
