@@ -23,25 +23,23 @@ public class LoanItemControllerV1 implements LoanItemController{
 
     @Override
     public void submit(String loanObjectName, String loanDescription, LoanInterval loanInterval, String pathToIcon){
-
+        //Submit loan post
         LoanPost loanPost;
 
-        System.out.println("    [CONTROLLER] Starting submit operation");
+        System.out.println("[LOAN-ITEM-CONTROLLER] Starting submit operation");
         try {
             if(loanObjectName.isEmpty() || loanDescription.isEmpty() || (loanInterval == NULL)){
-                System.out.println("    [CONTROLLER] An illegal argument was passed to controller");
+                System.out.println("[LOAN-ITEM-CONTROLLER] An illegal argument was passed to controller");
                 throw new IllegalArgumentException("One of your inputs was considered invalid. Please try again.");
             }
 
             loanPost = new LoanPost(username, loanObjectName, loanDescription, loanInterval, pathToIcon);
-            System.out.println("    [CONTROLLER] Asking DAO to save on persistency");
             dao.submit(loanPost);
 
-            System.out.println("    [CONTROLLER] Calling Observer");
             observer.updateNewBoundary(Boundaries.HOMEPAGE);
 
         } catch (IllegalArgumentException | DAOException e) {
-            System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
+            System.out.println("[LOAN-ITEM-CONTROLLER][EE] Something went wrong during UC execution");
             observer.errorOccurred(e.getMessage());
 
         }

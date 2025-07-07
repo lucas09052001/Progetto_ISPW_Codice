@@ -36,7 +36,6 @@ public class NotificationCentralPanelV1 extends JPanel {
 
         //Controller interaction
         System.out.println("[BOUNDERY] NotificationBoundery asking controller to fetch notifications... ");
-        controller.fetchAll();
 
         nextNotifications();
 
@@ -46,6 +45,7 @@ public class NotificationCentralPanelV1 extends JPanel {
             add(Box.createVerticalGlue());
         }
 
+        nextButton.setText("Next Notifications");
         nextButton.addActionListener(e -> nextNotifications());
         add(nextButton);
         add(Box.createVerticalGlue());
@@ -62,19 +62,17 @@ public class NotificationCentralPanelV1 extends JPanel {
         }
 
         System.out.println("[BOUNDERY] Refreshing pannel... ");
-        //Refresh Centra Panel
+        //Refresh Central Panel
         revalidate();
         repaint();
         System.out.println("[BOUNDERY] Done.");
     }
 
     private void buildNextNotification(JLabel l){
+        System.out.println("[MAINFRAME] Building new Notifications.");
 
         NotificationDTO notificationDTO;
-
-        System.out.println("[BOUNDERY] Asking controller to handout next notification.");
         notificationDTO = controller.handNext();
-        System.out.println("[BOUNDERY] Done.");
 
         String text;
         if(notificationDTO != null){
@@ -89,7 +87,6 @@ public class NotificationCentralPanelV1 extends JPanel {
         l.setBorder(new LineBorder(Color.decode(ColorUtility.getForegroundColor())));
         l.setFont(new Font("Arial", Font.PLAIN, 20));
         l.setAlignmentX(Component.CENTER_ALIGNMENT);
-
     }
 
 }

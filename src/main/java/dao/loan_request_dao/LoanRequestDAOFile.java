@@ -25,41 +25,33 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
     @Override
     public void submitRequest(LoanRequest loanRequest) throws DAOException {
 
-        System.out.println("        [DAO] Initiating submitRequest operation");
+        System.out.println("[LOAN-REQUEST-DAO] Initiating submitRequest operation");
         try{
             file = new File(PathUtility.getPathToLoanRequestJson());
 
-            System.out.println("        [DAO] Buffering current loan posts");
             ArrayList<LoanRequest> currentRequests;
-            currentRequests = mapper.readValue(file, new TypeReference<ArrayList<LoanRequest>>() {});
+            currentRequests = mapper.readValue(file, new TypeReference<>() {});
 
-
-            System.out.println("        [DAO] Adding new loan request");
             currentRequests.add(loanRequest);
 
-            System.out.println("        [DAO] Writing to Json updated list");
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, currentRequests);
-            System.out.println("        [DAO] Done");
 
-        } catch (IOException e) {
-            System.out.print("        [DAO][CE] Something went wrong during writing to Json: ");
-            System.out.println(e.getMessage());
-            throw new DAOException("Something went wrong during writing to Json");
-        } catch (NullPointerException e){
-            System.out.println("        [DAO][CE] Error: " + e.getMessage());
+        } catch (NullPointerException | IOException e) {
+            System.out.print("[LOAN-REQUEST-DAO][EE] Something went wrong during writing to Json: ");
+            throw new DAOException(e.getMessage());
         }
     }
 
 
     @Override
     public ArrayList<LoanRequest> fetchAll() throws DAOException{
-
+        //Fetch all entities from persistency (the ones related to loan posts made by logged user)
         ArrayList<LoanRequest> returnee = new ArrayList<>();
 
         try {
-            System.out.println("        [DAO] Buffering Json");
+            System.out.println("[LOAN-REQUEST-DAO] Buffering Json");
             ArrayList<LoanRequest> buffer = mapper.readValue(new File(PathUtility.getPathToLoanRequestJson()), new TypeReference<>() {});
-            System.out.println("        [DAO] Extracting entities of interest");
+            System.out.println("[LOAN-REQUEST-DAO] Extracting entities of interest");
             for(LoanRequest l : buffer){
                 if(!l.getBorrowingUsername().equals(username)){
                     returnee.add(l);
@@ -69,24 +61,28 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
             return returnee;
 
         } catch (IOException e) {
-            System.out.println("        [DAO][CE] Something went wrong while reading Json file");
+            System.out.println("[LOAN-REQUEST-DAO][EE] Something went wrong while reading Json file");
             throw new DAOException(e.getMessage());
         }
     }
 
     @Override
     public void deleteAllRelative(LoanRequest loanRequest) throws DAOException {
+        //Delete all loan requests relative to a certain loan post
         File file = new File(PathUtility.getPathToLoanRequestJson());
         try {
-            System.out.println("        [DAO] Buffering Json");
-            ArrayList<LoanRequest> buffer = mapper.readValue(file, new TypeReference<ArrayList<LoanRequest>>() {});
-            System.out.println("        [DAO] Deleting entities of interest");
+            System.out.println("[LOAN-REQUEST-DAO] Buffering Json");
+            ArrayList<LoanRequest> buffer = mapper.readValue(file, new TypeReference<>() {});
 
+            //Get key to loan post through passed loan request
             String compareeUsername = loanRequest.getLoanPost().getLendingUsername();
             String compareeName = loanRequest.getLoanPost().getLoanObjectName();
 
+            //Initialize array that holds the indexes to be removed
             ArrayList<Integer> indexesToBeRemoved = new ArrayList<>();
             Integer index = 0;
+
+            //Find indexes to be removed
             for(LoanRequest l : buffer){
                 String usernameToBeCompared = l.getLoanPost().getLendingUsername();
                 String objectNameToBeCompared = l.getLoanPost().getLoanObjectName();
@@ -98,16 +94,18 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
                 index++;
             }
 
+            //Remove indexes from buffered entities
             for (Integer i : indexesToBeRemoved){
                 int removee = i;
                 buffer.remove(removee);
             }
 
-            System.out.println("        [DAO] Updating Json");
+            //Update persistency layer
+            System.out.println("[LOAN-REQUEST-DAO] Updating Json");
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, buffer);
 
         } catch (IOException e) {
-            System.out.println("        [DAO][CE] Something went wrong while reading Json file");
+            System.out.println("[LOAN-REQUEST-DAO][EE] Something went wrong while reading Json file");
             throw new DAOException();
         }
 

@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+
 public class ActivityBandV1 extends JPanel {
 
     JButton onGoingLoans = new JButton("OnGoing Loans");
@@ -55,13 +56,11 @@ public class ActivityBandV1 extends JPanel {
 
     public void handleOnGoingLoansEvent(){
         System.out.println("[SYSTEM] Handling 'OnGoingLoans' event");
-        SwingUtilities.getWindowAncestor(this).dispose();
         controller.callObserver(Boundaries.ON_GOING_LOANS);
     }
 
     public void handleLoanHistoryEvent(){
         System.out.println("[SYSTEM] Handling 'LoanHistory' event");
-        SwingUtilities.getWindowAncestor(this).dispose();
         controller.callObserver(Boundaries.LOAN_HISTORY);
     }
 

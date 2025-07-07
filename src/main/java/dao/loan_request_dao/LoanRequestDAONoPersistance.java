@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class LoanRequestDAONoPersistance implements LoanRequestDAO{
 
     String username;
-    LoanRequestRepository repository = LoanRequestRepository.getInstance();
-    ArrayList<LoanRequest> loanRequestList;
+    LoanRequestRepository repository = LoanRequestRepository.getInstance(); //Persistency layer
+    ArrayList<LoanRequest> loanRequestList; //Buffered entities from persistency
 
     public LoanRequestDAONoPersistance(String username) {
         this.loanRequestList = repository.getLoanRequestList();
@@ -20,7 +20,7 @@ public class LoanRequestDAONoPersistance implements LoanRequestDAO{
 
     @Override
     public void submitRequest(LoanRequest loanRequest) throws DAOException {
-        System.out.println("        [DAO] Adding new loanPost to volatile list");
+        //Adding new loanPost to volatile list (buffered entities)
         loanRequestList.add(loanRequest);
         repository.setLoanRequestList(loanRequestList);
     }
@@ -30,9 +30,9 @@ public class LoanRequestDAONoPersistance implements LoanRequestDAO{
         ArrayList<LoanRequest> buffer;
         ArrayList<LoanRequest> returnee = new ArrayList<>();
 
-        System.out.println("        [DAO] Buffering repository");
+        System.out.println("[LOAN-REQUEST-DAO] Buffering repository");
         buffer = repository.getLoanRequestList();
-        System.out.println("        [DAO] Extracting data of interest");
+        System.out.println("[LOAN-REQUEST-DAO] Extracting data of interest");
         for(LoanRequest l : buffer){
             if(!l.getBorrowingUsername().equals(username)){
                 returnee.add(l);
@@ -43,14 +43,14 @@ public class LoanRequestDAONoPersistance implements LoanRequestDAO{
 
     @Override
     public void deleteAllRelative(LoanRequest loanRequest) throws DAOException {
-        System.out.println("        [DAO] Starting deleteAllRelative");
-        System.out.println("        [DAO] Buffering repository");
+        System.out.println("[LOAN-REQUEST-DAO] Starting deleteAllRelative");
         ArrayList<LoanRequest> buffer = repository.getLoanRequestList();
 
-
-
+        //Array that hold the indexes to be removed
         ArrayList<Integer> indexesToBeRemoved = new ArrayList<>();
         Integer index = 0;
+
+        //Find indexes to be removed
         for(LoanRequest l : buffer){
 
             if(l.getLoanPost().getLendingUsername().equals(loanRequest.getLoanPost().getLendingUsername()) && l.getLoanPost().getLoanObjectName().equals(loanRequest.getLoanPost().getLoanObjectName())){
@@ -60,11 +60,13 @@ public class LoanRequestDAONoPersistance implements LoanRequestDAO{
             index++;
         }
 
+        //Remove indexes
         for (Integer i : indexesToBeRemoved){
             int removee = i;
             buffer.remove(removee);
         }
 
+        //Update repository
         repository.setLoanRequestList(buffer);
     }
 

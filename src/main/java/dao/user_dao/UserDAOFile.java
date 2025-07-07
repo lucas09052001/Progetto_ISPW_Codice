@@ -31,41 +31,36 @@ public class UserDAOFile implements UserDAO {
     @Override
     public User fetchUserInfo(String username) throws DAOException {
 
-        System.out.println("            [DAO] Starting fetchUserInfo");
+        System.out.println("[USER-DAO] Fetching User info");
 
         try {
 
-            System.out.println("            [DAO] Buffering Json");
             List<User> users = mapper.readValue(file, new TypeReference<>() {});
 
-            System.out.println("            [DAO] Extracting data of interest");
             for (User u : users) {
                 if (u.getUsername().equals(username)) {
-                    System.out.println("            [DAO] Match Found. Returning");
                     return u;
                 }
             }
 
-            System.out.println("            [DAO] No match found.");
+            System.out.println("[USER-DAO] No matching user found.");
             return null;
 
         } catch (IOException e) {
-            System.out.println("           [DAO][CE] Critical error: " + e.getMessage());
+            System.out.println("[USER-DAO][EE] Error: " + e.getMessage());
             throw new DAOException(e.getMessage());
         }
     }
 
     @Override
     public void updateUser(User updatee) throws DAOException {
-        System.out.println("        [DAO] Starting updateUser");
+        System.out.println("[USER-DAO] Updating User info");
 
         try {
             boolean matchFound = false;
 
-            System.out.println("        [DAO] Buffering Json");
             List<User> users = mapper.readValue(file, new TypeReference<>() {});
 
-            System.out.println("        [DAO] Updating data of interest");
             for (User u : users) {
                 if (Objects.equals(u.getUsername(), updatee.getUsername())) {
                     //Assuming username and password won't change
@@ -78,13 +73,11 @@ public class UserDAOFile implements UserDAO {
             }
 
             if(!matchFound){
-                System.out.println("        [DAO][CE] No match was found although there has to be");
+                System.out.println("[USER-DAO][EE] No match was found");
                 throw new IllegalStateException("Error: No match in user json");
             }
 
-            System.out.println("        [DAO] Updating Json");
             mapper.writerWithDefaultPrettyPrinter().writeValue(file, users);
-            System.out.println("        [DAO] Returning");
 
         } catch (IllegalStateException | IOException e) {
             throw new DAOException(e.getMessage());

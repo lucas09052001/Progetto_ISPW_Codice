@@ -8,16 +8,18 @@ import java.util.List;
 public class NotificationRepository {
 
     private static NotificationRepository instance;
-    private List<Notification> listaNotifiche;
+    private List<Notification> notificationList;
 
     private NotificationRepository() {
-        listaNotifiche = new ArrayList<>();
+        notificationList = new ArrayList<>();
 
         // Notifiche di esempio
-        listaNotifiche.add(new Notification("alice", "bob", "TETTE", false));
-        listaNotifiche.add(new Notification("alice", "bob", "CULO", false));
-        listaNotifiche.add(new Notification("alice", "bob", "FIGA", false));
-        listaNotifiche.add(new Notification("bob", "alice", "CAZZO", false));
+        notificationList.add(new Notification("alice", "bob", "I accepted your loan request!", false));
+        notificationList.add(new Notification("alice", "carlos", "I declined your loan request.", false));
+        notificationList.add(new Notification("bob", "alice", "I returned the object I borrowed!", false));
+        notificationList.add(new Notification("bob", "carlos", "I returned the object I borrowed!", false));
+        notificationList.add(new Notification("system", "alice", "New discounts have been added!", false));
+        notificationList.add(new Notification("system", "bob", "Loan an item !", false));
     }
 
     public static NotificationRepository getNotificationRepository() {
@@ -28,11 +30,11 @@ public class NotificationRepository {
     }
 
     public List<Notification> getCustomNotificationList() {
-        return listaNotifiche;
+        return notificationList;
     }
 
     public void setCustomNotificationList(List<Notification> listaNotifiche) {
-        this.listaNotifiche = listaNotifiche;
+        this.notificationList = listaNotifiche;
     }
 }
 

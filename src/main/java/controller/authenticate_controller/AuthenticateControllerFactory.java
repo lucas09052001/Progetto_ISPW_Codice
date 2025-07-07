@@ -16,6 +16,7 @@ public class AuthenticateControllerFactory {
 
         AuthenticateController returnee;
 
+        System.out.println("[AUTHENTICATE-CONTROLLER-FACTORY] Generating");
         switch (sessionInfo.getVersion()){
             case V1 -> returnee = new AuthenticateControllerV1(observer);
             case null, default -> throw new FactoryException("AuthenticateControllerFactory reached unreachable code");

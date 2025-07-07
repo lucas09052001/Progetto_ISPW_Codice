@@ -27,7 +27,7 @@ public class BorrowItemControllerTest {
     void setUp(){
         SessionInfo.getSessionInfo().setUsername("alice");
         observer = new AppController();
-        controller = new BorrowItemControllerV1(observer, new LoanPostDAOFile(), new LoanRequestDAOFile("alice"));
+        controller = new BorrowItemControllerV1(observer, new LoanPostDAOFile(), new LoanRequestDAOFile("alice"), "alice");
     }
 
     @Test
@@ -41,7 +41,7 @@ public class BorrowItemControllerTest {
     }
 
     @Test
-    void sd(){
+    void correctUpdateTest(){
         LoanRequestDAO dao = new LoanRequestDAOFile("bob");
         try {
             int beforeCount = dao.fetchAll().size();

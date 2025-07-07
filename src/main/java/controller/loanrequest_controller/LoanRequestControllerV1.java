@@ -14,12 +14,12 @@ import java.util.ArrayList;
 
 public class LoanRequestControllerV1 implements LoanRequestController{
 
-    ArrayList<LoanRequest> loanRequests;
-    Observer observer;
+    ArrayList<LoanRequest> loanRequests;    //Buffered entities
+    Observer observer;  //Reference to app controller via inteface
     LoanRequestDAO loanRequestDAO;
     LoanPostDAO loanPostDAO;
     LoanEffectiveDAO loanEffectiveDAO;
-    int lastHandedLoanRequest;
+    int lastHandedLoanRequest;  //Information about the last item on list that was handed to boundary
 
     public LoanRequestControllerV1(Observer observer, LoanPostDAO loanPostDAO, LoanRequestDAO loanRequestDAO, LoanEffectiveDAO loanEffectiveDAO){
 
@@ -35,7 +35,7 @@ public class LoanRequestControllerV1 implements LoanRequestController{
     }
 
     @Override
-    public void fetchAll(){
+    public void fetchAll(){ //Buffer all entities from persistency
         try {
             loanRequests = loanRequestDAO.fetchAll();
         } catch (DAOException e) {
@@ -43,7 +43,7 @@ public class LoanRequestControllerV1 implements LoanRequestController{
         }
     }
 
-    public LoanRequestDTO handNext(){
+    public LoanRequestDTO handNext(){   //Hand next loan request to boundary
         LoanRequestDTO loanRequestDTO;
 
         if(lastHandedLoanRequest != loanRequests.size()){
@@ -57,31 +57,30 @@ public class LoanRequestControllerV1 implements LoanRequestController{
     }
 
     @Override
-    public void acceptRequest(LoanRequestDTO dto){
+    public void acceptRequest(LoanRequestDTO dto){  //Accept passed request
 
-        System.out.println("    [CONTROLLER] Starting acceptRequest");
+        System.out.println("[LOAN-REQUEST-CONTROLLER] Starting acceptRequest");
+
+        //Get entity from DTO
         LoanRequest loanRequest = new LoanRequest(dto.getBorrowingUsername(), dto.getLoanPost());
 
         try {
 
-            System.out.println("    [CONTROLLER] Asking loanPostDAO to delete relative LoanPost");
+            //Deleteing relative loanPost (as a request has been accepted)
             loanPostDAO.deleteByID(loanRequest.getLoanPost());
 
-            System.out.println("    [CONTROLLER] Asking loanRequestDAO to delete all relative LoanRequests");
+            //Deleting all others requests relative to passed loan post(only one can be accepted)
             loanRequestDAO.deleteAllRelative(loanRequest);
 
-            System.out.println("    [CONTROLLER] Instantiating new LoanEffective");
+            //Creating a loan effective entity (an on going loan)
             LoanEffective loanEffective = new LoanEffective(loanRequest.getBorrowingUsername(), loanRequest.getLoanPost().getLendingUsername(), loanRequest.getLoanPost().getLoanObjectName());
-
-            System.out.println("    [CONTROLLER] Asking loanEffectiveDAO to save on persistency");
             loanEffectiveDAO.save(loanEffective);
 
-
-            System.out.println("    [CONTROLLER] Calling observer");
+            //Updating Observer
             observer.updateNewBoundary(Boundaries.HOMEPAGE);
 
         } catch (DAOException e) {
-            System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
+            System.out.println("[LOAN-REQUEST-CONTROLLER][EE] Something went wrong during UC execution");
             observer.errorOccurred(e.getMessage());
 
         }

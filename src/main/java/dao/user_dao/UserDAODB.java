@@ -11,8 +11,6 @@ import java.sql.SQLException;
 
 public class UserDAODB implements UserDAO {
 
-    User user;
-    String username;
     static final String FETCH_USER_INFO_QUERY = "SELECT username, password, rating, points FROM Users WHERE username = ?";
     static final String UPDATE_USER_QUERY = "UPDATE Users SET points = ? WHERE username = ?";
 
@@ -20,53 +18,47 @@ public class UserDAODB implements UserDAO {
         //No set up needed
     }
 
-    public UserDAODB(String username) {
-        this.username = username;
-    }
-
     @Override
     public User fetchUserInfo(String username) throws DAOException {
+        System.out.println("[USER-DAO] Fetching user info");
 
-            try (Connection connection = ConnectionFactory.upgrade();
+        User returnee;
+
+        try (Connection connection = ConnectionFactory.upgrade();
              PreparedStatement stmt = connection.prepareStatement(FETCH_USER_INFO_QUERY)){
 
-            System.out.println("            [DAO] Connection to DB established");
             stmt.setString(1,username);
             ResultSet rs = stmt.executeQuery();
-            System.out.println("            [DAO] Query executed");
 
-            System.out.println("            [DAO] Handling query output");
             if(rs.next()){
 
-                user = new User();
+                returnee = new User();
 
-                user.setUsername(username);
-                user.setPassword(rs.getString("password"));
-                user.setRating(rs.getInt("rating"));
-                user.setPoints(rs.getInt("points"));
+                returnee.setUsername(username);
+                returnee.setPassword(rs.getString("password"));
+                returnee.setRating(rs.getInt("rating"));
+                returnee.setPoints(rs.getInt("points"));
 
             }else{
-                System.out.println("            [DAO][NCE] User was not found in DB");
-                user = null;
+                System.out.println("[USER-DAO] No matching user found");
+                returnee = null;
             }
 
-            System.out.println("            [DAO] Returning");
-            return user;
+            return returnee;
 
         } catch (SQLException e) {
-            System.out.println("            [DAO][CE] SQL error " + e.getMessage());
+            System.out.println("[USER-DAO][EE] Error: " + e.getMessage());
             throw new DAOException(e.getMessage());
         }
     }
 
     @Override
     public void updateUser(User user) throws DAOException {
-        System.out.println("        [DAO] Starting updateUser");
+        System.out.println("[USER-DAO] Updating User info");
 
         try (Connection connection = ConnectionFactory.upgrade();
              PreparedStatement stmt = connection.prepareStatement(UPDATE_USER_QUERY)){
 
-            System.out.println("        [DAO] Connection to DB established");
 
             stmt.setInt(1,user.getPoints());
             stmt.setString(2, user.getUsername());
@@ -76,7 +68,7 @@ public class UserDAODB implements UserDAO {
             }
 
         } catch (SQLException e) {
-            System.out.println("[EE] SQL error " + e.getMessage()); //CONSOLE DEBUG
+            System.out.println("[USER-DAO][EE] SQL error " + e.getMessage());
             throw new DAOException(e.getMessage());
         }
     }

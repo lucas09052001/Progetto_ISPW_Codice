@@ -37,105 +37,107 @@ import exceptions.FactoryException;
 import javax.swing.*;
 
 public class AppController implements Observer{
-    JPanel nextPanel;
+    JPanel currentPanel;
+    Boundaries currentBoundary;
     MainFrame mainFrame;
-    Boundaries current;
+
 
     public AppController() {
+        //App controller creates an instance of logged in mainframe in advance
         DashBoardController dashBoardController = new DashBoardControllerFactory().generate(this);
         JPanel dashbordPanel = new DashBoardPanelFactory().generate(dashBoardController);
         this.mainFrame = new MainFrame(dashbordPanel);
     }
 
 
-    private void start(){
+    private void start(){//start() is called if the user is not logged in, as such it calls the specific mainframe to log in
         System.out.println("[APP-CONTROLLER] Starting application");
-        new AuthenticateMainFrame().refresh(nextPanel);
+        new AuthenticateMainFrame().refresh(currentPanel);
     }
 
     private void go() {
         System.out.println("[APP-CONTROLLER] Going to next UC");
-        mainFrame.refresh(nextPanel);
+        mainFrame.refresh(currentPanel); //Refreshes mainFrame to update with new centralPanel
     }
 
     @Override
-    public void errorOccurred(String errorMessage) {
+    public void errorOccurred(String errorMessage) { //This function gets called by controller when app flow has to be diverted because of an error
         System.out.println("[APP-CONTROLLER] Error occurred: " + errorMessage);
         new ErrorFrameFactory().generate(errorMessage);
-        updateNewBoundary(current);
+        updateNewBoundary(currentBoundary);
     }
 
     @Override
-    public void updateNewBoundary(Boundaries nextBoundary) {
+    public void updateNewBoundary(Boundaries nextBoundary) {    //Called by subject to inform the observer (this) to divert app flow
 
-        this.current = nextBoundary;
+        this.currentBoundary = nextBoundary;
 
         System.out.print("[APP-CONTROLLER] Updating to: ");
 
         try {
             switch (nextBoundary){
-                case AUTHENTICATE -> {
+                case AUTHENTICATE -> {  //Log in UC
                     System.out.println("Authenticate");
                     AuthenticateController controller = new AuthenticateControllerFactory().generate(this);
-                    this.nextPanel = new AuthenticatePanelFactory().generate(controller);
+                    this.currentPanel = new AuthenticatePanelFactory().generate(controller);
                     start();
                 }
 
-                case HOMEPAGE -> {
+                case HOMEPAGE -> {  //HomePage
                     System.out.println("HomePage");
                     HomePageController controller = new HomePageControllerFactory().generate(this);
-                    this.nextPanel = new HomePagePanelFactory().generate(controller);
+                    this.currentPanel = new HomePagePanelFactory().generate(controller);
                     go();
                 }
 
-                case PROFILE -> {
+                case PROFILE -> { //View Profile UC
                     System.out.println("Profile");
                     ProfileController controller = new ProfileControllerFactory().generate(this);
-                    this.nextPanel = new ProfileCentralPanelFactory().generate(controller);
+                    this.currentPanel = new ProfileCentralPanelFactory().generate(controller);
                     go();
                 }
 
-                case NOTIFICATION -> {
+                case NOTIFICATION -> { //View notifications UC
                     System.out.println("Notification");
                     NotificationController controller = new NotificationControllerFactory().generate(this);
-                    this.nextPanel = new NotificationPanelFactory().generate(controller);
+                    this.currentPanel = new NotificationPanelFactory().generate(controller);
                     go();
                 }
 
-                case LOAN_ITEM -> {
+                case LOAN_ITEM -> { //Loan item UC
                     System.out.println("Loan Item");
                     LoanItemController controller = new LoanItemControllerFactory().generate(this);
-                    this.nextPanel = new LoanItemPanelFactory().generate(controller);
+                    this.currentPanel = new LoanItemPanelFactory().generate(controller);
                     go();
                 }
 
-                case BORROW_ITEM ->  {
+                case BORROW_ITEM ->  { //Borrow item UC
                     System.out.println("Borrow item");
                     BorrowItemController controller = new BorrowItemControllerFactory().generate(this);
-                    this.nextPanel = new BorrowItemPanelFactory().generate(controller);
+                    this.currentPanel = new BorrowItemPanelFactory().generate(controller);
                     go();
                 }
 
-                case LOAN_REQUESTS -> {
+                case LOAN_REQUESTS -> { //Loan request UC
                     System.out.println("Loan request");
                     LoanRequestController controller = new LoanRequestControllerFactory().generate(this);
-                    this.nextPanel = new LoanRequestCentralPanelFactory().generate(controller);
+                    this.currentPanel = new LoanRequestCentralPanelFactory().generate(controller);
                     go();
                 }
 
                 case LOAN_HISTORY, ON_GOING_LOANS -> throw new RuntimeException("Not Yet implmented");
 
-                case DISCOUNTS -> {
+                case DISCOUNTS -> { //Discounts UC
                     System.out.println("Discounts");
                     DiscountController controller = new DiscountControllerFactory().generate(this);
-                    this.nextPanel = new DiscountCentralPanelFactory().generate(controller);
+                    this.currentPanel = new DiscountCentralPanelFactory().generate(controller);
                     go();
                 }
 
                 case null, default -> throw new RuntimeException("[APP-CONTROLLER][CE] Reached unreachable code");
 
             }
-        } catch (FactoryException e) {
+        } catch (FactoryException e) {  //This exception is thrown by factories if they do not know arguments being passed to them
             errorOccurred("A critical error occurred in system dynamic");
         }
 

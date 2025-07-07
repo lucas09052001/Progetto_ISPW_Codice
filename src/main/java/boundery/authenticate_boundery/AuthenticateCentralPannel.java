@@ -89,14 +89,14 @@ public class AuthenticateCentralPannel extends JPanel {
 
     }
 
-    public void handleLoginEvent(){
-        System.out.println("[BOUNDARY] Asking CONTROLLER to perform 'login'");
+    public void handleLoginEvent(){     //Button login clicked
+        System.out.println("[AUTHENTICATE-MAINFRAME] Asking CONTROLLER to perform 'login'");
         SwingUtilities.getWindowAncestor(this).dispose();
         controller.login(usernameTextField.getText(), passwordTextField.getText(), persistencyPolicy);
     }
 
-    public void handleRegisterEvent(){
-        System.out.println("[BOUNDERY] Minor functionality. Not yet implemented.");
+    public void handleRegisterEvent(){  //Button register clicked
+        System.out.println("[AUTHENTICATE-MAINFRAME] Minor functionality. Not yet implemented.");
     }
 
 }

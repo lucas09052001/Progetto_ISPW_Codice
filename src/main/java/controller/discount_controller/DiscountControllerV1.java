@@ -3,7 +3,6 @@ package controller.discount_controller;
 import boundery.Boundaries;
 import dao.discount_dao.DiscountDAO;
 import dao.user_dao.UserDAO;
-import utilities.SessionInfo;
 import entity.discount.Discount;
 import entity.discount.DiscountDTO;
 import entity.user.User;
@@ -14,13 +13,12 @@ import java.util.ArrayList;
 
 public class DiscountControllerV1 implements DiscountController{
 
-    SessionInfo sessionInfo;
     DiscountDAO discountDAO;
     UserDAO userDAO;
-    ArrayList<Discount> discounts;
-    int lastHandedDTO;
-    Observer observer;
-    String username;
+    ArrayList<Discount> discounts;  //Buffered entities from persistency layer
+    int lastHandedDTO;  //Reference to last entity passed to boundary (relative to list above)
+    Observer observer;  //Reference to AppController via Interface
+    String username;    //Username of current logged in user
 
     public DiscountControllerV1(Observer observer, DiscountDAO discountDAO, UserDAO userDAO, String username){
         //Attributes

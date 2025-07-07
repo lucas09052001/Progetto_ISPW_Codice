@@ -14,7 +14,7 @@ public class UserDAOFactory {
 
         UserDAO returnee;
 
-        System.out.println("        [DAO-FACTORY] Instantiating dao");
+        System.out.println("[DAO-FACTORY] Instantiating dao");
         switch (sessionInfo.getPersistencyPolicy()){
             case DB -> returnee = new UserDAODB();
             case FILE -> returnee = new UserDAOFile();
@@ -22,7 +22,6 @@ public class UserDAOFactory {
             case null, default ->  throw new FactoryException("In UserDaoFactory reached unreachable code");
         }
 
-        System.out.println("        [DAO-FACTORY] Returning");
         return returnee;
     }
 

@@ -17,6 +17,7 @@ public class AuthenticatePanelFactory {
 
         JPanel returnee;
 
+        System.out.println("[AUTHENTICATE-PANEL-FACTORY] Generating");
         switch (sessionInfo.getVersion()){
             case V1 -> returnee = new AuthenticateCentralPannel(controller);
             case null, default -> throw new FactoryException("[AUTHENTICATE-PANEL-FACTORY] Reached unreachable code");

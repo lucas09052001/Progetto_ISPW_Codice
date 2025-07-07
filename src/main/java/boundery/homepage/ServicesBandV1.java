@@ -32,8 +32,7 @@ public class ServicesBandV1 extends JPanel{
         add(Box.createVerticalGlue());
 
         //Buttons
-        //discounts.addActionListener(e -> handleDiscountsEvent());
-        discounts.addActionListener(e -> handleDiscountEvent2());
+        discounts.addActionListener(e -> handleDiscountEvent());
         discounts.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(discounts);
         add(Box.createVerticalGlue());
@@ -41,13 +40,9 @@ public class ServicesBandV1 extends JPanel{
         setVisible(true);
     }
 
-    public void handleDiscountEvent2(){
-        System.out.println("Nothing is gonna change");
+    public void handleDiscountEvent(){
+        System.out.println("[MAINFRAME] Handling DiscountButtonClicked event");
         controller.callObserver(Boundaries.DISCOUNTS);
     }
 
-    public void handleDiscountsEvent(){
-        System.out.println("[BOUNDARY] Handling 'ViewDiscounts' event");
-        controller.callObserver(Boundaries.DISCOUNTS);
-    }
 }

@@ -14,19 +14,19 @@ import java.util.ArrayList;
 
 public class BorrowItemControllerV1 implements BorrowItemController{
 
-    ArrayList<LoanPost> loanPostList;
-    Observer observer;
-    SessionInfo sessionInfo;
-    LoanPostDAO loanPostDAO;
-    LoanRequestDAO loanRequestDAO;
-    int lastHandedLoanPost;
+    private ArrayList<LoanPost> loanPostList;   //Buffered list of entities
+    private Observer observer;  //Reference to AppController via Interface
+    private String username;    //Current user's username
+    private LoanPostDAO loanPostDAO;
+    private LoanRequestDAO loanRequestDAO;
+    private int lastHandedLoanPost; //Holds the information about the last handed loanPost from list
 
-    public BorrowItemControllerV1(Observer observer, LoanPostDAO loanPostDAO, LoanRequestDAO loanRequestDAO){
+    public BorrowItemControllerV1(Observer observer, LoanPostDAO loanPostDAO, LoanRequestDAO loanRequestDAO, String username){
         //Attributes
-        sessionInfo = SessionInfo.getSessionInfo();
         this.observer = observer;
         this.loanPostDAO = loanPostDAO;
         this.loanRequestDAO = loanRequestDAO;
+        this.username = username;
 
         loanPostList = new ArrayList<>();
 
@@ -40,20 +40,18 @@ public class BorrowItemControllerV1 implements BorrowItemController{
     }
 
     @Override
-    public void getAllLoanPosts(){
-
+    public void getAllLoanPosts(){ //Buffer all loanPosts from persistency to list
         try {
             System.out.println("[CONTROLLER] BorrowItemController asking dao layer to fetch loan posts... ");
             loanPostList = loanPostDAO.fetchAll();
         } catch (DAOException e) {
-            sessionInfo.setLastError(e.getMessage());
             observer.errorOccurred(e.getMessage());
         }
 
     }
 
     @Override
-    public LoanPostDTO handNext(){
+    public LoanPostDTO handNext(){  //Hand next loan post to boundary
         LoanPostDTO loanPostDTO;
         
         if(lastHandedLoanPost != loanPostList.size()){
@@ -67,9 +65,9 @@ public class BorrowItemControllerV1 implements BorrowItemController{
     }
 
     @Override
-    public void submitRequest(LoanPostDTO loanPostDTO){
+    public void submitRequest(LoanPostDTO loanPostDTO){ //Submit a loan request relative to the passed loan post
 
-        System.out.println("    [CONTROLLER] Starting 'submitRequest'");
+        System.out.println("[LOANPOST-CONTROLLER] Starting 'submitRequest'");
 
         try {
 
@@ -78,16 +76,15 @@ public class BorrowItemControllerV1 implements BorrowItemController{
             }
 
             LoanPost requestedLoanPost = loanPostDTO.toEntity();
-            LoanRequest loanRequest = new LoanRequest(sessionInfo.getUsername(), requestedLoanPost);
+            LoanRequest loanRequest = new LoanRequest(username, requestedLoanPost);
 
             loanRequestDAO.submitRequest(loanRequest);
 
-            System.out.println("    [CONTROLLER] Calling observer");
+            System.out.println("[LOANPOST-CONTROLLER] Calling observer");
             observer.updateNewBoundary(Boundaries.HOMEPAGE);
 
         } catch (IllegalArgumentException | DAOException e) {
-            System.out.println("    [CONTROLLER][NCE] Something went wrong during UC execution");
-            sessionInfo.setLastError(e.getMessage());
+            System.out.println("[LOANPOST-CONTROLLER][EE] Something went wrong during UC execution");
             observer.errorOccurred(e.getMessage());
 
         }

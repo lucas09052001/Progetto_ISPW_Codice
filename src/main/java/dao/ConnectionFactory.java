@@ -13,6 +13,7 @@ public class ConnectionFactory {
 
     private ConnectionFactory()  {}
 
+    //Whenever a static operation is called, get a connection with log in user
     static {
         try (InputStream input = new FileInputStream("resources/db.properties")) {
             Properties properties = new Properties();
@@ -35,7 +36,8 @@ public class ConnectionFactory {
         return connection;
     }
 
-    public static Connection upgrade() {
+
+    public static Connection upgrade() {    //Upgrade priviledges by connecting with "Active (Authenticated) User"
 
         try (InputStream input = new FileInputStream("resources/db.properties")) {
             connection.close();

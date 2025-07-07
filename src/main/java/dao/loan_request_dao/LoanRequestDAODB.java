@@ -23,8 +23,8 @@ public class LoanRequestDAODB implements LoanRequestDAO{
     }
 
     @Override
-    public ArrayList<LoanRequest> fetchAll() throws  DAOException{  //Except the requests made by the current user
-
+    public ArrayList<LoanRequest> fetchAll() throws  DAOException{
+        //Get all entities from persistency (except the requests made by the current user)
         ArrayList<LoanRequest> returnee = new ArrayList<>();
 
         try (Connection conn = ConnectionFactory.upgrade();
@@ -79,7 +79,7 @@ public class LoanRequestDAODB implements LoanRequestDAO{
 
     @Override
     public void deleteAllRelative(LoanRequest loanRequest) throws DAOException {
-        //This method is empty as its action can be performed via DBMS means
+        //This method is empty as its action can be performed via DBMS means ("on delete cascade")
     }
 
 }
