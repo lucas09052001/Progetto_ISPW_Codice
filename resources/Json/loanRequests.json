@@ -2,45 +2,45 @@
   "borrowingUsername" : "bob",
   "loanPost" : {
     "lendingUsername" : "alice",
-    "loanObjectName" : "Ladder",
-    "loanDescription" : "Aluminum ladder, 3 meters",
-    "loanInterval" : "HOUR",
-    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
-  }
-}, {
-  "borrowingUsername" : "bob",
-  "loanPost" : {
-    "lendingUsername" : "bob",
-    "loanObjectName" : "Appunti di storia",
-    "loanDescription" : "Consultazione rapida",
-    "loanInterval" : "HOUR",
-    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
+    "loanObjectName" : "Calcolatrice",
+    "loanDescription" : "Calcolatrice scientifica perfettamente funzionante.",
+    "loanInterval" : "DAY",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Calcolatrice.png"
   }
 }, {
   "borrowingUsername" : "bob",
   "loanPost" : {
     "lendingUsername" : "alice",
-    "loanObjectName" : "Calcolatrice scientifica",
-    "loanDescription" : "Per esame di matematica",
+    "loanObjectName" : "Zaino",
+    "loanDescription" : "Zaino capiente",
+    "loanInterval" : "WEEK",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Zaino.png"
+  }
+}, {
+  "borrowingUsername" : "carlos",
+  "loanPost" : {
+    "lendingUsername" : "bob",
+    "loanObjectName" : "Cavo HDMI",
+    "loanDescription" : "Cavo HDMI to HDMI",
     "loanInterval" : "DAY",
-    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/CavoHDMI.png"
   }
 }, {
   "borrowingUsername" : "alice",
   "loanPost" : {
     "lendingUsername" : "bob",
-    "loanObjectName" : "Shoes",
-    "loanDescription" : "They're smelly",
-    "loanInterval" : "DAY",
-    "pathToImage" : "resources/ImageRepository/EmptyImage.png"
+    "loanObjectName" : "Appunti di ISPW",
+    "loanDescription" : "Per superare il corso con 30L e bacio accademico.",
+    "loanInterval" : "WEEK",
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Appunti.png"
   }
 }, {
   "borrowingUsername" : "alice",
   "loanPost" : {
     "lendingUsername" : "bob",
-    "loanObjectName" : "Shoes",
-    "loanDescription" : "They're smelly",
+    "loanObjectName" : "Cavo HDMI",
+    "loanDescription" : "Cavo HDMI to HDMI",
     "loanInterval" : "DAY",
-    "pathToImage" : "resources/ImageRepository/EmptyImage.png"
+    "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/CavoHDMI.png"
   }
 } ]

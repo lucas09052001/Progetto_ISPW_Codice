@@ -66,8 +66,7 @@ public class ActivityBandV1 extends JPanel {
     }
 
     public void handleLoanRequestsEvent(){
-        System.out.println("[SYSTEM] Handling 'LoanRequests' event");
-        SwingUtilities.getWindowAncestor(this).dispose();
+        System.out.println("[BOUNDARY] Handling 'LoanRequests' event");
         controller.callObserver(Boundaries.LOAN_REQUESTS);
     }
 

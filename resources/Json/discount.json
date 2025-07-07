@@ -1,31 +1,51 @@
-[ {
-  "name" : "SummerSale",
-  "pathToImage" : "/images/summer.jpg",
-  "percentage" : 20,
-  "cost" : 100,
-  "ownerUsername" : null
-}, {
-  "name" : "WinterBlowout",
-  "pathToImage" : "/images/winter.jpg",
-  "percentage" : 30,
-  "cost" : 150,
-  "ownerUsername" : "bob"
-}, {
-  "name" : "BlackFriday",
-  "pathToImage" : "/images/blackfriday.jpg",
-  "percentage" : 50,
-  "cost" : 200,
-  "ownerUsername" : "bob"
-}, {
-  "name" : "CyberMonday",
-  "pathToImage" : "/images/cyber.jpg",
-  "percentage" : 40,
-  "cost" : 180,
-  "ownerUsername" : "alice"
-}, {
-  "name" : "SpringFever",
-  "pathToImage" : "/images/spring.jpg",
-  "percentage" : 25,
-  "cost" : 120,
-  "ownerUsername" : "bob"
-} ]
+[
+  {
+    "name": "SummerSale",
+    "pathToImage": "/images/summer.png",
+    "percentage": 20,
+    "cost": 100,
+    "ownerUsername": null
+  },
+  {
+    "name": "WinterBlowout",
+    "pathToImage": "/images/winter.png",
+    "percentage": 30,
+    "cost": 150,
+    "ownerUsername": null
+  },
+  {
+    "name": "Paninozzo",
+    "pathToImage": "/images/Panino.png",
+    "percentage": 20,
+    "cost": 100,
+    "ownerUsername": null
+  },
+  {
+    "name": "Bibita",
+    "pathToImage": "/images/Bibita.png",
+    "percentage": 20,
+    "cost": 100,
+    "ownerUsername": null
+  },
+  {
+    "name": "BlackFriday",
+    "pathToImage": "/images/blackfriday.jpg",
+    "percentage": 50,
+    "cost": 200,
+    "ownerUsername": "alice"
+  },
+  {
+    "name": "CyberMonday",
+    "pathToImage": "/images/cyber.jpg",
+    "percentage": 40,
+    "cost": 180,
+    "ownerUsername": "alice"
+  },
+  {
+    "name": "SpringFever",
+    "pathToImage": "/images/spring.jpg",
+    "percentage": 25,
+    "cost": 120,
+    "ownerUsername": "bob"
+  }
+]

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.notification.Notification;
 import exceptions.DAOException;
+import utilities.PathUtility;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +25,8 @@ public class NotificationDAOFile implements NotificationDAO {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            List<Notification> buffer = mapper.readValue(new File("resources/Json/customNotifications.json"), new TypeReference<List<Notification>>() {});
+            File file = new File(PathUtility.getPathToNotificationJson());
+            List<Notification> buffer = mapper.readValue(file, new TypeReference<>() {});
             System.out.println("[DAO] All notifications have been fetched from Json file: customNotification.Json");
 
             System.out.println("[DAO] Getting current user's notification");

@@ -47,27 +47,11 @@ public class AppController implements Observer{
         this.mainFrame = new MainFrame(dashbordPanel);
     }
 
-    public Boundaries getCurrent() {
-        return current;
-    }
-
-    public void setCurrent(Boundaries current) {
-        this.current = current;
-    }
-
-    public JPanel getNextPanel() {
-        return nextPanel;
-    }
-
-    public void setNextPanel(JPanel nextPanel) {
-        this.nextPanel = nextPanel;
-    }
 
     private void start(){
         System.out.println("[APP-CONTROLLER] Starting application");
         new AuthenticateMainFrame().refresh(nextPanel);
     }
-
 
     private void go() {
         System.out.println("[APP-CONTROLLER] Going to next UC");
@@ -84,7 +68,7 @@ public class AppController implements Observer{
     @Override
     public void updateNewBoundary(Boundaries nextBoundary) {
 
-        setCurrent(nextBoundary);
+        this.current = nextBoundary;
 
         System.out.print("[APP-CONTROLLER] Updating to: ");
 

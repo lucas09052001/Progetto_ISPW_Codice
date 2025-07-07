@@ -1,21 +1,22 @@
-[ {
-  "borrowingUsername" : "alice",
-  "lendingUsername" : "bob",
-  "loanObjectName" : "bicicletta"
-}, {
-  "borrowingUsername" : "alice",
-  "lendingUsername" : "bob",
-  "loanObjectName" : "chitarra"
-}, {
-  "borrowingUsername" : "alice",
-  "lendingUsername" : "bob",
-  "loanObjectName" : "videocamera"
-}, {
-  "borrowingUsername" : "alice",
-  "lendingUsername" : "bob",
-  "loanObjectName" : "Power Drill"
-}, {
-  "borrowingUsername" : "alice",
-  "lendingUsername" : "bob",
-  "loanObjectName" : "Camping Tent"
-} ]
+[
+  {
+    "borrowingUsername": "bob",
+    "lendingUsername": "alice",
+    "loanObjectName": "Borsa per computer"
+  },
+  {
+    "borrowingUsername": "alice",
+    "lendingUsername": "bob",
+    "loanObjectName": "Temperino"
+  },
+  {
+    "borrowingUsername": "carlos",
+    "lendingUsername": "bob",
+    "loanObjectName": "Borraccia"
+  },
+  {
+    "borrowingUsername": "carlos",
+    "lendingUsername": "alice",
+    "loanObjectName": "Appunti Chimica"
+  }
+]

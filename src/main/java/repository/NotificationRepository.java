@@ -14,10 +14,10 @@ public class NotificationRepository {
         listaNotifiche = new ArrayList<>();
 
         // Notifiche di esempio
-        listaNotifiche.add(new Notification(1, "alice", "bob", "TETTE", false));
-        listaNotifiche.add(new Notification(1, "alice", "bob", "CULO", false));
-        listaNotifiche.add(new Notification(1, "alice", "bob", "FIGA", false));
-        listaNotifiche.add(new Notification(2, "bob", "alice", "CAZZO", false));
+        listaNotifiche.add(new Notification("alice", "bob", "TETTE", false));
+        listaNotifiche.add(new Notification("alice", "bob", "CULO", false));
+        listaNotifiche.add(new Notification("alice", "bob", "FIGA", false));
+        listaNotifiche.add(new Notification("bob", "alice", "CAZZO", false));
     }
 
     public static NotificationRepository getNotificationRepository() {

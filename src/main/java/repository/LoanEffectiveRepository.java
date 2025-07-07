@@ -13,9 +13,11 @@ public class LoanEffectiveRepository {
         loanEffectiveList = new ArrayList<>();
 
         // Dati di esempio
-        loanEffectiveList.add(new LoanEffective("alice", "bob", "bicicletta"));
-        loanEffectiveList.add(new LoanEffective("alice", "bob", "chitarra"));
-        loanEffectiveList.add(new LoanEffective("alice", "bob", "videocamera"));
+        loanEffectiveList.add(new LoanEffective("bob", "alice", "Borsa per computer"));
+        loanEffectiveList.add(new LoanEffective("alice", "bob", "Temperino"));
+        loanEffectiveList.add(new LoanEffective("carlos", "bob", "Borraccia"));
+        loanEffectiveList.add(new LoanEffective("carlos", "alice", "Appunti Chimica"));
+
     }
 
     public static LoanEffectiveRepository getInstance() {

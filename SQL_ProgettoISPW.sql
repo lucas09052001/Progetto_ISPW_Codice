@@ -19,16 +19,17 @@ CREATE TABLE IF NOT EXISTS Progetto_ISPW.Users (
 USE Progetto_ISPW ;
 
 INSERT INTO Progetto_ISPW.Users (username, password, rating, points) VALUES
-('alice', 'alice', 2, 5000),
-('bob', 'bob', 3, 1200);
+('alice', 'alice', 3, 15000),
+('bob', 'bob', 2, 2000),
+('carlos', 'carlos', 1, 100),
+('system', 'system', NULL, NULL);
 
 
 -- -----------------------------------------------------
--- Table Progetto_ISPW.CustomNotification
+-- Table Progetto_ISPW.Notification
 -- -----------------------------------------------------
 
-CREATE TABLE CustomNotification (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE Notification (
     senderUsername VARCHAR(20) NOT NULL references Users(username),
     receiverUsername VARCHAR(20) NOT NULL references Users(username),
     message VARCHAR(100) NOT NULL,
@@ -37,12 +38,14 @@ CREATE TABLE CustomNotification (
 
 USE Progetto_ISPW ;
 
-INSERT INTO CustomNotification (senderUsername, receiverUsername, message, seen) VALUES
-('alice', 'bob', 'Ciao Bob!', FALSE),
-('bob', 'alice', 'Ciao Alice!', FALSE),
-('alice', 'bob', 'Hai visto questo?', FALSE),
-('bob', 'alice', 'Tutto ok!', FALSE),
-('alice', 'bob', 'Chiamami.', FALSE);
+INSERT INTO Notification (senderUsername, receiverUsername, message, seen) VALUES
+('alice', 'bob', 'I accepted your loan request!', FALSE),
+('alice', 'carlos', 'I declined your loan request.', FALSE),
+('bob', 'alice', 'I returned the object I borrowed!', FALSE),
+('bob', 'carlos', 'I returned the object I borrowed!', FALSE),
+('system', 'alice', 'New discounts have been added!', FALSE),
+('system', 'bob', 'Loan an item !', FALSE);
+
 
 
 -- -----------------------------------------------------
@@ -59,12 +62,11 @@ CREATE TABLE LoanPost (
 );
 
 INSERT INTO LoanPost (lendingUsername, loanObjectName, loanDescription, loanInterval, pathToImage) VALUES
-('alice', 'Calcolatrice scientifica', 'Calcolatrice scientifica perfettamente funzionante, non grafica.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Calcolatrice.png'),
-('alice', 'Zaino trekking', 'Zaino da escursione impermeabile, 50L.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/ZainoTrekking.png'),
-('bob', 'Appunti ISPW', 'Appunti dettagliati per superare il corso con 30 e lode.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
-('bob', 'Set cacciaviti', 'Set completo di cacciaviti di precisione.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
-('bob', 'Coda di cavallo', 'Per le persone senza una coda di cavallo', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png'),
-('bob', 'Monitor 24"', 'Monitor 24 pollici full HD, solo VGA.', 'MONTH', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png');
+('alice', 'Calcolatrice', 'Calcolatrice scientifica perfettamente funzionante.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Calcolatrice.png'),
+('alice', 'Zaino', 'Zaino capiente.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/ZainoTrekking.png'),
+('bob', 'Appunti ISPW', 'Per superare il corso con 30L e bacio accademico.', 'WEEK', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Appunti.png'),
+('bob', 'Cavo HDMI', 'Cavo HDMI to HDMI.', 'DAY', '/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/CavoHDMI.png'),
+('carlos', 'Matita', 'Temperata', 'MONTH', '');
 
 
 -- -----------------------------------------------------
@@ -82,12 +84,11 @@ CREATE TABLE LoanRequest(
 );
 
 INSERT INTO LoanRequest (borrowingUsername, lendingUsername, loanObjectName) VALUES
-('bob', 'alice', 'Calcolatrice scientifica'),
-('bob', 'alice', 'Zaino Trekking'),
-('bob', 'alice', 'Cuffiette'),
-('alice', 'bob', 'Appunti ISPW'),
-('alice', 'bob', 'Guanti'),
-('alice', 'bob', 'Occhiali da lavoro');
+('bob', 'alice', 'Calcolatrice'),
+('bob', 'alice', 'Zaino'),
+('carlos', 'bob', 'Cavo HDMI'),
+('alice', 'bob', 'Appunti ISPW');
+
 
 
 -- -----------------------------------------------------
@@ -100,6 +101,12 @@ CREATE TABLE LoanEffective (
     loanObjectName VARCHAR(100) NOT NULL,
     PRIMARY KEY (borrowingUsername, lendingUsername, loanObjectName)
 );
+
+INSERT INTO LoanEffective (borrowingUsername, lendingUsername, loanObjectName) VALUES
+('bob', 'alice', 'Borsa per computer'),
+('alice', 'bob', 'Temperino'),
+('carlos', 'bob', 'Borraccia'),
+('carlos', 'alice', 'Appunti Chimica');
 
 -- -----------------------------------------------------
 -- Table Progetto_ISPW.Discount
@@ -114,11 +121,13 @@ CREATE TABLE Discount (
 );
 
 INSERT INTO Discount (name, pathToImage, percentage, cost, ownerUsername) VALUES
-('SummerSale', '/images/summer.jpg', 20, 100, 'alice'),
-('WinterBlowout', '/images/winter.jpg', 30, 150, 'bob'),
-('BlackFriday', '/images/blackfriday.jpg', 50, 200, NULL),
+('SummerSale', '/images/summer.png', 20, 100, NULL),
+('WinterBlowout', '/images/winter.png', 30, 150, NULL),
+('Paninozzo', '/images/Panino.png', 20, 100, NULL),
+('Bibita', '/images/Bibita.png', 20, 100, NULL),
+('BlackFriday', '/images/blackfriday.jpg', 50, 200, 'alice'),
 ('CyberMonday', '/images/cyber.jpg', 40, 180, 'alice'),
-('SpringFever', '/images/spring.jpg', 25, 120, NULL);
+('SpringFever', '/images/spring.jpg', 25, 120, 'bob');
 
 
 -- -----------------------------------------------------

@@ -14,7 +14,7 @@ public class PathUtility {
     private static final String PATH_TO_ONE_STAR = "resources/ImageRepository/1star.png";
     private static final String PATH_TO_TWO_STAR = "resources/ImageRepository/2star.png";
     private static final String PATH_TO_THREE_STAR = "resources/ImageRepository/3star.png";
-
+    private static final String PATH_TO_NOTIFICATION_JSON = "resources/Json/notification.json";
 
 
 
@@ -32,6 +32,10 @@ public class PathUtility {
 
     public static String getPathToLoanPostJson() {
         return PATH_TO_LOAN_POST_JSON;
+    }
+
+    public static String getPathToNotificationJson() {
+        return PATH_TO_NOTIFICATION_JSON;
     }
 
     public static String getPathToLoanEffectiveJson() {

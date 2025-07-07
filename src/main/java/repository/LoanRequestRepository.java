@@ -13,23 +13,61 @@ public class LoanRequestRepository {
     private ArrayList<LoanRequest> loanRequestList;
 
     private LoanRequestRepository() {
-        loanRequestList = new ArrayList<>();
-
-        // Dati di esempio
         loanRequestList.add(new LoanRequest(
-                "alice",
-                new LoanPost("bob", "Calcolatrice", "Prestito per compito in classe", LoanInterval.DAY, PathUtility.getPathToEmptyImage())
+                "bob",
+                new LoanPost(
+                        "alice",
+                        "Calcolatrice",
+                        "Calcolatrice scientifica perfettamente funzionante.",
+                        LoanInterval.DAY,
+                        "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Calcolatrice.png"
+                )
         ));
 
         loanRequestList.add(new LoanRequest(
                 "bob",
-                new LoanPost("alice", "Libro di matematica", "Uso per studio individuale", LoanInterval.WEEK, PathUtility.getPathToEmptyImage())
+                new LoanPost(
+                        "alice",
+                        "Zaino",
+                        "Zaino capiente",
+                        LoanInterval.WEEK,
+                        "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Zaino.png"
+                )
+        ));
+
+        loanRequestList.add(new LoanRequest(
+                "carlos",
+                new LoanPost(
+                        "bob",
+                        "Cavo HDMI",
+                        "Cavo HDMI to HDMI",
+                        LoanInterval.DAY,
+                        "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/CavoHDMI.png"
+                )
         ));
 
         loanRequestList.add(new LoanRequest(
                 "alice",
-                new LoanPost("bob", "Appunti di chimica", "Consultazione laboratorio", LoanInterval.HOUR, PathUtility.getPathToEmptyImage())
+                new LoanPost(
+                        "bob",
+                        "Appunti di ISPW",
+                        "Per superare il corso con 30L e bacio accademico.",
+                        LoanInterval.WEEK,
+                        "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Appunti.png"
+                )
         ));
+
+        loanRequestList.add(new LoanRequest(
+                "alice",
+                new LoanPost(
+                        "bob",
+                        "Cavo HDMI",
+                        "Cavo HDMI to HDMI",
+                        LoanInterval.DAY,
+                        "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/CavoHDMI.png"
+                )
+        ));
+
     }
 
     public static LoanRequestRepository getInstance() {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class NotificationDAODB implements NotificationDAO{
 
     private ArrayList<Notification> notificationsList = new ArrayList<>();
-    static final String FETCH_ALL_NOTIFICATION_QUERY = "SELECT id, senderUsername, message, seen FROM CustomNotification WHERE receiverUsername = ?";
+    static final String FETCH_ALL_NOTIFICATION_QUERY = "SELECT id, senderUsername, message, seen FROM Notification WHERE receiverUsername = ?";
 
     public NotificationDAODB(){
         //No set up needed
@@ -32,12 +32,11 @@ public class NotificationDAODB implements NotificationDAO{
 
             while (rs.next()){
 
-                int id = rs.getInt("id");
                 String senderUsername = rs.getString("senderUsername");
                 String message = rs.getString("message");
                 boolean seen = rs.getBoolean("seen");
 
-                notificationsList.add(new Notification(id, senderUsername, message, seen));
+                notificationsList.add(new Notification(senderUsername, message, seen));
             }
             System.out.println("[DAO] Done.");
 

@@ -8,7 +8,6 @@ public class NotificationDTO {
     private boolean seen;
 
     public NotificationDTO(Notification notification) {
-        this.id = notification.getId();
         this.senderUsername = notification.getSenderUsername();
         this.message = notification.getMessage();
         this.seen = notification.isSeen();

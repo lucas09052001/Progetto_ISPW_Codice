@@ -36,7 +36,7 @@ public class BorrowObjectPanel extends InteractivePanel {
 
     @Override
     protected String getPathToIcon() {
-        if(loanPostDTO == null){
+        if(loanPostDTO == null || loanPostDTO.getPathToIcon().isBlank()){
             return PathUtility.getPathToEmptyImage();
         }else{
             return loanPostDTO.getPathToIcon();

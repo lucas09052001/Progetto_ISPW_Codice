@@ -2,7 +2,6 @@ package entity.notification;
 
 public class Notification {
 
-    private int id;
     private String senderUsername;
     private String receiverUsername;
     private String message;
@@ -10,28 +9,19 @@ public class Notification {
 
     public Notification(){}
 
-    public Notification(int id, String senderUsername, String message, boolean seen) {
-        this.id = id;
+    public Notification(String senderUsername, String message, boolean seen) {
         this.senderUsername = senderUsername;
         this.message = message;
         this.seen = seen;
     }
 
-    public Notification(int id, String senderUsername, String receiverUsername, String message, boolean seen) {
-        this.id = id;
+    public Notification(String senderUsername, String receiverUsername, String message, boolean seen) {
         this.senderUsername = senderUsername;
         this.receiverUsername = receiverUsername;
         this.message = message;
         this.seen = seen;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getSenderUsername() {
         return senderUsername;

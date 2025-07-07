@@ -96,7 +96,7 @@ public class AuthenticateCentralPannel extends JPanel {
     }
 
     public void handleRegisterEvent(){
-        System.out.println("[BOUNDERY] Not yet implemented");
+        System.out.println("[BOUNDERY] Minor functionality. Not yet implemented.");
     }
 
 }

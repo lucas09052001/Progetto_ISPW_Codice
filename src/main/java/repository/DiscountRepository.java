@@ -7,17 +7,20 @@ import java.util.ArrayList;
 public class DiscountRepository {
 
     private static DiscountRepository instance;
-    private ArrayList<Discount> listaSconti;
+    private ArrayList<Discount> listaDiscounts;
 
     private DiscountRepository() {
-        listaSconti = new ArrayList<>();
+        listaDiscounts = new ArrayList<>();
 
         // Sconti di esempio
-        listaSconti.add(new Discount("SummerSale", "/images/summer.jpg", 20, 100, "alice"));
-        listaSconti.add(new Discount("WinterBlowout", "/images/winter.jpg", 30, 150, null));
-        listaSconti.add(new Discount("BlackFriday", "/images/blackfriday.jpg", 50, 200, null));
-        listaSconti.add(new Discount("CyberMonday", "/images/cyber.jpg", 40, 180, "bob"));
-        listaSconti.add(new Discount("SpringFever", "/images/spring.jpg", 25, 120, null));
+        listaDiscounts.add(new Discount("SummerSale", "/images/summer.png", 20, 100, null));
+        listaDiscounts.add(new Discount("WinterBlowout", "/images/winter.png", 30, 150, null));
+        listaDiscounts.add(new Discount("Paninozzo", "/images/Panino.png", 20, 100, null));
+        listaDiscounts.add(new Discount("Bibita", "/images/Bibita.png", 20, 100, null));
+        listaDiscounts.add(new Discount("BlackFriday", "/images/blackfriday.jpg", 50, 200, "alice"));
+        listaDiscounts.add(new Discount("CyberMonday", "/images/cyber.jpg", 40, 180, "alice"));
+        listaDiscounts.add(new Discount("SpringFever", "/images/spring.jpg", 25, 120, "bob"));
+
     }
 
     public static DiscountRepository getInstance() {
@@ -28,10 +31,10 @@ public class DiscountRepository {
     }
 
     public ArrayList<Discount> getDiscountList() {
-        return listaSconti;
+        return listaDiscounts;
     }
 
-    public void setDiscountList(ArrayList<Discount> listaSconti) {
-        this.listaSconti = listaSconti;
+    public void setDiscountList(ArrayList<Discount> listaDiscounts) {
+        this.listaDiscounts = listaDiscounts;
     }
 }

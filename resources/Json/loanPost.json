@@ -1,31 +1,37 @@
-[ {
-  "lendingUsername" : "alice",
-  "loanObjectName" : "Calcolatrice scientifica",
-  "loanDescription" : "Per esame di matematica",
-  "loanInterval" : "DAY",
-  "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
-}, {
-  "lendingUsername" : "bob",
-  "loanObjectName" : "Appunti di storia",
-  "loanDescription" : "Consultazione rapida",
-  "loanInterval" : "HOUR",
-  "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
-}, {
-  "lendingUsername" : "alice",
-  "loanObjectName" : "Dizionario inglese",
-  "loanDescription" : "Per traduzione articolo",
-  "loanInterval" : "WEEK",
-  "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
-}, {
-  "lendingUsername" : "bob",
-  "loanObjectName" : "Libro di fisica",
-  "loanDescription" : "Studio per interrogazione",
-  "loanInterval" : "DAY",
-  "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
-}, {
-  "lendingUsername" : "alice",
-  "loanObjectName" : "Quaderno di appunti",
-  "loanDescription" : "Riferimento veloce",
-  "loanInterval" : "HOUR",
-  "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
-} ]
+[
+  {
+    "lendingUsername": "alice",
+    "loanObjectName": "Calcolatrice",
+    "loanDescription": "Calcolatrice scientifica perfettamente funzionante.",
+    "loanInterval": "DAY",
+    "pathToImage": "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Calcolatrice.png"
+  },
+  {
+    "lendingUsername": "alice",
+    "loanObjectName": "Zaino",
+    "loanDescription": "Zaino capiente.",
+    "loanInterval": "WEEK",
+    "pathToImage": "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/ZainoTrekking.png"
+  },
+  {
+    "lendingUsername": "bob",
+    "loanObjectName": "Appunti ISPW",
+    "loanDescription": "Per superare il corso con 30L e bacio accademico.",
+    "loanInterval": "WEEK",
+    "pathToImage": "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Appunti.png"
+  },
+  {
+    "lendingUsername": "bob",
+    "loanObjectName": "Cavo HDMI",
+    "loanDescription": "Cavo HDMI to HDMI.",
+    "loanInterval": "DAY",
+    "pathToImage": "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/CavoHDMI.png"
+  },
+  {
+    "lendingUsername": "carlos",
+    "loanObjectName": "Matita",
+    "loanDescription": "Temperata",
+    "loanInterval": "MONTH",
+    "pathToImage": ""
+  }
+]
