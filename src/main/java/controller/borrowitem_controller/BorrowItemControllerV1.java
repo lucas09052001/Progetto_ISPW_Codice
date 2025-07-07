@@ -35,6 +35,10 @@ public class BorrowItemControllerV1 implements BorrowItemController{
         getAllLoanPosts();
     }
 
+    public ArrayList<LoanPost> getLoanPostList() {
+        return loanPostList;
+    }
+
     @Override
     public void getAllLoanPosts(){
 

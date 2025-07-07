@@ -27,7 +27,7 @@ public class UserDAODB implements UserDAO {
     @Override
     public User fetchUserInfo(String username) throws DAOException {
 
-        try (Connection connection = ConnectionFactory.upgrade();
+            try (Connection connection = ConnectionFactory.upgrade();
              PreparedStatement stmt = connection.prepareStatement(FETCH_USER_INFO_QUERY)){
 
             System.out.println("            [DAO] Connection to DB established");

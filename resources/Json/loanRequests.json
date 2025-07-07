@@ -25,4 +25,22 @@
     "loanInterval" : "DAY",
     "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/EmptyImage.png"
   }
+}, {
+  "borrowingUsername" : "alice",
+  "loanPost" : {
+    "lendingUsername" : "bob",
+    "loanObjectName" : "Shoes",
+    "loanDescription" : "They're smelly",
+    "loanInterval" : "DAY",
+    "pathToImage" : "resources/ImageRepository/EmptyImage.png"
+  }
+}, {
+  "borrowingUsername" : "alice",
+  "loanPost" : {
+    "lendingUsername" : "bob",
+    "loanObjectName" : "Shoes",
+    "loanDescription" : "They're smelly",
+    "loanInterval" : "DAY",
+    "pathToImage" : "resources/ImageRepository/EmptyImage.png"
+  }
 } ]

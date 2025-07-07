@@ -58,7 +58,7 @@ public class LoanRequestDAOFile implements LoanRequestDAO{
 
         try {
             System.out.println("        [DAO] Buffering Json");
-            ArrayList<LoanRequest> buffer = mapper.readValue(new File(PathUtility.getPathToLoanRequestJson()), new TypeReference<ArrayList<LoanRequest>>() {});
+            ArrayList<LoanRequest> buffer = mapper.readValue(new File(PathUtility.getPathToLoanRequestJson()), new TypeReference<>() {});
             System.out.println("        [DAO] Extracting entities of interest");
             for(LoanRequest l : buffer){
                 if(!l.getBorrowingUsername().equals(username)){
