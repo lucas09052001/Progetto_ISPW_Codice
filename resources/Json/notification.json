@@ -3,28 +3,28 @@
     "id": 1,
     "senderUsername": "alice",
     "receiverUsername": "bob",
-    "message": "TETTE",
+    "message": "I have returned your item 'Smartwatch'!",
     "seen": false
   },
   {
     "id": 2,
     "senderUsername": "alice",
     "receiverUsername": "bob",
-    "message": "CULO",
+    "message": "I have returned your item 'Zaino'!",
     "seen": false
   },
   {
     "id": 3,
-    "senderUsername": "alice",
-    "receiverUsername": "bob",
-    "message": "FIGA.",
+    "senderUsername": "System",
+    "receiverUsername": "alice",
+    "message": "You have a new loan request!",
     "seen": false
   },
   {
     "id": 4,
     "senderUsername": "bob",
     "receiverUsername": "alice",
-    "message": "CAZZO",
+    "message": "You have been rated about your last borrowed object !",
     "seen": false
   }
 ]
