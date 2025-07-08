@@ -17,9 +17,15 @@
   "loanInterval" : "WEEK",
   "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/Appunti.png"
 }, {
+  "lendingUsername" : "bob",
+  "loanObjectName" : "Cavo HDMI",
+  "loanDescription" : "Cavo HDMI to HDMI.",
+  "loanInterval" : "DAY",
+  "pathToImage" : "/home/lucas/Documents/Università/Corrente/ISPW/Progetto_Codice/progetto_ISPW/resources/ImageRepository/CavoHDMI.png"
+}, {
   "lendingUsername" : "carlos",
   "loanObjectName" : "Matita",
   "loanDescription" : "Temperata",
   "loanInterval" : "MONTH",
   "pathToImage" : ""
-} ]
+}]

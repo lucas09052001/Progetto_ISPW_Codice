@@ -1,22 +1,21 @@
-[
-  {
-    "borrowingUsername": "bob",
-    "lendingUsername": "alice",
-    "loanObjectName": "Borsa per computer"
-  },
-  {
-    "borrowingUsername": "alice",
-    "lendingUsername": "bob",
-    "loanObjectName": "Temperino"
-  },
-  {
-    "borrowingUsername": "carlos",
-    "lendingUsername": "bob",
-    "loanObjectName": "Borraccia"
-  },
-  {
-    "borrowingUsername": "carlos",
-    "lendingUsername": "alice",
-    "loanObjectName": "Appunti Chimica"
-  }
-]
+[ {
+  "borrowingUsername" : "bob",
+  "lendingUsername" : "alice",
+  "loanObjectName" : "Borsa per computer"
+}, {
+  "borrowingUsername" : "alice",
+  "lendingUsername" : "bob",
+  "loanObjectName" : "Temperino"
+}, {
+  "borrowingUsername" : "carlos",
+  "lendingUsername" : "bob",
+  "loanObjectName" : "Borraccia"
+}, {
+  "borrowingUsername" : "carlos",
+  "lendingUsername" : "alice",
+  "loanObjectName" : "Appunti Chimica"
+}, {
+  "borrowingUsername" : "carlos",
+  "lendingUsername" : "bob",
+  "loanObjectName" : "Cavo HDMI"
+} ]

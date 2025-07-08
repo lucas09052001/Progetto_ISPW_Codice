@@ -1,0 +1,38 @@
+[
+  {
+    "senderUsername": "alice",
+    "receiverUsername": "bob",
+    "message": "I accepted your loan request!",
+    "seen": false
+  },
+  {
+    "senderUsername": "alice",
+    "receiverUsername": "carlos",
+    "message": "I declined your loan request.",
+    "seen": false
+  },
+  {
+    "senderUsername": "bob",
+    "receiverUsername": "alice",
+    "message": "I returned the object I borrowed!",
+    "seen": false
+  },
+  {
+    "senderUsername": "bob",
+    "receiverUsername": "carlos",
+    "message": "I returned the object I borrowed!",
+    "seen": false
+  },
+  {
+    "senderUsername": "system",
+    "receiverUsername": "alice",
+    "message": "New discounts have been added!",
+    "seen": false
+  },
+  {
+    "senderUsername": "system",
+    "receiverUsername": "bob",
+    "message": "Loan an item !",
+    "seen": false
+  }
+]

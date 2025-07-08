@@ -1,0 +1,51 @@
+[
+  {
+    "name": "SummerSale",
+    "pathToImage": "resources/ImageRepository/summer.png",
+    "percentage": 20,
+    "cost": 100,
+    "ownerUsername": null
+  },
+  {
+    "name": "WinterBlowout",
+    "pathToImage": "resources/ImageRepository/winter.png",
+    "percentage": 30,
+    "cost": 150,
+    "ownerUsername": null
+  },
+  {
+    "name": "Paninozzo",
+    "pathToImage": "resources/ImageRepository/Panino.png",
+    "percentage": 20,
+    "cost": 100,
+    "ownerUsername": null
+  },
+  {
+    "name": "Bibita",
+    "pathToImage": "resources/ImageRepository/Bibita.png",
+    "percentage": 20,
+    "cost": 100,
+    "ownerUsername": null
+  },
+  {
+    "name": "BlackFriday",
+    "pathToImage": "/images/blackfriday.jpg",
+    "percentage": 50,
+    "cost": 200,
+    "ownerUsername": "alice"
+  },
+  {
+    "name": "CyberMonday",
+    "pathToImage": "/images/cyber.jpg",
+    "percentage": 40,
+    "cost": 180,
+    "ownerUsername": "alice"
+  },
+  {
+    "name": "SpringFever",
+    "pathToImage": "/images/spring.jpg",
+    "percentage": 25,
+    "cost": 120,
+    "ownerUsername": "bob"
+  }
+]
