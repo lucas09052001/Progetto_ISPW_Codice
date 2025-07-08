@@ -3,7 +3,6 @@ package repository;
 import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
 import entity.loan.loan_request.LoanRequest;
-import utilities.PathUtility;
 
 import java.util.ArrayList;
 

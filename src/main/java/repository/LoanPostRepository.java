@@ -1,7 +1,6 @@
 package repository;
 import entity.loan.LoanInterval;
 import entity.loan.loan_post.LoanPost;
-import utilities.PathUtility;
 
 import java.util.ArrayList;
 
