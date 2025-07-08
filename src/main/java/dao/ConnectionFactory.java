@@ -27,7 +27,7 @@ public class ConnectionFactory {
         } catch (IOException | SQLException e) {
             //These exceptions get triggered only if connection to db gets rejected or resources file is
             //unreachable which is a failure externally dictated and as such it is not handled directly
-            e.printStackTrace();
+            //e.printStackTrace();
             throw new RuntimeException("Critical system error");
         }
     }

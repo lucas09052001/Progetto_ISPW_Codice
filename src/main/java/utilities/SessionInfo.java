@@ -1,6 +1,5 @@
 package utilities;
 
-import boundery.Boundaries;
 
 public class SessionInfo {
     private static SessionInfo sessionInfo;
